@@ -24,12 +24,15 @@ PORT=3000
 ```
 
 ### Run
-With Postgres running, execute:
+For the first time, make sure Postgres is running, then execute:
 ```
 bundle install
 rake db:create db:migrate
 foreman start
 ```
+For subsequent times, still with Postgres running first, just run `foreman start`. Occassionally you may need to preface that with:
+`bundle install` if new gems (modules/plugins) are used in the app, or
+`rake db:migrate db:import` if the database schema or raw input data have changed.
 
 ## To be able to deploy to heroku
 You must be an authorized collaborator on the Heroku app to be able to deploy. Once you are, go to the root directory of your local app and run:
