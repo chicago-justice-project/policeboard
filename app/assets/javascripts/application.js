@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require responsive.min
+//= require responsive-init
 //= require_tree .

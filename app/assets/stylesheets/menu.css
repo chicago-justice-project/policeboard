@@ -1,0 +1,47 @@
+/*-----------------------------------------------+
+ | Site: Chicago Police Board Information Center |
+ | Part: Menu styles                             |
+ +-----------------------------------------------*/
+
+/* Navigation */
+#menu {
+    background: #0072ad;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    font-size: 16px;
+    overflow: scroll;
+    position: absolute;
+    right: -400px;
+    top: 0;
+    width: 250px;
+    z-index: 1000;
+}
+
+#menu a { border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #fff; display: block; padding: 0.8em 1.1em; }
+#menu a:hover { text-decoration: none; }
+#menu li { border-radius: 0; margin: 0; }
+#menu li.current { background: #fff; }
+#menu li.current > a { color: #000; font-weight: bold; }
+#menu .social { font-size: 40px; padding: 10px; text-align: center; }
+#menu .social a { border: 0; display: inline; padding: 0; }
+#menu ul { list-style: none; margin: 0; }
+    
+    /* Toggle */
+    #nav-toggle {
+        background: #0072ad;
+        border-radius: 4px;
+        color: #fff;
+        float: right;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 0.5em 1em;
+        text-align: center;
+        text-transform: uppercase;
+        vertical-align: middle;
+    }
+    
+    #nav-toggle:hover { text-decoration: none; }
+    #nav-toggle .fa { display: block; font-size: 20px; margin-bottom: -0.1em; }
+    
+        /* Home page */
+        #home #nav-toggle { background: #fff; color: #0072ad; }

@@ -1,0 +1,49 @@
+/*-----------------------------------------------+
+ | Site: Chicago Police Board Infromation Center |
+ | Part: Form styles                             |
+ +-----------------------------------------------*/
+
+
+/* Global
+======================================================================*/
+input, select, textarea { font-size: 1em; }
+textarea { height: 5em; }
+
+/* Specifics
+======================================================================*/
+    
+/* Options */
+.options-h, .options-v { list-style: none; margin: 0; }
+.options-h input, .options-v input { margin: 0 0.5em -0.05em 0; }
+.options-h img { border-bottom: 3px solid #fff; padding: 5px; vertical-align: middle; }
+.options-h li, .options-v li { background: none; margin-bottom: 0.3em; padding: 0; }
+.options-h li { display: inline; margin-right: 0.7em; white-space: nowrap; }
+.options-v li { padding-left: 22px; text-indent: -22px; }
+.options-v ul { margin: 0.3em 0 1em; }
+
+/* Placeholder */
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999; font-style: italic; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #999; font-style: italic; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #999; font-style: italic; }
+
+/* Required text */
+.req { color: #f00; }
+
+/* Text boxes */
+.txt {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 0.5em;
+    padding: 0.5em 0.3em;
+    vertical-align: middle;
+    width: 100%;
+}
+
+/* Search */
+#search { background: #fff; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; padding-right: 3em; white-space: nowrap; }
+#search label { display: none; }
+#search * { vertical-align: middle; }
+#search button { -webkit-appearance: none; background: none; border: 0; color: #505050; cursor: pointer; font-size: 16px; margin-right: -2em; padding: 0.5em 0; width: 3em; }
+#search .txt { border: 0; box-shadow: none; margin: 0; padding: 0; text-indent: 0.6em; width: 100%; }
+#nav #search { position: absolute; right: 0; top: 2em; width: 10em; }

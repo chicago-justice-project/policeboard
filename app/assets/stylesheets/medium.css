@@ -1,0 +1,24 @@
+/*-----------------------------------------------+
+ | Site: Chicago Police Board Information Center |
+ | Part: Medium styles                           |
+ +-----------------------------------------------*/
+
+/* Imports
+=====================================================================*/
+@import url(/assets/menu.css);
+
+
+/* Layout
+=====================================================================*/
+
+
+
+/* Content
+=====================================================================*/
+/* Header */
+#logo { max-width: 360px; width: 70%; }
+
+/* Intro */
+#intro { padding-top: 30%; }
+#intro h1 { font-size: 30px; }
+#intro-primary { width: auto; }

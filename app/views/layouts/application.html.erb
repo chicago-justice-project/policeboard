@@ -1,14 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Policeboard</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= content_for?(:title) ? yield(:title) + " - " : "" %>Chicago Police Board</title>
+    
+  <!-- Info -->  
   <%= csrf_meta_tags %>
+  <meta name="author" content="Chicago Justice Project">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+  <meta name="apple-mobile-web-app-title" content="CPBIC">
+  
+  <!-- Fav icon -->
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon' %>
+  
+  <!-- Scripts -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <!-- Styles -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 </head>
-<body>
+<body id=<%= yield (:body_id) %>>
+<div id="wrapper">
+  <!-- Header -->
+  <div id="header">
+    <div class="content">
+      <div id="logo">
+        <a href="/">
+          <%= image_tag "logo.png", alt: "Chicago Police Board Information Center", id: "logo-full" %>
+          <%= image_tag "logo-reverse.png", alt: "Chicago Police Board Information Center", id: "logo-reverse" %>
+        </a>
+      </div>
+          
+      <!-- Navigation -->
+      <div id="nav">
+            <ul>
+              <li class=<%= navClass('welcome') %>><a href="/"><i class="fa fa-home" title="Home"></i></a></li>
+              <li class=<%= navClass('cases') %>><%= link_to 'Cases', cases_path %></li>
+              <li class=<%= navClass('board') %>><%= link_to 'Board', board_index_path %></li>
+              <li class=<%= navClass('rules') %>><%= link_to 'Rules', rules_path %></li>
+              <li class=<%= navClass('about') %>><%= link_to 'About', about_path %></li>
+              <li class=<%= navClass('feedback') %>><%= link_to 'Feedback', feedback_path %></li>
+              <li>
+                <a href="#.html" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
+                <div id="search" style="display: none;">
+                  <form action="#" method="get">
+                    <div>
+                      <input class="txt" placeholder="Search cases&hellip;" />
+                      <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+      <!-- /Navigation -->
+          
+      <div class="clear"></div>
+    </div>
+  </div>
+  <!-- /Header -->
+  
+  <%= yield %>
 
-<%= yield %>
-
+  <!-- Footer -->
+  <div id="footer">
+    <div class="content">
+      <p id="site-credit">Designed by <a href="http://odi-chicago.org">ODI Chicago</a>.</p>
+      <h6>Chicago Police Board Information Center</h6>
+      <p>From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a></p>
+    </div>
+  </div>
+  <!-- /Footer -->
 </body>
 </html>
