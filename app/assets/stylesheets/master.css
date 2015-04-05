@@ -113,7 +113,7 @@ ul { list-style: disc; margin-left: 1.5em; }
 .fa-times-circle { color: #0a3557; }
 
 /* Intro */
-#intro { background: #0c3557 url(/assets/intro-bg.jpg) 50% 50% no-repeat; background-size: cover; margin-bottom: 40px; padding: 200px 0 6%; }
+#intro { background: #0c3557 url(/intro-bg.jpg) 50% 50% no-repeat; background-size: cover; margin-bottom: 40px; padding: 200px 0 6%; }
 #intro h1 { font-size: 50px; font-weight: bold; margin-bottom: 0.3em; }
 #intro, #intro a, #intro h1, #intro h2 { color: #fff; }
 #intro p { margin-bottom: 1.5em; }
