@@ -61,7 +61,15 @@
   </div>
   <!-- /Header -->
   
-  <%= yield %>
+  <% if current_page?(root_path) %>
+    <%= render 'layouts/home_intro' %>
+  <% end %>
+  
+  <div id="main">
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
 
   <!-- Footer -->
   <div id="footer">
