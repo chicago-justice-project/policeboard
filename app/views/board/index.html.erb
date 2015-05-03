@@ -1,7 +1,18 @@
 <% title "Board" %>
+<% body_id "board-index" %>
 
 <div class="content-box">
   <h1>The Chicago Police Board</h1>
   <p>The Chicago Police Board is an independent civilian body that oversees certain activities of the Chicago Police Department. The nine members of the Board are private citizens appointed by the Mayor with the advice and consent of the City Council.</p>
   <p><%= link_to raw("More about the board's responsibilities &raquo;"), board_responsibilities_path %></p>
 </div>
+
+<%= render partial: "list", locals: { board_members: @current_board_members, type: 'current' } %>
+
+<%= render partial: "list", locals: { board_members: @past_board_members, type: 'past' } %>
+
+
+<%= stylesheet_link_tag "//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" %>
+
+<%= javascript_include_tag "//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" %>
+<%= javascript_include_tag "board-members" %>

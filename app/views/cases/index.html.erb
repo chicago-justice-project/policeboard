@@ -3,3 +3,11 @@
 <div class="content-box">
   <h1>Cases</h1>
 </div>
+
+<div class="content-box">
+  <h2>Recent cases</h2>
+  
+  <% @cases.each do |c| %>
+    <h3><%= link_to c.defendant.nil? ? '[Defendant unknown]' : c.defendant.full_name, case_path(c) %></h3>
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<% title @member.full_name %>
+<% body_id "board-index" %>
+
+<div class="content-box">
+  <h1><%= [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %></h1>
+  
+  <p>
+    <%= [@member.job_title, @member.organization].reject(&:blank?).join(', ') %>
+    <% @member.terms.order(start: :desc).each do |term| %>
+      <br/>Appointed <%= term.start.to_formatted_s(:long) %> - <%= term.end.to_formatted_s(:long) %> 
+      <% if term.end >= DateTime.now.to_date %>(Current board member)<% end %>
+    <% end %>
+  </p>
+  
+  <ul>
+    <li><i class="fa fa-check-circle"></i> How often board member agreed with discipline recommendation</li>
+    <li><i class="fa fa-times-circle"></i> Disagreed with recommendation</li>
+    <li><i class="fa fa-ban"></i> Did not vote</li>
+  </ul>
+</div>
+
+<%= render partial: "member_cases", locals: { cases: @member.board_member_votes.cases } %>

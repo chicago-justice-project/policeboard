@@ -10,9 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+// rails 
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+// app
+//= require jquery.readyselector
+//= require jquery.sparkline.min
 //= require responsive.min
 //= require responsive-init
-//= require_tree .
+//= require search
+//= require table-scroll
+

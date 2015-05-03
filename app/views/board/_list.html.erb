@@ -1,0 +1,36 @@
+<div class="content-box">
+  <h2><%= type.capitalize %> board members</h2>
+  
+  <p class="mute">How often a member agreed with discipline recommendation</p>
+  
+  <table id=<%= type + '-board-list' %>>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Board member</th>
+        <th><i class="fa fa-check-circle"></i> Agreed</th>
+        <th><i class="fa fa-times-circle"></i> Disagreed</th>
+        <th><i class="fa fa-ban"></i> Did note vote</th>
+        <th>Voting chart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% board_members.each do |bm| %>
+      <tr>
+        <td><%= bm.last_name %></td>
+        <td>
+          <%= image_tag "http://dummyimage.com/75x75/000000/fff" %>
+          <p>
+            <%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ')  , board_path(bm) %>
+            <br/><%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %>
+          </p>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
