@@ -117,6 +117,8 @@ namespace :import do
       end 
       
       num = df[:badge_num].nil? ? df[:employee_num] : df[:badge_num]
+            
+      puts "Defendant: #{num.to_i} #{df[:fname]} #{df[:lname]} #{rank_id}"
               
       Defendant.create(:first_name=>df[:fname], :last_name=>df[:lname], :number=>num.to_i, :rank_id=>rank_id)
     end
@@ -152,6 +154,8 @@ namespace :import do
         dec = Outcome.find_by_name(c[:dec_outcome])
         dec_id = dec.nil? ? nil : dec.id
       end
+      
+      puts "Case #{c[:number]} #{df_id} #{c[:initiated]} #{c[:decided]} #{rec_id} #{dec_id}"
       
       Case.create(
         :number=>c[:number], 
