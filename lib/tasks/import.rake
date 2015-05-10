@@ -4,6 +4,7 @@ require 'roo'
 namespace :import do
   board_members = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-members.xlsx").sheet(0)
   board_terms   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-terms.xlsx").sheet(0)
+  cases         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/cases.xlsx").sheet(0)
   raw_data      = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/raw-data.xlsx").sheet(0)
   rules         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/rules.xlsx").sheet(0)
     
@@ -97,7 +98,7 @@ namespace :import do
   desc "Import defendants"
   task :defendants => :environment do 
     i = -1
-    raw_data.each(
+    cases.each(
       fname: 'Officer_First_Name', 
       lname: 'Officer_Last_Name', 
       rank: 'Rank_Title',
@@ -127,7 +128,7 @@ namespace :import do
   desc "Import cases"
   task :cases => :environment do
     i = -1
-    raw_data.each(
+    cases.each(
       number: 'Case Number', 
       fname: 'Officer_First_Name', 
       lname: 'Officer_Last_Name', 
