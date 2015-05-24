@@ -4,7 +4,7 @@ $('#rules-index').ready(function () {
     aoColumns: [
       { bVisible: false }, //0: hidden rule # for sorting
       { iDataSort: 0 }, //1: rule
-      { bSortable: false }, //2: description
+      null, //2: description
       { iDataSort: 4 }, //3: cases stat
       { bVisible: false }, //4: hidden cases stat for sorting
       { bSortable: false } //5: cases barchart
