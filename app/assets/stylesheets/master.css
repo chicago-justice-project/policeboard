@@ -138,6 +138,9 @@ ul { list-style: disc; margin-left: 1.5em; }
 /* Muted text */
 .mute { color: #999; font-weight: normal; }
 
+/* Tables */
+.nb { white-space: nowrap; }
+
 /* Voting history */
 .voting-history td { vertical-align: middle; }
 .voting-history .percent { font-size: 32px; }

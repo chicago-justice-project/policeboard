@@ -10,9 +10,9 @@
     <thead>
       <tr>
         <th>Hidden rule #</th>
-        <th>Rule <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+        <th class="nb">Rule <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
         <th>Description <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
-        <th>Cases <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+        <th class="nb">Cases <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
         <th>Hidden cases</th>
         <th></th>
       </tr>
@@ -21,19 +21,17 @@
       <% @rules.each do |rule| %>
       <tr>
         <td><%= rule.code %></td>
-        <td><strong>Rule <%= rule.code %></strong></td>
+        <td class="nb"><strong>Rule <%= rule.code %></strong></td>
         <td>
-          <div>
             <p><%= raw(rule.description) %> 
             <% if rule.comment %>
               <a class="toggle-special-comment" href=""><i class="fa fa-comment-o"></i> <span class="verb">Show</span> special comment</a></p>
               <p style="display: none;"><%= raw(rule.comment) %></p>
             <% else %>
               </p>
-            <% end %>          
-          </div>
+            <% end %>
         </td>
-        <td># (#%)</td>
+        <td class="nb"># (#%)</td>
         <td></td>
         <td></td>
       </tr>
