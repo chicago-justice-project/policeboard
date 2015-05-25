@@ -9,6 +9,18 @@ class Case < ActiveRecord::Base
   has_many :case_rules
   has_many :complaints
 
+  def agree_votes
+    self.board_member_votes.where(vote_id: Vote.AGREE).map{|bmv| bmv.board_member}
+  end
+
+  def dissent_votes
+    self.board_member_votes.where(vote_id: Vote.DISSENT).map{|bmv| bmv.board_member}
+  end
+
+  def abstain_votes
+    self.board_member_votes.where(vote_id: Vote.ABSTAIN).map{|bmv| bmv.board_member}
+  end
+
   def length_of_process
     if !date_initiated.nil? && !date_decided.nil?
       distance_of_time_in_words(date_initiated, date_decided)

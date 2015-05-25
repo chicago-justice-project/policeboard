@@ -4,11 +4,12 @@ $('#board-index').ready(function () {
     aaSorting: [], //disable initial sort
     aoColumns: [
       { bVisible: false }, //0: hidden board member name for sorting
-      { iDataSort: 0 }, //1: board member
-      null, //2: agreed
-      null, //3: disagreed
-      null, //4: did not vote
-      { bSortable: false } //5: voting chart
+      null, //1: photo
+      { iDataSort: 0 }, //2: board member
+      null, //3: agreed
+      null, //4: disagreed
+      null, //5: did not vote
+      { bSortable: false } //6: voting chart
     ],
     info: false,
     paging: false,
@@ -19,11 +20,12 @@ $('#board-index').ready(function () {
     aaSorting: [], //disable initial sort
     aoColumns: [
       { bVisible: false }, //0: hidden board member name for sorting
-      { iDataSort: 0 }, //1: board member
-      null, //2: agreed
-      null, //3: disagreed
-      null, //4: did not vote
-      { bSortable: false } //5: voting chart
+      null, //1: photo
+      { iDataSort: 0 }, //2: board member
+      null, //3: agreed
+      null, //4: disagreed
+      null, //5: did not vote
+      { bSortable: false } //6: voting chart
     ],
     info: false,
     paging: false,

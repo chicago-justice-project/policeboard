@@ -7,9 +7,9 @@
   <p><%= link_to raw("More about the board's responsibilities &raquo;"), board_responsibilities_path %></p>
 </div>
 
-<%= render partial: "list", locals: { board_members: @current_board_members, type: 'current' } %>
+<%= render partial: "list", locals: { board_members: @current_board_members, title: '<h2>Current board members</h2>', table_id: 'current-board-list' } %>
 
-<%= render partial: "list", locals: { board_members: @past_board_members, type: 'past' } %>
+<%= render partial: "list", locals: { board_members: @past_board_members, title: '<h2>Past board members</h2>', table_id: 'past-board-list' } %>
 
 
 <%= stylesheet_link_tag "//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" %>

@@ -4,7 +4,7 @@ class BoardController < ApplicationController
     @current_board_members = board_members.select{ |bm| bm.active == true }
     @past_board_members = board_members.select{ |bm| bm.active == false }
   end
-  
+
   def show
     @member = BoardMember.find(params[:id])
   end

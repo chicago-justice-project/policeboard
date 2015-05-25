@@ -5,6 +5,24 @@
   <p>
     <span>Case #: <strong><%= @case.number %></strong></span>
     <span>Complaint registry #: <strong></strong></span>
+    <span>
+      <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
+      <strong><%= @case.defendant.number %></strong>
+    </span>
+  </p>
+
+  <span>Recommendation</span>
+  <h2><%= @case.recommended_outcome.name %></h2>
+
+  <span>Decision</span>
+  <h2><%= @case.decided_outcome.name %></h2>
+
+  <span>Length of process</span>
+  <h2><%= @case.length_of_process %></h2>
+  <span class="mute">
+    <%= @case.date_initiated.to_formatted_s(:long) %> to <%= @case.date_decided.to_formatted_s(:long) %>
+  </span>
+
 </div>
 
 <div class="content-box">
@@ -13,4 +31,23 @@
 
 <div class="content-box">
   <h2>Board member vote</h2>
+
+  <div class="c3l">
+    <h1><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h1>
+    <p class="mute">Agreed with superintendant's disciplinary recommendation</p>
+
+    <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
+  </div>
+
+  <div class="c3m">
+    <h1><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h1>
+    <p class="mute">Disagreed with superintendant's disciplinary recommendation</p>
+
+    <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
+  </div>
+
+  <h1><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h1>
+  <p class="mute">Did not vote or were not present for voting</p>
+
+  <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
 </div>

@@ -1,3 +1,3 @@
 class Rank < ActiveRecord::Base
-  belongs_to :defendant
+  has_many :defendant
 end

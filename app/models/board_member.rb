@@ -21,8 +21,7 @@ class BoardMember < ActiveRecord::Base
   end
 
   def votes_abstain_count
-    abstain_vote_id = Vote.find_by_name("Abstain")
-    BoardMemberVote.where(board_member_id: id, vote_id: abstain_vote_id).count
+    BoardMemberVote.where(board_member_id: id, vote_id: Vote.ABSTAIN).count
   end
 
   def votes_abstain_rate
@@ -30,8 +29,7 @@ class BoardMember < ActiveRecord::Base
   end
 
   def votes_dissent_count
-    dissent_vote_id = Vote.find_by_name("Dissent")
-    BoardMemberVote.where(board_member_id: id, vote_id: dissent_vote_id).count
+    BoardMemberVote.where(board_member_id: id, vote_id: Vote.DISSENT).count
   end
 
   def votes_dissent_rate
@@ -40,7 +38,7 @@ class BoardMember < ActiveRecord::Base
 
   def votes_agree_count
     agree_vote_id = Vote.find_by_name("Agree")
-    BoardMemberVote.where(board_member_id: id, vote_id: agree_vote_id).count
+    BoardMemberVote.where(board_member_id: id, vote_id: Vote.AGREE).count
   end
 
   def votes_agree_rate

@@ -1,34 +1,48 @@
 <div class="content-box">
-  <h2><%= type.capitalize %> board members</h2>
-  
-  <p class="mute">How often a member agreed with discipline recommendation</p>
-  
-  <table id=<%= type + '-board-list' %>>
+  <%= raw(title) %>
+
+  <table class="voting-history" id=<%= table_id %>>
     <thead>
       <tr>
         <th></th>
-        <th>Board member</th>
-        <th><i class="fa fa-check-circle"></i> Agreed</th>
-        <th><i class="fa fa-times-circle"></i> Disagreed</th>
-        <th><i class="fa fa-ban"></i> Did note vote</th>
-        <th>Voting chart</th>
+        <th></th>
+        <th></th>
+        <th class="mute" align="center" colspan="3">How often a member agreed with discipline recommendation
+</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th width="40%" colspan="2">Board member</th>
+        <th width="15%" align="center"><i class="fa fa-check-circle"></i> Agreed</th>
+        <th width="15%" align="center"><i class="fa fa-times-circle"></i> Disagreed</th>
+        <th width="15%" align="center"><i class="fa fa-ban"></i> Did note vote</th>
+        <th width="15%">Voting chart</th>
       </tr>
     </thead>
     <tbody>
       <% board_members.each do |bm| %>
       <tr>
         <td><%= bm.last_name %></td>
+        <td><a href="<%= board_path(bm) %>"><%= image_tag "http://dummyimage.com/70x70/000000/fff" %></a></td>
         <td>
-          <%= image_tag "http://dummyimage.com/75x75/000000/fff" %>
           <p>
             <%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ')  , board_path(bm) %>
-            <br/><%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %>
+          </p>
+          <p class="mute">
+            <%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %>
           </p>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td class="agree percent" align="center"><%= bm.votes_agree_rate %>%</td>
+        <td class="disagree percent" align="center"><%= bm.votes_dissent_rate %>%</td>
+        <td class="novote percent" align="center"><%= bm.votes_abstain_rate %>%</td>
+        <td>
+          <div class="stacked-bar">
+            <div class="value agree" style="width: <%= bm.votes_agree_rate %>%;"></div>
+            <div class="value disagree" style="width: <%= bm.votes_dissent_rate %>%;"></div>
+            <div class="value novote" style="width: <%= bm.votes_abstain_rate %>%;"></div>
+          </div>
+        </td>
       </tr>
       <% end %>
     </tbody>

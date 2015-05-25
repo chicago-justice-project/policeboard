@@ -12,10 +12,17 @@
     <% end %>
   </p>
 
-  <p><%= @member.votes_total_count %></p>
-  <p><i class="fa fa-check-circle"></i> <%= @member.votes_agree_rate %>%</p>
-  <p><i class="fa fa-times-circle"></i> <%= @member.votes_dissent_rate %>%</p>
-  <p><i class="fa fa-ban"></i> <%= @member.votes_abstain_rate %>%</p>
+  <div class="stacked-bar">
+    <div class="value agree" style="width: <%= @member.votes_agree_rate %>%">
+      <i class="fa fa-check-circle"></i> <%= @member.votes_agree_rate %>%
+    </div>
+    <div class="value disagree" style="width: <%= @member.votes_dissent_rate %>%">
+      <i class="fa fa-times-circle"></i> <%= @member.votes_dissent_rate %>%
+    </div>
+    <div class="value novote" style="width: <%= @member.votes_abstain_rate %>%">
+      <i class="fa fa-ban"></i> <%= @member.votes_abstain_rate %>%
+    </div>
+  </div>
 
   <ul>
     <li><i class="fa fa-check-circle"></i> How often board member agreed with discipline recommendation</li>

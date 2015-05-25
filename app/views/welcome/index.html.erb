@@ -1,2 +1,4 @@
 <% title "Home" %>
 <% body_id "home" %>
+
+<%= render partial: "board/list", locals: { board_members: @board_members, title: '<h1>Board member voting history</h1>', table_id: 'board-list' } %>
