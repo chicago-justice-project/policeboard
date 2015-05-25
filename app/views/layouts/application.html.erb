@@ -2,21 +2,21 @@
 <html>
 <head>
   <title><%= content_for?(:title) ? yield(:title) + " - " : "" %>Chicago Police Board</title>
-    
-  <!-- Info -->  
+
+  <!-- Info -->
   <%= csrf_meta_tags %>
   <meta name="author" content="Chicago Justice Project">
   <meta name="HandheldFriendly" content="true">
   <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
   <meta name="apple-mobile-web-app-title" content="CPBIC">
-  
+
   <!-- Fav icon -->
   <%= favicon_link_tag 'favicon.ico' %>
-  <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon' %>
-  
+  <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type:'image/png' %>
+
   <!-- Scripts -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  
+
   <!-- Styles -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 </head>
@@ -31,7 +31,7 @@
           <%= image_tag "logo-reverse.png", alt: "Chicago Police Board Information Center", id: "logo-reverse" %>
         </a>
       </div>
-          
+
       <!-- Navigation -->
       <div id="nav">
             <ul>
@@ -55,16 +55,16 @@
             </ul>
           </div>
       <!-- /Navigation -->
-          
+
       <div class="clear"></div>
     </div>
   </div>
   <!-- /Header -->
-  
+
   <% if current_page?(root_path) %>
     <%= render 'layouts/home_intro' %>
   <% end %>
-  
+
   <div id="main">
     <div class="content">
       <%= yield %>
