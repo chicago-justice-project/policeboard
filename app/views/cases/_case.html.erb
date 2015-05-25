@@ -1,0 +1,13 @@
+<li>
+  <h3><%= link_to c.defendant.full_name, case_path(c) %></h3>
+  <p>
+    <%= c.recommended_outcome.nil? ? "" : "Recommendation: #{c.recommended_outcome.name}," %>
+    <%= c.decided_outcome.nil? ? "" : "Decision: #{c.decided_outcome.name}" %>
+    <br/>
+    <span class="mute">
+      <%= c.date_initiated.nil? ? "" : c.date_initiated.to_formatted_s(:long) %>
+      Case <%= c.number %>
+      <%= c.length_of_process.nil? ? "" : "Length of process: #{c.length_of_process}" %>
+    </span>
+  </p>
+</li>
