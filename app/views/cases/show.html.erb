@@ -12,15 +12,18 @@
   </p>
 
   <span>Recommendation</span>
-  <h2><%= @case.recommended_outcome.name %></h2>
+  <h2><%= @case.recommended_outcome.nil? ? "" : @case.recommended_outcome.name %></h2>
 
   <span>Decision</span>
-  <h2><%= @case.decided_outcome.name %></h2>
+  <h2><%= @case.decided_outcome.nil? ? "" : @case.decided_outcome.name %></h2>
 
   <span>Length of process</span>
   <h2><%= @case.length_of_process %></h2>
   <span class="mute">
-    <%= @case.date_initiated.to_formatted_s(:long) %> to <%= @case.date_decided.to_formatted_s(:long) %>
+    <%= [
+      @case.date_initiated.nil? ? @case.date_initiated : @case.date_initiated.to_formatted_s(:long),
+      @case.date_decided.nil? ? @case.date_decided : @case.date_decided.to_formatted_s(:long)
+    ].reject(&:blank?).join(' to ') %>
   </span>
 
 </div>
