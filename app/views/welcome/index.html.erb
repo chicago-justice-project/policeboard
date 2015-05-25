@@ -1,4 +1,37 @@
 <% title "Home" %>
 <% body_id "home" %>
 
+<div class="content-box">
+  <h1>Case outcomes</h1>
+  <p>How does the superintendant's recommended discipline compare to the final police board's judgement?</p>
+
+  <table id="case-outcomes">
+    <thead>
+      <tr>
+        <th></th>
+        <th width="35%">Recommendation <i class="fa fa-long-arrow-right"></i> Decision</th>
+        <th width="10%" align="right">Cases</th>
+        <th width="15%" align="right">Annual trend</th>
+        <th width="40%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @case_outcomes.each do |co| %>
+      <tr>
+        <td><%= co.last %></td>
+        <td><%= Outcome.find(co.first[0]).name %> <i class="fa fa-long-arrow-right"></i> <%= Outcome.find(co.first[1]).name %></td>
+        <td><%= co.last %> <span class="mute">(<%= (co.last.to_f / @cases.count * 100).round %>%)</span></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <%= render partial: "board/list", locals: { board_members: @board_members, title: '<h1>Board member voting history</h1>', table_id: 'board-list' } %>
+
+<%= stylesheet_link_tag "//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" %>
+
+<%= javascript_include_tag "//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" %>
+<%= javascript_include_tag "home" %>
