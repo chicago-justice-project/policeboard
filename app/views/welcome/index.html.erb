@@ -9,8 +9,8 @@
     <thead>
       <tr>
         <th></th>
-        <th width="35%">Recommendation <i class="fa fa-long-arrow-right"></i> Decision</th>
-        <th width="10%" align="right">Cases</th>
+        <th width="35%">Recommendation <i class="fa fa-long-arrow-right"></i> Decision <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+        <th width="10%" align="right">Cases <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
         <th width="15%" align="right">Annual trend</th>
         <th width="40%"></th>
       </tr>
@@ -32,7 +32,6 @@
 <%= render partial: "board/list", locals: { board_members: @board_members, title: '<h1>Board member voting history</h1>', table_id: 'board-list' } %>
 
 
-<%= stylesheet_link_tag "//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" %>
 
 <%= javascript_include_tag "//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" %>
 <%= javascript_include_tag "board-members-voting-history" %>
