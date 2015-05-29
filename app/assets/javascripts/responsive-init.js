@@ -66,8 +66,8 @@
 	// initialize responsive layouts
 	_Responsive.init({
 		layouts: {
-			MEDIUM: { maxWidth: 900 },
-			NARROW: { maxWidth: 400 }
+			MEDIUM: { maxWidth: 900, stylesheet: false },
+			NARROW: { maxWidth: 400, stylesheet: false }
 		},
 		//listen for responsive layout change; will also be fired once on page load
 		onLayoutChange: function (layout) {
