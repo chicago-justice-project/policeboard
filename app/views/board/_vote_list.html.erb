@@ -1,9 +1,9 @@
-<ul>
-  <% board_members.each do |bm| %>
-  <li>
-    <%= image_tag "http://dummyimage.com/75x75/000000/fff" %>
-    <h3><%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ') , board_path(bm) %></h3>
-    <p class="mute"><%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %></p>
-  </li>
-  <% end %>
+<ul class="votes">
+    <% board_members.each do |bm| %>
+        <li>
+            <div class="thumb"><%= image_tag "http://dummyimage.com/75x75/000000/fff" %></div>
+            <p><strong><%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ') , board_path(bm) %></strong></p>
+            <p class="mute"><%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %></p>
+        </li>
+    <% end %>
 </ul>

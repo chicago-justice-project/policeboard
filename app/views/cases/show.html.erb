@@ -1,56 +1,69 @@
 <% title "Case" %>
 
-<div class="content-box">
-  <h1><%= @case.defendant.full_name %></h1>
-  <p>
-    <span>Case #: <strong><%= @case.number %></strong></span>
-    <span>Complaint registry #: <strong></strong></span>
-    <span>
-      <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
-      <strong><%= @case.defendant.number %></strong>
-    </span>
-  </p>
-
-  <span>Recommendation</span>
-  <h2><%= @case.recommended_outcome.nil? ? "" : @case.recommended_outcome.name %></h2>
-
-  <span>Decision</span>
-  <h2><%= @case.decided_outcome.nil? ? "" : @case.decided_outcome.name %></h2>
-
-  <span>Length of process</span>
-  <h2><%= @case.length_of_process %></h2>
-  <span class="mute">
-    <%= [
-      @case.date_initiated.nil? ? @case.date_initiated : @case.date_initiated.to_formatted_s(:long),
-      @case.date_decided.nil? ? @case.date_decided : @case.date_decided.to_formatted_s(:long)
-    ].reject(&:blank?).join(' to ') %>
-  </span>
-
+<div class="content-box" id="case-header">
+    <h1><%= @case.defendant.full_name %></h1>
+    
+    <ul class="details">
+        <li>Case #: <strong><%= @case.number %></strong></li>
+        <li>Complaint registry #: <strong></strong></li>
+        <li>
+            <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
+            <strong><%= @case.defendant.number %></strong>
+        </li>
+        <li><a href="#"><i class="fa fa-file-text-o"></i> Download original case file</a></li>
+    </ul>
+    
+    <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p>
+    
+    <ul class="highlights">
+        <li>
+            <span class="title">Recommendation</span>
+            <strong class="value"><%= @case.recommended_outcome.nil? ? "" : @case.recommended_outcome.name %></strong>
+        </li>
+        <li>
+            <span class="title">Decision</span>
+            <strong class="value"><%= @case.decided_outcome.nil? ? "" : @case.decided_outcome.name %></strong>
+        </li>
+        <li>
+            <span class="title">Length of process</span>
+            <strong class="value"><%= @case.length_of_process %></strong>
+            <span class="mute">
+                <%= [
+                    @case.date_initiated.nil? ? @case.date_initiated : @case.date_initiated.to_formatted_s(:long),
+                    @case.date_decided.nil? ? @case.date_decided : @case.date_decided.to_formatted_s(:long)
+                ].reject(&:blank?).join(' to ') %>
+            </span>
+        </li>
+    </ul>
 </div>
 
 <div class="content-box">
-  <h2>Charged with violating # rules on # counts</h2>
+    <h2>Charged with violating # rules on # counts</h2>
 </div>
 
 <div class="content-box">
-  <h2>Board member vote</h2>
-
-  <div class="c3l">
-    <h1><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h1>
-    <p class="mute">Agreed with superintendant's disciplinary recommendation</p>
-
-    <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
-  </div>
-
-  <div class="c3m">
-    <h1><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h1>
-    <p class="mute">Disagreed with superintendant's disciplinary recommendation</p>
-
-    <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
-  </div>
-
-  <h1><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h1>
-  <p class="mute">Did not vote or were not present for voting</p>
-
-  <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
+    <h2>Board member vote</h2>
+    
+    <div id="voting-breakdown">
+        <div class="c3l">
+            <h2><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h2>
+            <p class="mute">Agreed with superintendant's disciplinary recommendation</p>
+            
+            <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
+        </div>
+    
+        <div class="c3m">
+            <h2><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h2>
+            <p class="mute">Disagreed with superintendant's disciplinary recommendation</p>
+    
+            <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
+        </div>
+        
+        <div class="c3r">
+            <h2><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h2>
+            <p class="mute">Did not vote or were not present for voting</p>
+        
+            <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
+        </div>
+    </div>
 </div>

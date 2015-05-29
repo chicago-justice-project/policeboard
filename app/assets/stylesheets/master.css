@@ -42,6 +42,15 @@ ul { list-style: disc; margin-left: 1.5em; }
 /* Core layout
 ======================================================================*/
 .clear { clear: both; }
+
+/* Columns */
+.c2l, .c2r { width: 48%; }
+.c2l, .c3l, .c3m { float: left; }
+.c2r, .c3r { float: right; }
+.c3l { margin-right: 3%; }
+.c3l, .c3m, .c3r { width: 31%; }
+
+/* Content */
 .content { box-sizing: border-box; margin: 0 auto; max-width: 1140px; padding: 0 20px; }
 .content-box { background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); margin-bottom: 20px; padding: 40px; }
 
@@ -82,6 +91,14 @@ ul { list-style: disc; margin-left: 1.5em; }
 .cases h3 { font-size: 24px; font-weight: normal; }
 .cases > li { margin-bottom: 1em; }
 .cases p { margin: 0; }
+
+    /* Case header */
+    #case-header .details { list-style: none; margin: 0; }
+    #case-header .details li { display: inline; margin: 0 1em 0 0; }
+    #case-header .highlights { list-style: none; margin: 1em 0 0; overflow: hidden; }
+    #case-header .highlights li { box-sizing: border-box; float: left; padding-right: 20px; width: 33.33%; }
+    #case-header .highlights .title { display: block; }
+    #case-header .highlights .value { color: #0a3557; display: block; font-size: 24px; }
 
 /* Charts */
     /* Simple bar */
@@ -198,10 +215,21 @@ ul { list-style: disc; margin-left: 1.5em; }
 .legend li { margin: 0; }
 
 /* Muted text */
-.mute { color: #999; font-weight: normal; }
+.mute { color: #999; font-size: 14px; font-weight: normal; }
 
 /* Tables */
 .nb { white-space: nowrap; }
+
+/* Votes */
+.votes { list-style: none; margin-left: 0; }
+.votes li { overflow: hidden; padding-left: 75px; }
+.votes p { margin: 0; }
+.votes strong { font-weight: normal; }
+.votes .thumb { float: left; margin-left: -75px; width: 65px; }
+
+    /* Voting breakdown */
+    #voting-breakdown { margin-top: 20px; overflow: hidden; }
+    #voting-breakdown h2 { font-size: 32px; font-weight: 600; }
 
 /* Voting history */
 .voting-history td { vertical-align: middle; }
@@ -216,20 +244,31 @@ ul { list-style: disc; margin-left: 1.5em; }
 /* Widths
 =====================================================================*/
 @media screen and (max-width: 900px) {
-    /* Board member header */
-    #board-header { padding-left: 0; }
-    #board-header .stacked-bar { clear: both; }
-    #board-header .thumb { float: right; margin: 0 0 10px 10px; width: 30%; }
+    /* Layout */
+    .c3l, .c3m, .c3r { float: none; width: auto; }
     
-    /* Header */
-    #logo { max-width: 360px; width: 70%; }
-    
-    /* Intro */
-    #intro { padding-top: 30%; }
-    #intro h1 { font-size: 30px; }
-    #intro-primary { width: auto; }
+    /* Content */
+        /* Cases */
+            /* Case header */
+            #case-header .details li { display: block; margin-right: 0; }
+            #case-header .highlights { margin: 0; }
+            #case-header .highlights li { float: none; padding: 0; width: auto; }
+        
+        /* Board member header */
+        #board-header { padding-left: 0; }
+        #board-header .stacked-bar { clear: both; }
+        #board-header .thumb { float: right; margin: 0 0 10px 10px; width: 30%; }
+        
+        /* Header */
+        #logo { max-width: 360px; width: 70%; }
+        
+        /* Intro */
+        #intro { padding-top: 30%; }
+        #intro h1 { font-size: 30px; }
+        #intro-primary { width: auto; }
 }
 
 @media screen and (max-width: 400px) {
-    
+    /* Layout */
+    .c2l, .c2r { float: none; width: auto; }
 }
