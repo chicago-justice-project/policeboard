@@ -75,8 +75,8 @@ ul { list-style: disc; margin-left: 1.5em; }
     .bar-chart .value { background: #0072ad; height: 2em; min-width: 1px; }
     
     /* Stacked bar */
-    .stacked-bar { height: 2em; }
-    .stacked-bar .value { border-right: 2px solid #fff; box-sizing: border-box; float: left; height: 100%; }
+    .stacked-bar { height: 2em; white-space: nowrap; }
+    .stacked-bar .value { border-right: 2px solid #fff; box-sizing: border-box; display: inline-block; height: 100%; }
     
         /* Colors */
         .stacked-bar .agree { background: #0072ad; }

@@ -20,7 +20,7 @@
       <tr>
         <td><%= co.last %></td>
         <td><%= Outcome.find(co.first[0]).name %> <i class="fa fa-long-arrow-right"></i> <%= Outcome.find(co.first[1]).name %></td>
-        <td><%= co.last %> <span class="mute">(<%= (co.last.to_f / @cases.count * 100).round %>%)</span></td>
+        <td align="right"><%= co.last %> <span class="mute">(<%= (co.last.to_f / @cases.count * 100).round %>%)</span></td>
         <td></td>
         <td></td>
       </tr>

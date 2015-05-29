@@ -1,7 +1,7 @@
 $('#home').ready(function () {
 
   $('#case-outcomes').DataTable({
-    aaSorting: [2], //disable initial sort
+    aaSorting: [[2, "desc"]], //disable initial sort
     aoColumns: [
       { bVisible: false }, //0: hidden cases total for sorting
       null, //1: recommendation -> decision

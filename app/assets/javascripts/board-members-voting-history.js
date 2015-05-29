@@ -1,7 +1,7 @@
 $('body').ready(function () {
 
   $('.voting-history').DataTable({
-    aaSorting: [], //disable initial sort
+    aaSorting: [[0, "asc"]], //disable initial sort
     aoColumns: [
       { bVisible: false }, //0: hidden board member name for sorting
       null, //1: photo
