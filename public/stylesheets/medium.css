@@ -15,6 +15,11 @@
 
 /* Content
 =====================================================================*/
+/* Board member header */
+#board-header { padding-left: 0; }
+#board-header .stacked-bar { clear: both; }
+#board-header .thumb { float: right; margin: 0 0 10px 10px; width: 30%; }
+
 /* Header */
 #logo { max-width: 360px; width: 70%; }
 

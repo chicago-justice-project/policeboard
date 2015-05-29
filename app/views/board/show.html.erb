@@ -2,33 +2,34 @@
 <% body_id "board-index" %>
 
 <div class="content-box">
-  <h1><%= [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %></h1>
-
-  <p>
-    <%= [@member.job_title, @member.organization].reject(&:blank?).join(', ') %>
-    <% @member.terms.order(start: :desc).each do |term| %>
-      <br/>Appointed <%= term.start.to_formatted_s(:long) %> - <%= term.end.to_formatted_s(:long) %>
-      <% if term.end >= DateTime.now.to_date %>(Current board member)<% end %>
-    <% end %>
-  </p>
-
-  <div class="stacked-bar">
-    <div class="value agree" style="width: <%= @member.votes_agree_rate %>%">
-      <i class="fa fa-check-circle"></i> <%= @member.votes_agree_rate %>%
+    <div id="board-header">
+        <div class="thumb"><img alt="<%= [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %>" src="http://dummyimage.com/160" /></div>
+        <h1><%= [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %></h1>
+        
+        <p class="mute">
+            <%= [@member.job_title, @member.organization].reject(&:blank?).join(', ') %>
+            <% @member.terms.order(start: :desc).each do |term| %>
+            <br />Appointed <%= term.start.to_formatted_s(:long) %>&ndash;<%= term.end.to_formatted_s(:long) %>
+            <% if term.end >= DateTime.now.to_date %>(Current board member)<% end %>
+            <% end %>
+        </p>
+        <div class="stacked-bar">
+            <div class="value agree" style="width: <%= @member.votes_agree_rate %>%">
+                <i class="fa fa-check-circle"></i> <%= @member.votes_agree_rate %>%
+            </div>
+            <div class="value disagree" style="width: <%= @member.votes_dissent_rate %>%">
+                <i class="fa fa-times-circle"></i> <%= @member.votes_dissent_rate %>%
+            </div>
+            <div class="value novote" style="width: <%= @member.votes_abstain_rate %>%">
+                <i class="fa fa-ban"></i> <%= @member.votes_abstain_rate %>%
+            </div>
+        </div>
+        <ul class="legend">
+            <li><i class="fa fa-check-circle"></i> How often board member agreed with discipline recommendation</li>
+            <li><i class="fa fa-times-circle"></i> Disagreed with recommendation</li>
+            <li><i class="fa fa-ban"></i> Did not vote</li>
+        </ul>
     </div>
-    <div class="value disagree" style="width: <%= @member.votes_dissent_rate %>%">
-      <i class="fa fa-times-circle"></i> <%= @member.votes_dissent_rate %>%
-    </div>
-    <div class="value novote" style="width: <%= @member.votes_abstain_rate %>%">
-      <i class="fa fa-ban"></i> <%= @member.votes_abstain_rate %>%
-    </div>
-  </div>
-
-  <ul>
-    <li><i class="fa fa-check-circle"></i> How often board member agreed with discipline recommendation</li>
-    <li><i class="fa fa-times-circle"></i> Disagreed with recommendation</li>
-    <li><i class="fa fa-ban"></i> Did not vote</li>
-  </ul>
 </div>
 
 <%= render partial: "member_cases", locals: { cases: @member.cases } %>

@@ -69,6 +69,12 @@ ul { list-style: disc; margin-left: 1.5em; }
 
 .action:hover { opacity: 0.7; text-decoration: none; }
 
+/* Board member header */
+#board-header { padding-left: 185px; }
+#board-header .stacked-bar { margin-bottom: 20px; }
+#board-header .thumb { float: left; margin-left: -185px; width: 160px; }
+#board-header .thumb img { display: block; width: 100%; }
+
 /* Charts */
     /* Simple bar */
     .bar-chart td { vertical-align: middle; }
@@ -76,7 +82,8 @@ ul { list-style: disc; margin-left: 1.5em; }
     
     /* Stacked bar */
     .stacked-bar { height: 2em; white-space: nowrap; }
-    .stacked-bar .value { border-right: 2px solid #fff; box-sizing: border-box; display: inline-block; height: 100%; }
+    .stacked-bar .value { border-right: 2px solid #fff; box-sizing: border-box; color: #fff; display: inline-block; height: 100%; padding-top: 6px; text-align: center; white-space: nowrap; }
+    .stacked-bar .fa { color: #fff; }
     
         /* Colors */
         .stacked-bar .agree { background: #0072ad; }
@@ -134,6 +141,10 @@ ul { list-style: disc; margin-left: 1.5em; }
 #intro, #intro a, #intro h1, #intro h2 { color: #fff; }
 #intro p { margin-bottom: 1.5em; }
 #intro-primary { width: 69%; }
+
+/* Legend */
+.legend { list-style: none; margin-left: 0; }
+.legend li { margin: 0; }
 
 /* Muted text */
 .mute { color: #999; font-weight: normal; }
