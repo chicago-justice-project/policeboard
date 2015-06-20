@@ -11,6 +11,12 @@ class BoardMember < ActiveRecord::Base
     end
     return false
   end
+  
+  def photo
+    board_dir = "board-members/"
+    photo = [board_dir, full_name.downcase.gsub(' ','-').gsub('.',''), ".jpg"].join
+    File.exists?([Rails.root, "/app/assets/images/", photo].join) ? photo : "#{board_dir}placeholder.jpg"
+  end
 
   def full_name
     [first_name, last_name].join(' ')

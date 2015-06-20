@@ -3,14 +3,15 @@
 
 <div class="content-box">
   <div id="board-header">
-    <div class="thumb"><img alt="<%= [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %>" src="http://dummyimage.com/160" /></div>
+    <div class="thumb"><%= image_tag @member.photo, alt: [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %></div>
+    
     <h1><%= [@member.full_name, @member.board_position].reject(&:blank?).join(', ') %></h1>
     
     <p class="mute">
       <%= [@member.job_title, @member.organization].reject(&:blank?).join(', ') %>
       <% @member.terms.order(start: :desc).each do |term| %>
-      <br />Appointed <%= term.start.to_formatted_s(:long) %>&ndash;<%= term.end.to_formatted_s(:long) %>
-      <% if term.end >= DateTime.now.to_date %>(Current board member)<% end %>
+        <br />Appointed <%= term.start.to_formatted_s(:long) %>&ndash;<%= term.end ? term.end.to_formatted_s(:long) : '' %>
+        <% if term.end && term.end >= DateTime.now.to_date %>(Current board member)<% end %>
       <% end %>
     </p>
     <div class="stacked-bar">
