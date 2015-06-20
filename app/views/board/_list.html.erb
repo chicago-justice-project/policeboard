@@ -39,7 +39,7 @@
         <td class="novote percent" align="center"><%= bm.votes_abstain_rate %>%</td>
         <td>
           <div class="stacked-bar">
-            <div class="value agree" style="width: <%= bm.votes_agree_rate %>%;"></div><div class="value disagree" style="width: <%= bm.votes_dissent_rate %>%;"></div><div class="value novote" style="width: <%= bm.votes_abstain_rate %>%;"></div>
+            <div class="value agree" style="width: <%= bm.votes_agree_rate %>%;" title="<%= bm.votes_agree_rate %>%"></div><div class="value disagree" style="width: <%= bm.votes_dissent_rate %>%;" title="<%= bm.votes_dissent_rate %>%"></div><div class="value novote" style="width: <%= bm.votes_abstain_rate %>%;" title="<%= bm.votes_abstain_rate %>%"></div>
           </div>
         </td>
       </tr>
