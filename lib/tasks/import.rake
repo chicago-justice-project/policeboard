@@ -6,6 +6,7 @@ namespace :import do
   board_terms   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-terms.xlsx").sheet(0)
   board_votes   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-votes.xlsx").sheet(0)
   cases         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/cases.xlsx").sheet(0)
+  case_rules    = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/case-rules.xlsx").sheet(0)
   raw_data      = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/raw-data.xlsx").sheet(0)
   rules         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/rules.xlsx").sheet(0)
 
@@ -27,6 +28,7 @@ namespace :import do
     Rake::Task['import:rules'].invoke
     Rake::Task['import:defendants'].invoke
     Rake::Task['import:cases'].invoke
+    Rake::Task['import:case_rules'].invoke
     Rake::Task['import:board_votes'].invoke
   end
 
@@ -171,14 +173,60 @@ namespace :import do
     end
   end
 
+  desc "Import case rules"
+  task :case_rules => :environment do
+    i = -1
+    case_rules.each(
+      number: 'Case number',
+      rule: 'Rule',
+      rule_order: 'Rule order',
+      count_order: 'Count order',
+      content: 'Content',
+      guilty: 'Guilty'
+    ) do |cr|
+
+      i += 1
+      next if i == 0
+
+      c = Case.find_by_number(cr[:number])
+      rule = Rule.find_by_code(cr[:rule])
+
+      if c.nil?
+        puts "Error could not find case number #{cr[:number]}"
+        next
+      end
+
+      if rule.nil?
+        puts "Error could not find rule number #{cr[:rule]} for case #{cr[:number]}"
+        next
+      end
+
+      crs = CaseRule.where(case_id: c.id, rule_id: rule.id)
+
+      if crs.count > 0
+        case_rule = crs.first
+      else
+        case_rule = CaseRule.create(:case_id=>c.id, :rule_id=>rule.id, :rule_order=>cr[:rule_order])
+      end
+
+      puts "CaseRuleCount: Case #{c.number} Rule #{rule.code} Rule order #{case_rule.rule_order} Count #{cr[:count_order]} Guilty? #{cr[:guilty]}"
+
+      CaseRuleCount.create(
+        :case_rule_id=>case_rule.id,
+        :count_order=>cr[:count_order],
+        :content=>cr[:content],
+        :is_guilty=>cr[:guilty]
+      )
+    end
+  end
+
   desc "Import board votes"
   task :board_votes => :environment do
     i = -1
     board_votes.each(
       case_num: 'Case Number',
       vote: 'Vote',
-      board_member: 'Board member',
-      dissent: 'Dissent description'
+      board_member: 'Board member'
     ) do |bv|
       i += 1
       next if i == 0
