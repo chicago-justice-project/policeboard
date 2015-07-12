@@ -2,12 +2,23 @@
 
 <div class="content-box">
   <h1>Cases</h1>
+  <%= form_tag(cases_path, :method => "get", id: "search") do %>
+    <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
+    <%= button_tag(type: 'submit', class: "action") do %>
+     <i class="fa fa-search"></i>
+    <% end %>
+  <% end %>
 </div>
 
 <div class="content-box">
-  <h2>Recent cases</h2>
-
-  <ul>
-    <%= render partial: "case", collection: @cases, as: :c %>
+  <h2><%= @header %></h2>
+  
+  <ul class="cases">
+    <% if @cases.present? %>
+      <%= render partial: "case", collection: @cases, as: :c %>
+    <% else %>
+      <p>No cases found for your search criteria.</p>
+    <% end %>
   </ul>
+  <p><%= link_to raw('View all cases &raquo;'), cases_path if params[:search]%></p>
 </div>

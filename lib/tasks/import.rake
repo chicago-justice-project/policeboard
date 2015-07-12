@@ -122,10 +122,12 @@ namespace :import do
       end
 
       num = df[:badge_num].nil? ? df[:employee_num] : df[:badge_num]
+      fname = df[:fname].nil? ? df[:fname] : df[:fname].strip
+      lname = df[:lname].nil? ? df[:lname] : df[:lname].strip
 
-      puts "Defendant: #{num.to_i} #{df[:fname]} #{df[:lname]} #{rank_id}"
+      puts "Defendant: #{num.to_i} #{fname} #{lname} #{rank_id}"
 
-      Defendant.create(:first_name=>df[:fname], :last_name=>df[:lname], :number=>num.to_i, :rank_id=>rank_id)
+      Defendant.create(:first_name=>fname, :last_name=>lname, :number=>num.to_i, :rank_id=>rank_id)
     end
   end
 

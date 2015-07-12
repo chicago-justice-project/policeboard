@@ -13,8 +13,8 @@
 
 // rails 
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 
 // app
 //= require jquery.readyselector
@@ -24,3 +24,5 @@
 //= require search
 //= require table-scroll
 
+// rails 
+//= require turbolinks

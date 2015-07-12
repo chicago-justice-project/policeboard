@@ -42,14 +42,14 @@
               <li class="<%= navClass('about') %>"><%= link_to 'About', about_path %></li>
               <li class="<%= navClass('feedback') %>"><%= link_to 'Feedback', feedback_path %></li>
               <li>
-                <a href="#.html" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
+                <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
                 <div id="search" style="display: none;">
-                  <form action="#" method="get">
-                    <div>
-                      <input class="txt" placeholder="Search cases&hellip;" />
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                    </div>
-                  </form>
+                  <%= form_tag(cases_path, :method => "get") do %>
+                    <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
+                    <%= button_tag(type: 'submit', class: "action") do %>
+                     <i class="fa fa-search"></i>
+                    <% end %>
+                  <% end %>
                 </div>
               </li>
             </ul>
