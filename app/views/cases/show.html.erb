@@ -1,8 +1,9 @@
 <% title "Case" %>
+<% body_id "case-detail" %>
 
 <div class="content-box" id="case-header">
     <h1><%= @case.defendant.full_name %></h1>
-    
+
     <ul class="details">
         <li>Case #: <strong><%= @case.number %></strong></li>
         <li>Complaint registry #: <strong></strong></li>
@@ -12,9 +13,9 @@
         </li>
         <li><a href="#"><i class="fa fa-file-text-o"></i> Download original case file</a></li>
     </ul>
-    
+
     <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p>
-    
+
     <ul class="highlights">
         <li>
             <span class="title">Recommendation</span>
@@ -38,32 +39,65 @@
 </div>
 
 <div class="content-box">
-    <h2>Charged with violating # rules on # counts</h2>
+  <h2>Charged with violating <%= pluralize(@case.case_rules.count, 'rule') %> on <%= pluralize(@case.case_rule_counts.count, 'count') %></h2>
+  <p><a class="toggle-case-rule-counts"><i class="fa fa-plus"></i> Show all counts</a></p>
+  <table id="rule-violations-list">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @case.case_rules.order(:rule_order).each do |case_rule| %>
+      <tr>
+        <td><strong>Rule <%= case_rule.rule.code %></strong></td>
+        <td>
+          <a class="toggle-case-rule-counts<%= case_rule.id %>" href="">
+            <%= pluralize(case_rule.case_rule_counts.count, 'count') %>
+          </a>
+        </td>
+        <td>
+          <p><%= case_rule.rule.description %></p>
+          <dl class="case-rule-counts<%= case_rule.id %>" style="display:none;">
+            <% case_rule.case_rule_counts.order(:count_order).each do |case_rule_count| %>
+              <dt><strong>Count <%= case_rule_count.count_order %></strong></dt>
+              <dd><%= case_rule_count.content %></dd>
+            <% end %>
+          </dl>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <div class="content-box">
     <h2>Board member vote</h2>
-    
+
     <div id="voting-breakdown">
         <div class="c3l">
             <h2><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h2>
             <p class="mute">Agreed with superintendant's disciplinary recommendation</p>
-            
+
             <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
         </div>
-    
+
         <div class="c3m">
             <h2><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h2>
             <p class="mute">Disagreed with superintendant's disciplinary recommendation</p>
-    
+
             <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
         </div>
-        
+
         <div class="c3r">
             <h2><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h2>
             <p class="mute">Did not vote or were not present for voting</p>
-        
+
             <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
         </div>
     </div>
 </div>
+
+<%= javascript_include_tag "case" %>

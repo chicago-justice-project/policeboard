@@ -3,9 +3,9 @@
 
 <div class="content-box">
   <h1>Rules of conduct</h1>
-  
+
   <p>From the <em><a href="http://www.cityofchicago.org/dam/city/depts/cpb/PoliceDiscipline/RulesofConduct.pdf">Rules and Regulations of the Chicago Police Department</a></em> adopted and published by the Police Board.</p>
-  
+
   <table id="rules-list">
     <thead>
       <tr>
@@ -23,7 +23,7 @@
         <td><%= rule.code %></td>
         <td class="nb"><strong>Rule <%= rule.code %></strong></td>
         <td>
-            <p><%= raw(rule.description) %> 
+            <p><%= raw(rule.description) %>
             <% if rule.comment %>
               <a class="toggle-special-comment" href=""><i class="fa fa-comment-o"></i> <span class="verb">Show</span> special comment</a></p>
               <p style="display: none;"><%= raw(rule.comment) %></p>
@@ -31,7 +31,8 @@
               </p>
             <% end %>
         </td>
-        <td class="nb"># (#%)</td>
+        <% cases = CaseRule.where(rule_id: rule.id).count %>
+        <td class="nb"><%= cases %> (<%= (cases.to_f / Case.count * 100).round %>%)</td>
         <td></td>
         <td></td>
       </tr>

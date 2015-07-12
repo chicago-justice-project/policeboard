@@ -7,6 +7,7 @@ class Case < ActiveRecord::Base
   belongs_to :decided_outcome, :class_name => "Outcome"
   has_many :board_member_votes
   has_many :case_rules
+  has_many :case_rule_counts, through: :case_rules
   has_many :complaints
 
   def agree_votes
