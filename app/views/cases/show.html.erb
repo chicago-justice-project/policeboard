@@ -6,15 +6,15 @@
 
     <ul class="details">
         <li>Case #: <strong><%= @case.number %></strong></li>
-        <li>Complaint registry #: <strong></strong></li>
+        <!-- <li>Complaint registry #: <strong></strong></li> -->
         <li>
             <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
             <strong><%= @case.defendant.number %></strong>
         </li>
-        <li><a href="#"><i class="fa fa-file-text-o"></i> Download original case file</a></li>
+        <li><a href="#"><i class="fa fa-file-text-o"></i> Download original case files</a></li>
     </ul>
 
-    <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p>
+    <!-- <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p> -->
 
     <ul class="highlights">
         <li>
@@ -40,7 +40,7 @@
 
 <div class="content-box">
   <h2>Charged with violating <%= pluralize(@case.case_rules.count, 'rule') %> on <%= pluralize(@case.case_rule_counts.count, 'count') %></h2>
-  <p><a class="toggle-case-rule-counts"><i class="fa fa-plus"></i> Show all counts</a></p>
+  <p><a class="toggle-case-rule-counts"><i class="fa fa-plus-square"></i> Show all counts</a></p>
   <table id="rule-violations-list">
     <thead>
       <tr>
