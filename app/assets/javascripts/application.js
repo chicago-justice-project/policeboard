@@ -13,7 +13,6 @@
 
 // rails 
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 
 // app
@@ -23,6 +22,3 @@
 //= require responsive-init
 //= require search
 //= require table-scroll
-
-// rails 
-//= require turbolinks

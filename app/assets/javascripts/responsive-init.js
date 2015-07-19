@@ -1,4 +1,4 @@
-(function ($) {
+$().ready(function () {
 
 	//this script relies on responsive.js
 	var _Responsive = Responsive ||
@@ -84,4 +84,4 @@
 		}
 	});
 
-})(jQuery);
+});
