@@ -4,11 +4,11 @@ class CasesController < ApplicationController
       @header = "Search results"
       @cases = Case
         .joins(:defendant)
-        .where("LOWER(cases.number) like :keyword " +
-          "OR LOWER(defendants.first_name) like :keyword " + 
-          "OR LOWER(defendants.last_name) like :keyword " + 
-          "OR LOWER(defendants.first_name||' '||defendants.last_name) like :keyword " +
-          "OR LOWER(defendants.number) like :keyword", 
+        .where("LOWER(cases.number) LIKE :keyword " +
+          "OR LOWER(defendants.first_name) LIKE :keyword " + 
+          "OR LOWER(defendants.last_name) LIKE :keyword " + 
+          "OR LOWER(defendants.first_name||' '||defendants.last_name) LIKE :keyword " +
+          "OR LOWER(defendants.number) LIKE :keyword", 
           { keyword: "%" + params[:search].downcase + "%"})
         .where.not(defendant_id: nil)
         .order(date_initiated: :desc)
@@ -22,5 +22,6 @@ class CasesController < ApplicationController
 
   def show
     @case = Case.find(params[:id])
+    @files = Dir.glob("**/public/case_files/" + @case.number + "_*.pdf").map{|path| path.gsub("public/","") }
   end
 end

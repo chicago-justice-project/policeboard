@@ -11,7 +11,14 @@
             <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
             <strong><%= @case.defendant.number %></strong>
         </li>
-        <li><a href="#"><i class="fa fa-file-text-o"></i> Download original case files</a></li>
+        <li>
+          <a class="toggle-files" href="#"><i class="fa fa-file-text-o"></i> Download original case files</a>
+          <div class="files" style="display:none;">
+          <% @files.each do |file| %>
+            <%= link_to file.gsub("case_files/" + @case.number + "_", ""), file %>
+          <% end %>
+          </div>
+        </li>
     </ul>
 
     <!-- <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p> -->
