@@ -1,7 +1,7 @@
 $().ready(function () {
   /* Search */
   $('#search-toggle').on('click touchstart', function(){
-    $('#search-form').toggle();
+    $('#nav .search').toggle();
     return false;
   });
 });

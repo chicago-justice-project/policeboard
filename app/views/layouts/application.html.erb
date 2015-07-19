@@ -42,7 +42,7 @@
               <li class="<%= navClass('about') %>"><%= link_to 'About', about_path %></li>
               <li class="<%= navClass('feedback') %>"><%= link_to 'Feedback', feedback_path %></li>
               <li>
-                <div id="search-form" style="display: none;">
+                <div class="search" style="display: none;">
                   <%= form_tag(cases_path, :method => "get") do %>
                     <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
                     <%= button_tag(type: 'submit', class: "action") do %>

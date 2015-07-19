@@ -2,12 +2,17 @@
 
 <div class="content-box">
   <h1>Cases</h1>
-  <%= form_tag(cases_path, :method => "get", id: "search") do %>
-    <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
-    <%= button_tag(type: 'submit', class: "action") do %>
-     <i class="fa fa-search"></i>
-    <% end %>
-  <% end %>
+  
+  <div id="case-search">
+      <div class="search">
+          <%= form_tag(cases_path, :method => "get", id: "case-search-content") do %>
+            <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
+            <%= button_tag(type: 'submit', class: "action") do %>
+             <i class="fa fa-search"></i>
+            <% end %>
+          <% end %>
+      </div>
+  </div>
 </div>
 
 <div class="content-box">

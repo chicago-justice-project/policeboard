@@ -164,6 +164,8 @@ ul { list-style: disc; margin-left: 1.5em; }
     #menu li.current > a { color: #000; font-weight: bold; }
     #menu .social { font-size: 40px; padding: 10px; text-align: center; }
     #menu .social a { border: 0; display: inline; padding: 0; }
+    #menu .search { display: block !important; }
+    #menu #search-toggle { display: none; }
     #menu ul { list-style: none; margin: 0; }
         
         /* Toggle */
@@ -259,6 +261,10 @@ ul { list-style: disc; margin-left: 1.5em; }
         #board-header .stacked-bar { clear: both; }
         #board-header .thumb { float: right; margin: 0 0 10px 10px; width: 30%; }
         
+        /* Forms */
+            /* Search */
+            #case-search { width: 100%; }
+        
         /* Header */
         #logo { max-width: 360px; width: 70%; }
         
@@ -268,7 +274,8 @@ ul { list-style: disc; margin-left: 1.5em; }
         #intro-primary { width: auto; }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     /* Layout */
     .c2l, .c2r { float: none; width: auto; }
+    .content-box { padding: 15px; }
 }
