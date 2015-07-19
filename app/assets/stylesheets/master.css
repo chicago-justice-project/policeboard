@@ -189,7 +189,7 @@ ul { list-style: disc; margin-left: 1.5em; }
     /* Navigation */
     #nav { float: right; font-size: 19px; font-weight: 300; padding-top: 10px; position: relative; text-align: right; width: 58%; }
     #nav .current a { color: #000; font-weight: 600; }
-    #nav li { display: inline; margin-left: 1em; }
+    #nav li { display: inline-block; margin-left: 1em; position: relative; }
     #nav ul { list-style: none; margin: 0; }
 
 /* Home */
