@@ -10,6 +10,8 @@ class Case < ActiveRecord::Base
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
 
+  self.per_page = 10
+
   def agree_votes
     self.board_member_votes.where(vote_id: Vote.AGREE).map{|bmv| bmv.board_member}
   end
@@ -26,5 +28,17 @@ class Case < ActiveRecord::Base
     if !date_initiated.nil? && !date_decided.nil?
       distance_of_time_in_words(date_initiated, date_decided)
     end
+  end
+
+  def self.search(keyword)
+    Case
+      .joins(:defendant)
+      .where.not(defendant_id: nil)
+      .where("LOWER(cases.number) LIKE :keyword " + 
+        "OR LOWER(defendants.first_name) LIKE :keyword " + 
+        "OR LOWER(defendants.last_name) LIKE :keyword " +
+        "OR LOWER(defendants.first_name||' '||defendants.last_name) LIKE :keyword " + 
+        "OR LOWER(defendants.number) LIKE :keyword",
+        { keyword: '%' + keyword.downcase + '%' })
   end
 end

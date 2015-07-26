@@ -21,6 +21,7 @@
   <ul class="cases">
     <% if @cases.present? %>
       <%= render partial: "case", collection: @cases, as: :c %>
+      <%= will_paginate @cases %>
     <% else %>
       <p>No cases found for your search criteria.</p>
     <% end %>
