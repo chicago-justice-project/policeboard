@@ -41,4 +41,18 @@ class Case < ActiveRecord::Base
         "OR LOWER(defendants.number) LIKE :keyword",
         { keyword: '%' + keyword.downcase + '%' })
   end
+  
+  def self.count_per_year_for_outcome(recommended_outcome_id, decided_outcome_id)
+    @count_per_year = Case
+      .where.not(date_initiated: nil)
+      .where(recommended_outcome_id: recommended_outcome_id, decided_outcome_id: decided_outcome_id)
+      .order('EXTRACT(YEAR from date_initiated)')
+      .group('EXTRACT(YEAR from date_initiated)')
+      .count
+    @count = []
+    (@count_per_year.keys.first.to_i..@count_per_year.keys.last.to_i).each do |year|
+      @count << (@count_per_year[year.to_f] || 0)
+    end
+    @count
+  end
 end

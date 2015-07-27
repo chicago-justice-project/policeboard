@@ -5,7 +5,7 @@
   <h1>Case outcomes</h1>
   <p>How does the superintendent's recommended discipline compare to the final police board's judgement?</p>
 
-  <table id="case-outcomes">
+  <table class="bar-chart" id="case-outcomes">
     <thead>
       <tr>
         <th></th>
@@ -16,13 +16,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @case_outcomes.each do |co| %>
+      <% @case_outcomes.each do |outcomes, count| %>
       <tr>
-        <td><%= co.last %></td>
-        <td><%= Outcome.find(co.first[0]).name %> <i class="fa fa-long-arrow-right"></i> <%= Outcome.find(co.first[1]).name %></td>
-        <td align="right"><%= co.last %> <span class="mute">(<%= (co.last.to_f / @cases.count * 100).round %>%)</span></td>
-        <td></td>
-        <td></td>
+        <td><%= count %></td>
+        <td><%= Outcome.find(outcomes[0]).name %> <i class="fa fa-long-arrow-right"></i> <%= Outcome.find(outcomes[1]).name %></td>
+        <td align="right"><%= count %> <span class="mute">(<%= (count.to_f / @cases.count * 100).round %>%)</span></td>
+        <td><span class="inlinesparkline"><%= Case.count_per_year_for_outcome(outcomes[0], outcomes[1]).join(',') %></span></td>
+        <td><div class="value" style="width: <%= (count.to_f / @cases.count * 100).round %>%"></div></td>
       </tr>
       <% end %>
     </tbody>

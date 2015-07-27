@@ -16,15 +16,79 @@
 </div>
 
 <div class="content-box">
-  <h2><%= @header %></h2>
-  
-  <ul class="cases">
-    <% if @cases.present? %>
-      <%= render partial: "case", collection: @cases, as: :c %>
-      <%= will_paginate @cases %>
-    <% else %>
-      <p>No cases found for your search criteria.</p>
-    <% end %>
-  </ul>
-  <p><%= link_to raw('View all cases &raquo;'), cases_path if params[:search]%></p>
+  <div class="c2l">
+    <h2><%= @header %></h2>
+    
+    <ul class="cases">
+      <% if @cases.present? %>
+        <%= render partial: "case", collection: @cases, as: :c %>
+        <%= will_paginate @cases %>
+      <% else %>
+        <p>No cases found for your search criteria.</p>
+      <% end %>
+    </ul>
+    <p><%= link_to raw('View all cases &raquo;'), cases_path if params[:search]%></p>
+  </div>
+ 
+  <div class="c2r">
+    <h2><%= @counter %></h2>
+    <div id="cases-annual-trend" <%= 'hidden' if params[:search] %>>
+    </div>
+  </div>
+  <div class="clear"></div>
 </div>
+
+<%= javascript_include_tag "http://code.highcharts.com/highcharts.js" %>
+<script type="text/javascript">
+$(function () {
+  $('#cases-annual-trend').highcharts({
+    chart: {
+      type: 'area'
+    },
+    title: {
+      text: ''   
+    },
+    xAxis: {
+      allowDecimals: false,
+      labels: {
+        formatter: function () {
+          return this.value; // clean, unformatted number for year
+        }
+      },
+      tickInterval: 2
+    },
+    yAxis: {
+      title: {
+        text: 'Number of cases initiated'
+      },
+      labels: {
+        formatter: function () {
+          return this.value;
+        }
+      }
+    },
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f}</b> case(s) initiated in {point.x}'
+    },
+    plotOptions: {
+      area: {
+        pointStart: <%= @cases_per_year.keys.first.to_i %>,
+        marker: {
+          enabled: false,
+          symbol: 'circle',
+          radius: 2,
+          states: {
+            hover: {
+              enabled: true
+            }
+          }
+        }
+      }
+    },
+    series: [{
+      name: 'Cases',
+      data: <%= @case_trend %>
+    }]
+  });
+});
+</script>

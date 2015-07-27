@@ -14,4 +14,12 @@ $('#home').ready(function () {
     searching: false
   });
 
+  $('.inlinesparkline').sparkline('html', {
+      fillColor: "rgba(0, 0, 0, 0.1)",
+      height: "38px",
+      lineColor: "#666",
+      lineWidth: 2,
+      spotRadius: 0,
+      width: "140px"
+  });
 });
