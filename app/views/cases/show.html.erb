@@ -59,8 +59,8 @@
     <tbody>
       <% @case.case_rules.order(:rule_order).each do |case_rule| %>
       <tr>
-        <td><strong>Rule <%= case_rule.rule.code %></strong></td>
-        <td>
+        <td class="nb"><strong>Rule <%= case_rule.rule.code %></strong></td>
+        <td class="nb">
           <a class="toggle-case-rule-counts<%= case_rule.id %>" href="">
             <%= pluralize(case_rule.case_rule_counts.count, 'count') %>
           </a>
