@@ -223,6 +223,13 @@ ul { list-style: disc; margin-left: 1.5em; }
 /* Tables */
 .nb { white-space: nowrap; }
 
+/* Process */
+#process { list-style: none; margin: 1em 0; }
+#process .description { float: right; width: 73%; }
+#process h3 { color: #a00f12; font-weight: normal; text-transform: uppercase; }
+#process > li { clear: both; margin-bottom: 25px; overflow: hidden; }
+#process .step { float: left; width: 25%; }
+
 /* Votes */
 .votes { list-style: none; margin-left: 0; }
 .votes li { overflow: hidden; padding-left: 75px; }
@@ -279,4 +286,10 @@ ul { list-style: disc; margin-left: 1.5em; }
     /* Layout */
     .c2l, .c2r { float: none; width: auto; }
     .content-box { padding: 15px; }
+    
+    /* Content */
+        /* Process */
+        #process .description, #process .step { float: none; width: auto; }
+        #process > li { margin-bottom: 1em; }
+        #process .step p { margin: 0; }
 }
