@@ -28,6 +28,7 @@ img { max-width: 100%; }
 li { margin-bottom: 0.5em; }
 ol { list-style: decimal; margin-left: 2em; }
 table { border-collapse: collapse; width: 100%; }
+table img { max-width: none; }
 table p { margin: 0; }
 td, th { border: 1px solid #ddd; border-width: 1px 0; padding: 0.5em 1em 0.5em 0; vertical-align: top; }
 thead th { border-top: 0; vertical-align: middle; }
