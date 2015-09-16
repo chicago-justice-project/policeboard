@@ -40,7 +40,7 @@ gem 'spring',        group: :development
 gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
