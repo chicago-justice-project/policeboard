@@ -23,3 +23,6 @@
 # Ignore local environment config
 .env
 
+# Ignore the elastic beanstalk
+/.elasticbeanstalk
+
