@@ -15,7 +15,7 @@
           <a class="toggle-files" href="#"><i class="fa fa-file-text-o"></i> Download original case files</a>
           <div class="files" style="display:none;">
           <% @files.each do |file| %>
-            <%= link_to file.gsub("case_files/" + @case.number + "_", ""), file %>
+            <%= link_to file.gsub("/case_files/" + @case.number + "_", ""), file %>
           <% end %>
           </div>
         </li>
