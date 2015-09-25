@@ -23,7 +23,8 @@ class BoardMember < ActiveRecord::Base
   end
 
   def votes_total_count
-    BoardMemberVote.where(board_member_id: id).count
+    total = BoardMemberVote.where(board_member_id: id).count
+    total == 0 ? 1 : total
   end
 
   def votes_abstain_count
