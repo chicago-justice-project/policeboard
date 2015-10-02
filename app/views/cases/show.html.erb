@@ -86,14 +86,14 @@
     <div id="voting-breakdown">
         <div class="c3l">
             <h2><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h2>
-            <p class="mute">Agreed with superintendant's disciplinary recommendation</p>
+            <p class="mute">Agreed with the final decision of the board</p>
 
             <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
         </div>
 
         <div class="c3m">
             <h2><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h2>
-            <p class="mute">Disagreed with superintendant's disciplinary recommendation</p>
+            <p class="mute">Disagreed with the final decision of the board</p>
 
             <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
         </div>
