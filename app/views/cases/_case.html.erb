@@ -1,5 +1,8 @@
+
 <li>
+    <% if c.defendant.present? then %>
     <h3><%= link_to c.defendant.full_name, case_path(c) %></h3>
+    <% end %>
     <p>
         <%= c.recommended_outcome.nil? ? "" : "Recommendation: #{c.recommended_outcome.name}," %>
         <%= c.decided_outcome.nil? ? "" : "Decision: #{c.decided_outcome.name}" %>
