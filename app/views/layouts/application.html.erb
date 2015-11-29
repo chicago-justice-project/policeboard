@@ -23,43 +23,41 @@
 <body id=<%= yield (:body_id) %>>
 <div id="wrapper">
   <!-- Header -->
-  <div id="header">
-    <div class="content">
-      <div id="logo">
-        <a href="/">
-          <%= image_tag "logo.png", alt: "Chicago Police Board Information Center", id: "logo-full" %>
-          <%= image_tag "logo-reverse.png", alt: "Chicago Police Board Information Center", id: "logo-reverse" %>
-        </a>
-      </div>
+    <div id="header">
+        <div class="content">
+            <div id="logo">
+                <a href="/" id="logo-img">
+                    <img alt="Chicago Police Board Information Center" id="logo-full" src="../assets/logo.png" />
+                    <img alt="Chicago Police Board Information Center" id="logo-reverse" src="../assets/logo-reverse.png" />
+                </a>
+                <span id="logo-tagline">From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a>, dedicated to bringing transparency to Chicago's justice system.</span>
+            </div>
 
-      <!-- Navigation -->
-      <div id="nav">
-            <ul>
-              <li class="<%= navClass('welcome') %>"><a href="/"><i class="fa fa-home" title="Home"></i></a></li>
-              <li class="<%= navClass('cases') %>"><%= link_to 'Cases', cases_path %></li>
-              <li class="<%= navClass('board') %>"><%= link_to 'Board', board_index_path %></li>
-              <li class="<%= navClass('rules') %>"><%= link_to 'Rules', rules_path %></li>
-              <li class="<%= navClass('about') %>"><%= link_to 'About', about_path %></li>
-              <li class="<%= navClass('feedback') %>"><%= link_to 'Feedback', feedback_path %></li>
-              <li>
-                <div class="search" style="display: none;">
-                  <%= form_tag(cases_path, :method => "get") do %>
-                    <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
-                    <%= button_tag(type: 'submit', class: "action") do %>
-                     <i class="fa fa-search"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-                <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
-              </li>
-            </ul>
-          </div>
-      <!-- /Navigation -->
-
-      <div class="clear"></div>
+            <!-- Navigation -->
+            <div id="nav">
+                        <ul>
+                            <li class="current"><a href="/"><i class="fa fa-home" title="Home"></i></a></li>
+                            <li class=""><a href="/cases">Cases</a></li>
+                            <li class=""><a href="/board">Board</a></li>
+                            <li class=""><a href="/rules">Rules</a></li>
+                            <li class=""><a href="/about">About</a></li>
+                            <li class=""><a href="/feedback">Feedback</a></li>
+                            <li>
+                                <div class="search" style="display: none;">
+                                    <form accept-charset="UTF-8" action="/cases" method="get"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+                                        <input class="txt" id="search" name="search" placeholder="Search cases..." type="text" />
+                                        <button class="action" name="button" type="submit">
+                                         <i class="fa fa-search"></i>
+</button></form>                                </div>
+                                <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+            <!-- /Navigation -->
+        </div>
     </div>
-  </div>
-  <!-- /Header -->
+    <!-- /Header -->
+  
 
   <% if current_page?(root_path) %>
     <%= render 'layouts/home_intro' %>
@@ -72,16 +70,16 @@
   </div>
 
   <!-- Footer -->
-  <div id="footer">
-    <div class="content">
-      <div class="disclaimer">
-          <p class="mute">It is important to understand the cases detailed here are a significant minority of the total complaints filed against officers. A typical year sees about 3&ndash;5% of complaints against officers result in a sustained finding of misconduct. A very small percentage of those sustained findings result in discipline that would require the police board to get involved. The data used for this website is taken directly from Police Board documents. The documents were obtained through the Illinois Freedom of Information act. All the documents used as the basis of this website are available for download from the individual case pages.</p>
-      </div>
-      <h6>Chicago Police Board Information Center</h6>
-      <p>From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a></p>
+    <div id="footer">
+        <div class="content">
+            <div class="disclaimer">
+                    <p class="mute">It is important to understand the cases detailed here are a significant minority of the total complaints filed against officers. A typical year sees about 3&ndash;5% of complaints against officers result in a sustained finding of misconduct. A very small percentage of those sustained findings result in discipline that would require the police board to get involved. The data used for this website is taken directly from Police Board documents. The documents were obtained through the Illinois Freedom of Information act. All the documents used as the basis of this website are available for download from the individual case pages. The Chicago Justice Project is an independent transparency organization and is not affiliated in any way with the Chicago Police Board or any other justice agency in Chicago or Cook County.</p>
+            </div>
+            <h6>Chicago Police Board Information Center</h6>
+            <p>From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a>, dedicated to bringing transparency to Chicago's justice system.</p>
+        </div>
     </div>
-  </div>
-  <!-- /Footer -->
+    <!-- /Footer -->
   <!-- Analytics footer !-->
   <%= render 'layouts/footer' %>
 
