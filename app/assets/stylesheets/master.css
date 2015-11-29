@@ -140,10 +140,29 @@ ul { list-style: disc; margin-left: 1.5em; }
 
 /* Header */
 #header { padding: 35px 0; }
+#header .content { display: flex; justify-content: space-between; }
 
     /* Logo */
-    #logo { float: left; width: 34%; }
+    #logo { align-items: center; display: flex; justify-content: space-between; width: 51.92%; }
+    #logo-img { display: block; width: 52.7%; }
+    #logo-img img { width: 100%; }
+    
+    #logo-tagline {
+        border-left: 1px solid rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 0.5);
+        display: block;
+        font-size: 14px;
+        font-weight: 300;
+        padding-left: 20px;
+        width: 44.25%;
+    }
+    
     #logo-reverse { display: none; }
+    
+        /* Home */
+        #home #logo-tagline { border-left-color: rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.7); }
+        #home #logo-tagline a { color: #fff; }
     
     /* Menu */
     #menu {
@@ -191,7 +210,7 @@ ul { list-style: disc; margin-left: 1.5em; }
             #home #nav-toggle { background: #fff; color: #0072ad; }
     
     /* Navigation */
-    #nav { float: right; font-size: 19px; font-weight: 300; padding-top: 10px; position: relative; text-align: right; width: 58%; }
+    #nav { font-size: 19px; font-weight: 300; padding-top: 10px; position: relative; text-align: right; }
     #nav .current a { color: #000; font-weight: 600; }
     #nav li { display: inline-block; margin-left: 1em; position: relative; }
     #nav ul { list-style: none; margin: 0; }
@@ -275,7 +294,8 @@ ul { list-style: disc; margin-left: 1.5em; }
             #case-search { width: 100%; }
         
         /* Header */
-        #logo { max-width: 360px; width: 70%; }
+        #header .content { display: block; }
+        #logo { width: 80%; }
         
         /* Intro */
         #intro { padding-top: 30%; }
@@ -289,6 +309,12 @@ ul { list-style: disc; margin-left: 1.5em; }
     .content-box { padding: 15px; }
     
     /* Content */
+        /* Header */
+        #header { padding: 15px 0; }
+        #logo { display: block; }
+        #logo-img { width: auto; }
+        #logo-tagline { border-width: 1px 0 0; font-size: 12px; padding: 5px 0 0; width: auto; }
+        
         /* Process */
         #process .description, #process .step { float: none; width: auto; }
         #process > li { margin-bottom: 1em; }
