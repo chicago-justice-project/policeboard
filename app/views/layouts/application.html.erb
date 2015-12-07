@@ -27,33 +27,35 @@
         <div class="content">
             <div id="logo">
                 <a href="/" id="logo-img">
-                    <img alt="Chicago Police Board Information Center" id="logo-full" src="../assets/logo.png" />
-                    <img alt="Chicago Police Board Information Center" id="logo-reverse" src="../assets/logo-reverse.png" />
+                    <%= image_tag "logo.png", alt:"Chicago Police Board Information Center", id:"logo-full" %>
+                    <%= image_tag "logo-reverse.png",  alt:"Chicago Police Board Information Center", id:"logo-reverse" %>
                 </a>
                 <span id="logo-tagline">From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a>, dedicated to bringing transparency to Chicago's justice system.</span>
             </div>
-
             <!-- Navigation -->
-            <div id="nav">
-                        <ul>
-                            <li class="current"><a href="/"><i class="fa fa-home" title="Home"></i></a></li>
-                            <li class=""><a href="/cases">Cases</a></li>
-                            <li class=""><a href="/board">Board</a></li>
-                            <li class=""><a href="/rules">Rules</a></li>
-                            <li class=""><a href="/about">About</a></li>
-                            <li class=""><a href="/feedback">Feedback</a></li>
-                            <li>
-                                <div class="search" style="display: none;">
-                                    <form accept-charset="UTF-8" action="/cases" method="get"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
-                                        <input class="txt" id="search" name="search" placeholder="Search cases..." type="text" />
-                                        <button class="action" name="button" type="submit">
-                                         <i class="fa fa-search"></i>
-</button></form>                                </div>
-                                <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-            <!-- /Navigation -->
+			<div id="nav">
+            <ul>
+              <li class="<%= navClass('welcome') %>"><a href="/"><i class="fa fa-home" title="Home"></i></a></li>
+              <li class="<%= navClass('cases') %>"><%= link_to 'Cases', cases_path %></li>
+              <li class="<%= navClass('board') %>"><%= link_to 'Board', board_index_path %></li>
+              <li class="<%= navClass('rules') %>"><%= link_to 'Rules', rules_path %></li>
+              <li class="<%= navClass('about') %>"><%= link_to 'About', about_path %></li>
+              <li class="<%= navClass('feedback') %>"><%= link_to 'Feedback', feedback_path %></li>
+              <li>
+                <div class="search" style="display: none;">
+                  <%= form_tag(cases_path, :method => "get") do %>
+                    <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
+                    <%= button_tag(type: 'submit', class: "action") do %>
+                     <i class="fa fa-search"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
+              </li>
+            </ul>
+          </div>
+		  <!-- /Navigation -->
+
         </div>
     </div>
     <!-- /Header -->
