@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'admin/index'
-
-  devise_for :users
   root 'welcome#index'
+
   
   get '/about', to: 'static_pages#about'
   get '/feedback', to: 'static_pages#feedback'
@@ -11,4 +9,8 @@ Rails.application.routes.draw do
   resources :cases, only: [:show, :index]
   resources :board, only: [:show, :index]
   resources :rules, only: [:show, :index]
+
+  get 'admin/index'
+  devise_for :users, controllers: { registrations: "registrations" }
+    
 end

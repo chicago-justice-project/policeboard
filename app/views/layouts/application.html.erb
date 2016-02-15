@@ -53,10 +53,21 @@
                 <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
               </li>
             </ul>
+			
+			<ul>
+				<li class="mute">
+					<% if user_signed_in? %>
+						<i class="fa fa-user"></i> <%= current_user.email %>
+						<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+					<% else %>
+						<%= link_to 'Sign in', new_user_session_path %>
+					<% end %>
+				</li>
+			</ul>
           </div>
+		</div>
 		  <!-- /Navigation -->
-
-        </div>
+		  
     </div>
     <!-- /Header -->
   
