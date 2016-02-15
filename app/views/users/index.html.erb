@@ -1,0 +1,18 @@
+<h1>Users</h1>
+<%= link_to "Add user", new_user_path, :class => "action"  %>
+
+<table>
+	<tr>
+		<th>Email</th>
+		<th>Last sign in</th>
+		<th></th>
+	</tr>
+	<% @users = User.all %>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.email %></td>
+			<td><%= user.last_sign_in_at %></td>
+			<td><%= link_to 'x', cancel_user_registration_path, method: :delete %></td>
+		</tr>
+	<% end %>
+</table>
