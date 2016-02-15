@@ -36,11 +36,14 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# use devise for authentication
+gem 'devise'
+
 # For Heroku
 gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '2.2.2'
+ruby '2.2.4'
 
 gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
