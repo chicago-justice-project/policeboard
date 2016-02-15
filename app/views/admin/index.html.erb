@@ -1,2 +1,14 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<body id=<%= yield (:body_id) %>>
+	<h1>Admin#index</h1>
+	<p>Find me in app/views/admin/index.html.erb</p>
+
+	<div id="nav-secondary">
+	<ul>
+	  <li class="<%= navClass('cases') %>"><%= link_to 'Cases', cases_path %></li>
+	  <li class="<%= navClass('board') %>"><%= link_to 'Board', board_index_path %></li>
+	  <li class="<%= navClass('rules') %>"><%= link_to 'Rules', rules_path %></li>
+	  <li class="<%= navClass('pages') %>"><%= link_to 'Pages', about_path %></li>
+	  <li class="<%= navClass('users') %>"><%= link_to 'Users', feedback_path %></li>
+	</ul>
+	</div>
+</body>
