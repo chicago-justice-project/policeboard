@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
   root 'welcome#index'
-
   
   get '/about', to: 'static_pages#about'
   get '/feedback', to: 'static_pages#feedback'
