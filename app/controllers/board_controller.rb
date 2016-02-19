@@ -24,6 +24,37 @@ class BoardController < ApplicationController
     end 
   end
 
+  def new
+	@member = BoardMember.new()
+  end
+  
+  def create
+	@member = BoardMember.new(entry_params)
+	if @member.save
+		redirect_to board_path(@board), notice: 'Board successfully created'
+	else
+		render :new
+	end
+  end
+  
+  def update
+	@member = BoardMember.find(params[:id])
+	if @member.update_attributes(params)
+		redirect_to board_path(@board), notice: 'Board successfully updated'
+	else
+		render :edit
+	end
+  end
+  
+  def board_params
+	params.require(
+  end
+  
+  
   def responsibilities
   end
+  
+  
+  
+  
 end

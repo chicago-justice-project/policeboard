@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admins
   root 'welcome#index'
   
   get '/about', to: 'static_pages#about'
@@ -16,4 +15,6 @@ Rails.application.routes.draw do
   scope '/admin' do
 	resources :users
   end
+  
+  
 end
