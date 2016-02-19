@@ -46,9 +46,6 @@ class BoardController < ApplicationController
 	end
   end
   
-  def board_params
-	params.require(
-  end
   
   
   def responsibilities
