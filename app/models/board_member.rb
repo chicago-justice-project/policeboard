@@ -51,4 +51,13 @@ class BoardMember < ActiveRecord::Base
   def votes_agree_rate
     (votes_agree_count.to_f / votes_total_count * 100).round
   end
+
+  def status
+    if active 
+      return 'current'
+    else
+      return 'past'
+    end
+    
+  end
 end

@@ -23,9 +23,9 @@ class RuleDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    :code,
+    #:code,
     :description,
-    :comment,
+    #:comment,
   ]
 
   # SHOW_PAGE_ATTRIBUTES

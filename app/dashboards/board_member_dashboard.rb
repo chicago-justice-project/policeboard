@@ -22,6 +22,8 @@ class BoardMemberDashboard < Administrate::BaseDashboard
     linkedin_handle: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    status: Field::String,
+    full_name: Field::String
   }
 
   # COLLECTION_ATTRIBUTES
@@ -30,17 +32,20 @@ class BoardMemberDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :cases,
-    :board_member_votes,
-    :terms,
-    :id,
+    :full_name,
+    :status,
+    :updated_at
+    #:cases,
+    #:board_member_votes,
+    #:terms,
+    #:id,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :cases,
-    :board_member_votes,
+    #:cases,
+    #:board_member_votes,
     :terms,
     :id,
     :first_name,
@@ -59,9 +64,9 @@ class BoardMemberDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :cases,
-    :board_member_votes,
-    :terms,
+    #:cases,
+    #:board_member_votes,
+    #:terms,
     :first_name,
     :last_name,
     :board_position,

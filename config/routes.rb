@@ -19,6 +19,5 @@ Rails.application.routes.draw do
 
   #get 'admin/index'
   devise_for :users, controllers: { registrations: "registrations" }
-
   
 end
