@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
+      resources dashboard_resource
+    end
 
+    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
+  end
 
   root 'welcome#index'
   
@@ -11,12 +17,8 @@ Rails.application.routes.draw do
   resources :board, only: [:show, :index]
   resources :rules, only: [:show, :index]
 
-  get 'admin/index'
+  #get 'admin/index'
   devise_for :users, controllers: { registrations: "registrations" }
 
-  scope '/admin' do
-	resources :users
-  end
-  
   
 end
