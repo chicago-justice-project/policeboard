@@ -21,9 +21,7 @@ class BoardMemberDashboard < Administrate::BaseDashboard
     twitter_handle: Field::String,
     linkedin_handle: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-    status: Field::String,
-    full_name: Field::String
+    updated_at: Field::DateTime    
   }
 
   # COLLECTION_ATTRIBUTES
@@ -32,8 +30,8 @@ class BoardMemberDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :full_name,
-    :status,
+    :first_name,
+	:last_name,
     :updated_at
     #:cases,
     #:board_member_votes,
@@ -80,7 +78,8 @@ class BoardMemberDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how board members are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(board_member)
-  #   "BoardMember ##{board_member.id}"
-  # end
+   def display_resource(board_member)
+     #"BoardMember ##{board_member.id}"
+	 "#{board_member.first_name} #{board_member.last_name}"
+   end
 end
