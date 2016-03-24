@@ -11,20 +11,20 @@ class DashboardManifest
   # to work correctly.
   DASHBOARDS = [
     :users,
-    #:authorities,
+    :authorities,
     :board_members,
-    #:board_member_votes,
+    :board_member_votes,
     :cases,
-    #:case_rules,
-    #:case_rule_counts,
-    #:categories,
-    #:complaints,
+    :case_rules,
+    :case_rule_counts,
+    :categories,
+    :complaints,
     :defendants,
     :outcomes,
-    #:ranks,
+    :ranks,
     :rules,
     :terms,
-    #:votes,
+    :votes,
   ]
 
   # `ROOT_DASHBOARD`
