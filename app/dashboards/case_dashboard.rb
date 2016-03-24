@@ -31,10 +31,11 @@ class CaseDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :number,
     :defendant,
-    :recommended_outcome,
+    :date_decided,
     :decided_outcome,
-    :board_member_votes,
+    :updated_at
   ]
 
   # SHOW_PAGE_ATTRIBUTES
@@ -54,8 +55,13 @@ class CaseDashboard < Administrate::BaseDashboard
     :recommended_outcome_id,
     :decided_outcome_id,
     :created_at,
-    :updated_at,
+    :updated_at
   ]
+
+  
+  def display_resource(c)
+    "##{c.number}"
+  end
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
@@ -72,13 +78,14 @@ class CaseDashboard < Administrate::BaseDashboard
     :date_initiated,
     :date_decided,
     :recommended_outcome_id,
-    :decided_outcome_id,
+    :decided_outcome_id
   ]
 
   # Overwrite this method to customize how cases are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(case)
-  #   "Case ##{case.id}"
-  # end
+  #def display_resource(case)
+  #   "#{case.number}"
+  #end
+
 end

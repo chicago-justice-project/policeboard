@@ -57,7 +57,7 @@ class DefendantDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how defendants are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(defendant)
-  #   "Defendant ##{defendant.id}"
-  # end
+   def display_resource(defendant)
+     "#{defendant.first_name} #{defendant.last_name} (#{defendant.rank.name})"
+   end
 end

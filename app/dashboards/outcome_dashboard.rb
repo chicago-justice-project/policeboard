@@ -45,7 +45,7 @@ class OutcomeDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how outcomes are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(outcome)
-  #   "Outcome ##{outcome.id}"
-  # end
+  def display_resource(outcome)
+    "#{outcome.name}"
+  end
 end

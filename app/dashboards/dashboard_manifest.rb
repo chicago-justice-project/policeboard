@@ -17,7 +17,7 @@ class DashboardManifest
     :cases,
     :case_rules,
     :case_rule_counts,
-    :categories,
+    #:categories,
     :complaints,
     :defendants,
     :outcomes,
