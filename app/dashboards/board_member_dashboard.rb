@@ -44,7 +44,6 @@ class BoardMemberDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     #:cases,
     #:board_member_votes,
-    :terms,
     :id,
     :first_name,
     :last_name,
@@ -56,6 +55,7 @@ class BoardMemberDashboard < Administrate::BaseDashboard
     :linkedin_handle,
     :created_at,
     :updated_at,
+    :terms,
   ]
 
   # FORM_ATTRIBUTES
@@ -64,7 +64,6 @@ class BoardMemberDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     #:cases,
     #:board_member_votes,
-    #:terms,
     :first_name,
     :last_name,
     :board_position,
@@ -73,6 +72,7 @@ class BoardMemberDashboard < Administrate::BaseDashboard
     :facebook_handle,
     :twitter_handle,
     :linkedin_handle,
+    :terms,
   ]
 
   # Overwrite this method to customize how board members are displayed

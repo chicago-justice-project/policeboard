@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get '/feedback', to: 'static_pages#feedback'
   get 'board/responsibilities', to: 'board#responsibilities'
   
-  resources :cases, only: [:show, :index]
-  resources :board, only: [:show, :index]
+  resources :cases
+  resources :board
   resources :rules, only: [:show, :index]
 
   #get 'admin/index'

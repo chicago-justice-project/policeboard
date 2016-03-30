@@ -26,4 +26,21 @@ class CasesController < ApplicationController
     @case = Case.find(params[:id])
     @files = Dir.glob("**/public/case_files/" + @case.number + "_*.pdf").map{|path| path.gsub("public/","/") }
   end
+  
+  def new
+  	@case = Case.new
+  	@case.build_defendant
+  end
+  
+  def create
+  	@case = Case.new
+  	if @case.save
+  		redirect_to cases, :notice => "Case successfully added"
+  	else
+  		flash[:error] = "Oops there was an error"
+  		render 'new'
+  	end
+  end
+  
+  
 end

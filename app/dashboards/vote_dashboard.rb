@@ -45,7 +45,7 @@ class VoteDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how votes are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(vote)
-  #   "Vote ##{vote.id}"
-  # end
+   def display_resource(vote)
+     "#{vote.name}"
+   end
 end

@@ -9,6 +9,8 @@ class Case < ActiveRecord::Base
   has_many :case_rules
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
+  
+  accepts_nested_attributes_for :defendant
 
   self.per_page = 10
 

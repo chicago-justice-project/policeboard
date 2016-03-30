@@ -1,0 +1,60 @@
+<%= form_for @case do |f| %>
+  
+  <h1>Add new case</h1>
+  <div class="field">
+    <%= f.label :number, "Case number" %>
+    <%= f.text_field :number, autofocus: true %>
+  </div>
+
+  <%= f.fields_for :defendant do |builder| %>
+  	<div>
+  		<%= builder.label :first_name, "Name" %>
+  		<%= builder.text_field :first_name %>
+  		<%= builder.text_field :last_name %>
+  	</div>
+  	<div>
+  		<%= builder.label :rank_id %>
+  		<%= builder.collection_select :rank_id, Rank.all, :id, :name %>
+  	</div>
+  	<div>
+  		<%= builder.label :number, "Badge #" %>
+  		<%= builder.text_field :number %>
+  		
+  	</div>
+  <% end %>  
+  
+
+  <hr />
+  <h2>Case summary</h2>
+  	<fieldset>
+	  <div class="field">
+	    <%= f.label :date_initiated, "Time frame" %><br />
+	    <%= f.date_field :date_initiated %>
+ 	    <%= f.date_field :date_decided%>
+	  </div>
+	  <div class="field">
+	    <%= f.label :recommended_outcome_id, "Recommended discipline" %><br />
+	    <%= f.collection_select :recommended_outcome_id, Outcome.all, :id, :name %>
+	  </div>
+	  
+	  <div class="field">
+	    <%= f.label :decided_outcome_id, "Final decision" %><br />
+	    <%= f.collection_select :decided_outcome_id, Outcome.all, :id, :name %>
+	  </div>
+   </fieldset>
+   
+  
+   <hr />
+   <h2>Rule violations</h2>
+   
+  
+
+  
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+  
+<% end %>
+<br />
+<br />
+<br />

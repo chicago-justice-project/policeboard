@@ -29,12 +29,61 @@ and renders all form fields for a resource's editable attributes.
       </ul>
     </div>
   <% end %>
-
+  
   <% page.attributes.each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %>">
       <%= render_field attribute, f: f %>
     </div>
   <% end -%>
+  
+  
+
+
+  <% if false %>
+  <% page.attributes.each do |attribute| -%>
+    <div class="field-unit field-unit--<%= attribute.html_class %>">
+      <%= attribute %>
+      <% if attribute.attribute == :recommended_outcome %>
+      	<%= render_field attribute, f: f %>
+      <% end %>
+      <!-- <%= render_field attribute, f: f %> -->
+    </div>
+  <% end -%>
+  <% end %>
+
+  
+  <hr />
+  <h2>Case summary </h2>
+  
+  <div class="field">
+	  <div class="label">Time frame</div>
+	  <div>
+		  <%= render_field page.attributes.detect {|a| a.attribute == :date_initiated }, f: f  %>
+	  </div>
+   </div>
+   
+   <hr />
+  
+   <h2>Rule violations</h2>
+   
+  
+  <p>Violated rules</p>
+  <ul>
+  <% page.resource.case_rules.each do |case_rule | -%>
+  	 <li>
+  	 	<strong><%= "Rule #{case_rule.rule.code} (#{case_rule.case_rule_counts.count} counts): " %></strong>
+  	 	<%= "#{case_rule.rule.description}" %>
+  	 	
+  	 	<% case_rule.case_rule_counts.order(:count_order).each do | case_rule_count | -%>
+  	 		<div class="count-rule">
+	  	 		<span class="count-order"><%= "Count #{case_rule_count.count_order}:" %></span>
+	  	 		<span class="is-guilty"><%= "#{case_rule_count.is_guilty}"%></span>
+	  	 		<p><%= case_rule_count.content %></p>
+  	 		</div>
+  	 	<% end -%>
+  	 </li>
+  <% end -%>
+  </ul>
 
   <div class="form-actions">
     <%= f.submit %>
