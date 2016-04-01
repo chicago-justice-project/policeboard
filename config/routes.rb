@@ -13,11 +13,14 @@ Rails.application.routes.draw do
   get '/feedback', to: 'static_pages#feedback'
   get 'board/responsibilities', to: 'board#responsibilities'
   
-  resources :cases
+  resources :cases, only:[:show, :index]
   resources :board
   resources :rules, only: [:show, :index]
 
   #get 'admin/index'
   devise_for :users, controllers: { registrations: "registrations" }
   
+  namespace :extranet do
+  	resources :cases
+  end
 end

@@ -1,0 +1,23 @@
+<% title "Case ##{@case.number}"%>
+<p><%= "#{@case.number}" %>
+
+<dl>
+<dt>Case #</dt>
+<dd><%= @case.number %></dd>
+
+<dt>Name</dt>
+<dd><%= @case.defendant.present? ? @case.defendant.full_name : '' %></dd>
+
+<dt>Judgement</dt>
+<dd><%= @case.date_decided %></dd>
+<dd><%= @case.decided_outcome.present? ? @case.decided_outcome.name : '' %></dd>
+
+<dt>Last modified</dt>
+<dd><%= @case.updated_at %></dd>
+</dl>
+
+<p>
+	<%= link_to "Edit", edit_extranet_case_path(@case) %> | 
+	<%= button_to "Destroy", extranet_case_path(@case), :confirm => 'Are you sure?', :method => :delete %> |
+	
+</p>
