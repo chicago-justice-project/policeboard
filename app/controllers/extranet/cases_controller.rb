@@ -24,8 +24,13 @@ module Extranet
 	  end
 	  
 	  def update
+	   
 	  	@c = Case.find(params[:id])
-	  	if @c.update(case_params)
+	  	
+        case_rules = params[:case].delete(:case_rules_attributes)
+
+	  	if @c.update_attributes(case_params)
+	  	  @c.update_attributes(:case_rules_attributes => case_rules)
 	  	  redirect_to @c, :notice => "Case successfully updated"
 	  	else
 	  	  render :action => 'edit'	  	
@@ -47,7 +52,7 @@ module Extranet
 	  
 	  private
 	  def case_params
-	    params.require(:case).permit(:number, :date_initiated, :date_decided, :recommended_outcome_id, :decided_outcome_id, defendant_attributes: [:first_name, :last_name, :rank_id, :number], case_rule_attributes:[:case_rule_id], case_rule_count_attributes:[:is_guilty]
+	    params.require(:case).permit(:number, :date_initiated, :date_decided, :recommended_outcome_id, :decided_outcome_id, defendant_attributes: [:first_name, :last_name, :rank_id, :number], case_rule_attributes:[:case_rule_id, case_rule_count_attributes:[:content, :is_guilty]]
 	    )
 	  end  
 	end

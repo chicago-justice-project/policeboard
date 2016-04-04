@@ -6,12 +6,12 @@ class Case < ActiveRecord::Base
   belongs_to :recommended_outcome, :class_name => "Outcome"
   belongs_to :decided_outcome, :class_name => "Outcome"
   has_many :board_member_votes
-  has_many :case_rules
+  has_many :case_rules, :dependent => :destroy
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
   
   accepts_nested_attributes_for :defendant
-  accepts_nested_attributes_for :case_rules  
+  accepts_nested_attributes_for :case_rules, :allow_destroy => true
 
   self.per_page = 10
 
