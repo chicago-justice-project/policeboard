@@ -1,0 +1,13 @@
+<div>
+	<%= f.label :first_name, "Name" %>
+	<%= f.text_field :first_name %>
+	<%= f.text_field :last_name %>
+</div>
+<div>
+	<%= f.label :rank_id %>
+	<%= f.collection_select :rank_id, Rank.all, :id, :name %>
+</div>
+<div>
+	<%= f.label :number, "Badge #" %>
+	<%= f.text_field :number %>
+</div>
