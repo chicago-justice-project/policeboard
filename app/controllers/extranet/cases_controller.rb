@@ -1,5 +1,7 @@
 module Extranet
 	class CasesController < Extranet::ApplicationController
+	  
+
 	  def index
 	    @cases = Case.all
 	  end
@@ -48,7 +50,6 @@ module Extranet
 	  	flash[:notice] = "Case deleted"
 	  	redirect_to extranet_cases_path	  
 	  end
-	  
 	  
 	  private
 	  def case_params

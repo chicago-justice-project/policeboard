@@ -13,7 +13,19 @@ class Case < ActiveRecord::Base
   accepts_nested_attributes_for :defendant
   accepts_nested_attributes_for :case_rules, :allow_destroy => true
 
+  after_update :sort_case_rule_counts
+  
   self.per_page = 10
+  
+  def sort_case_rule_counts
+  	self.case_rules.each do |case_rule|
+  	  case_rule.case_rule_counts.order(:count_order).each_with_index  do |rule_count, index|
+  	    rule_count.count_order = index + 1
+  	    rule_count.save
+  	  end
+  	end 
+
+  end
 
   def agree_votes
     self.board_member_votes.where(vote_id: Vote.AGREE).map{|bmv| bmv.board_member}
