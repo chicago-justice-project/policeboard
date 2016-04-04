@@ -1,0 +1,17 @@
+<li class="fields case-rule-fields">  
+
+	<p>Rule <%= case_rule_form.object.rule.code %>(<%= case_rule_form.object.case_rule_counts.count() %> counts): 
+	<%= case_rule_form.object.rule.description %></p>
+	
+	<%= case_rule_form.hidden_field :_destroy %>
+	<%= link_to "remove", "#", class: "remove-link" %>
+
+
+	<ul class="case-rule-counts">
+	  <%= case_rule_form.fields_for :case_rule_counts, case_rule_form.object.case_rule_counts.order(:count_order) do |rule_count_form| %>
+	     <%= render "form_case_rule_counts", :rule_count_form => rule_count_form %>
+	  <% end %>
+	</ul>	  
+
+</li>
+

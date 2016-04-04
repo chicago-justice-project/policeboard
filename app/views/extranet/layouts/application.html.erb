@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) + " - " : "" %>Chicago Police Board</title>
+
+  <!-- Info -->
+  <%= csrf_meta_tags %>
+  <meta name="author" content="Chicago Justice Project">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
+  <meta name="apple-mobile-web-app-title" content="CPBIC">
+
+  <!-- Fav icon -->
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type:'image/png' %>
+
+  <!-- Scripts -->
+  <%= javascript_include_tag 'application' %>
+
+  <!-- Styles -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+<body id=<%= yield (:body_id) %>>
+<div id="wrapper">
+  <!-- Header -->
+    <div id="header">
+        <div class="content">
+            <div id="logo">
+                <a href="/" id="logo-img">
+                    <%= image_tag "logo.png", alt:"Chicago Police Board Information Center", id:"logo-full" %>
+                    <%= image_tag "logo-reverse.png",  alt:"Chicago Police Board Information Center", id:"logo-reverse" %>
+                </a>
+                <span id="logo-tagline">From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a>, dedicated to bringing transparency to Chicago's justice system.</span>
+            </div>
+            <!-- Navigation -->
+			<div id="nav">
+            <ul>
+              <li class="<%= navClass('welcome') %>"><a href="/"><i class="fa fa-home" title="Home"></i></a></li>
+              <li class="<%= navClass('cases') %>"><%= link_to 'Cases', cases_path %></li>
+              <li class="<%= navClass('board') %>"><%= link_to 'Board', board_index_path %></li>
+              <li class="<%= navClass('rules') %>"><%= link_to 'Rules', rules_path %></li>
+              <li class="<%= navClass('about') %>"><%= link_to 'About', about_path %></li>
+              <li class="<%= navClass('feedback') %>"><%= link_to 'Feedback', feedback_path %></li>
+              <li>
+                <div class="search" style="display: none;">
+                  <%= form_tag(cases_path, :method => "get") do %>
+                    <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
+                    <%= button_tag(type: 'submit', class: "action") do %>
+                     <i class="fa fa-search"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <a href="#" id="search-toggle"><i class="fa fa-search" title="Search cases"></i></a>
+              </li>
+            </ul>
+			
+			<ul>
+				<li class="mute">
+					<% if user_signed_in? %>
+						<i class="fa fa-user"></i> <%= current_user.email %>
+						<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+					<% else %>
+						<%= link_to 'Sign in', new_user_session_path %>
+					<% end %>
+				</li>
+			</ul>
+          </div>
+		</div>
+		  <!-- /Navigation -->
+		  
+    </div>
+    <!-- /Header -->
+  
+  <div id="main">
+    <div class="content">
+	    <div id="nav">
+		  	<ul>
+              <li class="<%= navClass('cases') %>"><%= link_to 'Cases', extranet_cases_path %></li>
+              <li class="<%= navClass('board') %>"><%= link_to 'Board', extranet_cases %></li>
+              <li class="<%= navClass('rules') %>"><%= link_to 'Rules', extranet_cases %></li>
+              <li class="<%= navClass('pages') %>"><%= link_to 'Pages', extranet_cases %></li>
+		  	</ul>
+	  	</div>
+
+	  	<p class="notice"><%= notice %></p>
+	  	<p class="alert"><%= alert%></p> 
+	  	<%= yield %>
+    </div>
+  </div>
+
+  <!-- Footer -->
+    <div id="footer">
+        <div class="content">
+            <h6>Chicago Police Board Information Center</h6>
+            <p>From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a>, dedicated to bringing transparency to Chicago's justice system.</p>
+        </div>
+    </div>
+    <!-- /Footer -->
+  <!-- Analytics footer !-->
+  <%= render 'layouts/footer' %>
+
+</body>
+</html>
