@@ -12,8 +12,8 @@
 //
 
 // rails 
-= require jquery
-= require jquery_ujs
+//= require jquery
+//= require jquery_ujs
 
 // app
 //= require jquery.readyselector
@@ -22,3 +22,14 @@
 //= require responsive-init
 //= require search
 //= require table-scroll
+
+
+//$(function() {
+//  console.log("I am here");
+//  $('.remove-link').click(function(link) {
+//	$(link).previous('input[type=hidden]').value = "1";
+//	$(link).up('.fields').hide();
+//
+//   return false;
+//  });
+//});

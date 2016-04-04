@@ -1,5 +1,6 @@
 module Extranet
 	class ApplicationController < ActionController::Base
+	  layout 'admin'
 	  before_filter :authenticate_user!
 	  before_filter :authenticate_admin
 	
