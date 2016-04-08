@@ -1,13 +1,17 @@
-<div>
-	<%= f.label :first_name, "Name" %>
-	<%= f.text_field :first_name %>
-	<%= f.text_field :last_name %>
-</div>
-<div>
-	<%= f.label :rank_id %>
-	<%= f.collection_select :rank_id, Rank.all, :id, :name %>
-</div>
-<div>
-	<%= f.label :number, "Badge #" %>
-	<%= f.text_field :number %>
-</div>
+<li class="form-row">
+    <div class="form-label"><%= f.label :first_name, "Name" %></div>
+    <div class="form-field">
+        <div class="field-single-line fields-name-short">
+            <p class="field-name-first"><%= f.text_field :first_name, :class => "txt" %></p>
+            <p class="field-name-last"><%= f.text_field :last_name, :class => "txt" %></p>
+        </div>
+    </div>
+</li>
+<li class="form-row">
+	<div class="form-label"><%= f.label :rank_id, "Title" %></div>
+    <div class="form-field"><%= f.collection_select :rank_id, Rank.all, :id, :name %></div>
+</li>
+<li class="form-row">
+	<div class="form-label"><%= f.label :number, "Badge number" %></div>
+    <div class="form-field"><%= f.text_field :number, :class => "txt-med" %></div>
+</li>

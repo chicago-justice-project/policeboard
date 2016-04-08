@@ -1,44 +1,61 @@
 <h1>Case details</h1>
 <%= form_for [:extranet, @case] do |f| %>  
-  <div class="field">
-    <%= f.label :number, "Case number" %>
-    <%= f.text_field :number, autofocus: true, :class => "txt" %>
-  </div>
-
-  <%= f.fields_for :defendant do |builder| %>
-  	<%= render "form_defendant", :f => builder %>
-  <% end %>  
-  
-
-  <hr />
-  <h2>Case summary</h2>
-  <div class="field">
-    <%= f.label :date_initiated, "Time frame" %><br />
-    <%= f.date_field :date_initiated %>
-	    <%= f.date_field :date_decided%>
-  </div>
-  <div class="field">
-    <%= f.label :recommended_outcome_id, "Recommended discipline" %><br />
-    <%= f.collection_select :recommended_outcome_id, Outcome.all, :id, :name %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :decided_outcome_id, "Final decision" %><br />
-    <%= f.collection_select :decided_outcome_id, Outcome.all, :id, :name %>
-  </div>
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-label"><%= f.label :number, "Case number" %></div>
+            <div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
+        </li>
+        <%= f.fields_for :defendant do |builder| %>
+            <%= render "form_defendant", :f => builder %>
+        <% end %>
+    </ol>
     
-   <hr />
-     
-   <h2>Rule violations</h2>
-   <p>Violated rules</p>
-   <ul>
-     <%= f.fields_for :case_rules do |case_rule_form| %>
-		<%= render "form_case_rules", :case_rule_form => case_rule_form %>
-     <% end %>
-   </ul>
-   
-   <div class="actions">
-     <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_cases_path %>
-   </div>
-  
+    <hr />
+    
+    <h2>Case summary</h2>
+    
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-label"><%= f.label :date_initiated, "Time frame" %></div>
+            <div class="form-field">
+                <div class="field-single-line fields-date-range">
+                    <p class="field-range-start"><%= f.date_field :date_initiated, :class => "txt" %></p>
+                    <p class="field-range-end"><%= f.date_field :date_decided, :class => "txt" %></p>
+                </div>
+            </div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :recommended_outcome_id, "Recommended discipline" %></div>
+            <div class="form-field"><%= f.collection_select :recommended_outcome_id, Outcome.all, :id, :name %></div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :decided_outcome_id, "Final decision" %></div>
+            <div class="form-field"><%= f.collection_select :decided_outcome_id, Outcome.all, :id, :name %></div>
+        </li>
+    </ol>
+    
+    <hr />
+    
+    <h2>Rule violations</h2>
+    
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-label">Violated rules</div>
+            <ul>
+                <%= f.fields_for :case_rules do |case_rule_form| %>
+                    <%= render "form_case_rules", :case_rule_form => case_rule_form %>
+                <% end %>
+            </ul>
+        </li>
+    </ol>
+    
+    <hr />
+    
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-field">
+                <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_cases_path %>
+            </div>
+        </li>
+    </ol>
 <% end %>

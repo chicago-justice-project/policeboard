@@ -11,7 +11,49 @@ textarea { height: 5em; }
 
 /* Specifics
 ======================================================================*/
+
+/* Fields */
+.form { clear: both; overflow: hidden; }
+.form-field { float: right; width: 70%; }
+.form-field { margin-bottom: 1em; position: relative; }
+.form-field p { margin-bottom: 0.25em; }
+.form-label { float: left; text-align: right; width: 27%; }
+.form-row { clear: both; font-weight: normal; margin: 0; }
+
+    /* Multiple fields on a single line */
+    .field-single-line { width: 60%; }
+    .field-single-line p { box-sizing: border-box; float: left; margin: 0; padding-right: 10px; }
+    .field-single-line .txt { width: 100%; }
     
+        /* Location fields */
+        .field-single-line .field-loc-city { width: 50%; }
+        .field-single-line .field-loc-state { width: 20%; }
+        .field-single-line .field-loc-postal { float: right; padding-right: 0; width: 30%; }
+        
+        /* Name fields */
+            /* Full name (first/middle/last) */
+            .fields-name-full .field-name-first, .fields-name-full .field-name-last { width: 40%; }
+            .fields-name-full .field-name-last { float: right; padding-right: 0; }
+            .fields-name-full .field-name-middle { width: 20%; }
+            
+            /* Long name (first/middle/last/suffix) */
+            .fields-name-long .field-name-first, .fields-name-long .field-name-last { width: 30%; }
+            .fields-name-long .field-name-middle, .fields-name-long .field-name-suffix { width: 20%; }
+            .fields-name-long .field-name-suffix { float: right; padding-right: 0; }
+            
+            /* Short name (first/last) */
+            .fields-name-short .field-name-first, .fields-name-short .field-name-last { width: 50%; }
+            .fields-name-short .field-name-last { float: right; padding-right: 0; }
+            
+            /* Date range */
+            .fields-date-range .field-range-start, .fields-date-range .field-range-end { width: 50%; }
+            .fields-date-range .field-range-end { float: right; padding-right: 0; }
+        
+        /* Phone */
+        .form .field-single-line .field-phone-number { width: 70%; }
+        .form .field-single-line .field-phone-ext { padding-right: 0; width: 20%; }
+        .form .field-single-line .field-phone-x { padding-top: 0.5em; text-align: center; width: 10%; }
+
 /* Options */
 .options-h, .options-v { list-style: none; margin: 0; }
 .options-h input, .options-v input { margin: 0 0.5em -0.05em 0; }
@@ -30,15 +72,20 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .req { color: #f00; }
 
 /* Text boxes */
-.txt {
+[class *= "txt"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    box-shadow: inset 0 1px 1px #ddd;
     margin-right: 0.5em;
-    padding: 0.5em 0.3em;
+    padding: 0.3em;
     vertical-align: middle;
-    width: 100%;
 }
+
+.txt { width: 100%; }
+.txt-date { width: 7em; }
+.txt-med { width: 60%; }
+.txt-num { width: 4em; }
 
 /* Search */
 .search { background: #fff; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; padding-right: 3em; white-space: nowrap; }
