@@ -99,3 +99,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
     
     /* In navigation */
     #nav .search { position: absolute; right: 0; top: 2em; width: 10em; }
+
+/* Sign in */
+#signin { margin: 0 auto; max-width: 330px; }
+#signin .action { display: block; text-align: center; width: 100%; }
