@@ -3,25 +3,30 @@
     
     <h1>Cases</h1>
     
-    <p><%= link_to "Add a new case", [:new, :extranet, :case] %></p>
+    <p><%= link_to "Add case", [:new, :extranet, :case], :class => "action" %></p>
+    
     <table>
-      <tr>
-      	<th>Case #</th>
-      	<th>Name</th>
-      	<th>Judgement date</th>
-      	<th>Outcome</th>
-      	<th>Last modified</th>
-      	<th></th>
-      </tr>
-      <% @cases.each do |c|  %>
-      	<tr>
-      		<td><%= link_to c.number, [:edit, :extranet, c] %></td>
-      		<td><%= c.defendant.present? ? c.defendant.full_name : '' %></td>
-      		<td><%= c.date_decided %></td>
-      		<td><%= c.decided_outcome.present? ? c.decided_outcome.name : '' %></td>
-      		<td><%= c.updated_at %></td>
-      		<td><%= link_to "x", [:extranet, c], :confirm => 'Are you sure?', :method => :delete %> </td>
-      	</tr>
-      <% end %>
+        <thead>
+            <tr>
+                <th>Case # <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Name <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Judgement date <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Outcome <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Last modified <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @cases.each do |c|  %>
+                <tr>
+                    <td><%= link_to c.number, [:edit, :extranet, c] %></td>
+                    <td><%= c.defendant.present? ? c.defendant.full_name : '' %></td>
+                    <td><%= c.date_decided %></td>
+                    <td><%= c.decided_outcome.present? ? c.decided_outcome.name : '' %></td>
+                    <td><%= c.updated_at %></td>
+                    <td><%= link_to "X", [:extranet, c], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
+                </tr>
+            <% end %>
+        </tbody>
     </table>
 </div>
