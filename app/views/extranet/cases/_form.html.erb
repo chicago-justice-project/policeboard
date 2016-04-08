@@ -1,9 +1,8 @@
-<%= form_for [:extranet, @case] do |f| %>
-
-  <h1>Add new case</h1>
+<h1>Case details</h1>
+<%= form_for [:extranet, @case] do |f| %>  
   <div class="field">
     <%= f.label :number, "Case number" %>
-    <%= f.text_field :number, autofocus: true %>
+    <%= f.text_field :number, autofocus: true, :class => "txt" %>
   </div>
 
   <%= f.fields_for :defendant do |builder| %>
@@ -39,7 +38,7 @@
    </ul>
    
    <div class="actions">
-     <%= f.submit "Submit" %>
+     <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_cases_path %>
    </div>
   
 <% end %>
