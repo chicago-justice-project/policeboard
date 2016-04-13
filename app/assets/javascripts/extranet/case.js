@@ -1,10 +1,10 @@
 $('#extranet-case-detail').ready(function () {
-
-  console.log("Extranet case detail starting which I just modified just now.  What happens?")
-
-  $('.remove-link').click(function(link) {
-	$(link).previous('input[type=hidden]').value = "1";
-	$(link).up('.fields').hide();
+  console.log("dom is ready");
+  
+  $('.remove_fields').on('click', function() {
+	console.log('Remove link called ' + $(this).attr('class'));
+	$(this).prev('input[type=hidden]').val("true");
+	$(this).parent('.fields').hide();
     return false;
   });
 
