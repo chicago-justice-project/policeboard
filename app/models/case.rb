@@ -12,6 +12,8 @@ class Case < ActiveRecord::Base
   
   accepts_nested_attributes_for :defendant
   accepts_nested_attributes_for :case_rules, :allow_destroy => true
+  accepts_nested_attributes_for :board_member_votes, :allow_destroy => true
+  
 
   after_update :sort_case_rule_counts
   
