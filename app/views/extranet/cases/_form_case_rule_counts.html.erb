@@ -1,4 +1,4 @@
-<li class="case-rule-count-fields">
+<li class="fields case-rule-count-fields">
 	<p>
 		Count <%= rule_count_form.object.count_order %>: 
 		<%= rule_count_form.radio_button :is_guilty, :false %>Not guilty
@@ -7,7 +7,6 @@
 	</p>
 	
 	<%= rule_count_form.text_area :content %>
-	<%= rule_count_form.check_box :_destroy %>
-	<%= rule_count_form.label :_detroy, "Remove" %>
-	
+	<%= rule_count_form.hidden_field :_destroy %>
+	<%= link_to "remove", "#", class: "remove_fields" %>
 </li>

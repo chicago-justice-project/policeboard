@@ -41,11 +41,13 @@
     <ol class="form">
         <li class="form-row">
             <div class="form-label">Violated rules</div>
+            <div class="form-field">
             <ul>
                 <%= f.fields_for :case_rules do |case_rule_form| %>
                     <%= render "form_case_rules", :case_rule_form => case_rule_form %>
                 <% end %>
             </ul>
+            </div>
         </li>
     </ol>
     

@@ -24,12 +24,17 @@ module Extranet
 	  end
 	  
 	  def update
+	    #render :text => @some_object.inspect
+	    #case_params.inspect
+	    #debug.inspect
+	    
 	  	@c = Case.find(params[:id])
-        case_rules = params[:case].delete(:case_rules_attributes)
+        #case_rules = params[:case].delete(:case_rules_attributes)
 
+	  	#if @c.update_attributes(case_params)
+	  	  #@c.update_attributes(:case_rules_attributes => case_rules)
 	  	if @c.update_attributes(case_params)
-	  	  @c.update_attributes(:case_rules_attributes => case_rules)
-	  	  redirect_to extranet_cases_path, :notice => "Case successfully updated"
+	  	  redirect_to extranet_case_path, :notice => "Case successfully updated"
 	  	else
 	  	  render :action => 'edit'	  	
 	  	end
@@ -41,9 +46,6 @@ module Extranet
 	  end
 	  
 	  def destroy
-	    
-	    params.inspect
-	    
 	  	@case = Case.find(params[:id])
 	  	@case.destroy
 	  	flash[:notice] = "Case deleted"
@@ -52,8 +54,12 @@ module Extranet
 	  
 	  private
 	  def case_params
-	    params.require(:case).permit(:number, :date_initiated, :date_decided, :recommended_outcome_id, :decided_outcome_id, defendant_attributes: [:first_name, :last_name, :rank_id, :number], case_rule_attributes:[:case_rule_id, :id, :destroy, case_rule_count_attributes:[:id, :destroy, :content, :is_guilty]]
-	    )
+	    params.require(:case).permit! 
+	  
+	    #params.require(:case).permit(:number, :date_initiated, :date_decided, :recommended_outcome_id, :decided_outcome_id, 
+	    #	defendant_attributes: [:first_name, :last_name, :rank_id, :number], 
+	    #	:case_rules_attributes => [[:id, :_destroy]]
+	    #)
 	  end  
 	end
 end
