@@ -68,13 +68,14 @@ $('#extranet-case-detail').ready(function () {
 	});
 	
 	var toggleDissent = function($element){
+		console.log("on toggle dissent " + $element.prop('id'));
 		var $tbDissent = $($element.parent('.board-member-vote').find('.dissent-description'));
 		if ($tbDissent)
 		{
 			var vote = $('label[for='+ $element.attr('id')+']').text();
 			var showOrHide = vote === "Dissent";
 			console.log("on toggleDissent vote " + vote + " " + showOrHide);
-			$tbDissent.toggle(showOrHide);
+			$tbDissent.closest('.dissent-detail').toggle(showOrHide);
 		}
 	};
 	
