@@ -26,7 +26,7 @@ module Extranet
 	  
 	  def update
 	    #render :text => @some_object.inspect
-	    #case_params.inspect
+	    #raise case_params.inspect
 	    #debug.inspect
 	    
 	  	@c = Case.find(params[:id])

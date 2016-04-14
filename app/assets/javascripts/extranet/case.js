@@ -1,5 +1,7 @@
 $('#extranet-case-detail').ready(function () {
 	
+	
+
 	$(document).on('click', '.remove_fields', function() {
 		//console.log('Remove link called ' + $(this).attr('class'));
 		$(this).prev('input[type=hidden]').val("true");
@@ -49,5 +51,44 @@ $('#extranet-case-detail').ready(function () {
 		$rule.parent().closest('div.case-rule-fields').find('input.rule_id').val($rule.val())
 		
 	});
+	
+	//board member voting
+	//show dissent reason text box when dissent is selected;
+	$(document).on('change', 'input[type="radio"][name$="[vote_id]"]', function(){
+		toggleDissent($(this));
+		//var vote = $('label[for='+$(this).attr('id')+']').text();
+				
+		//if (vote == "Dissent"){
+		//	$(this).parent('.board-member-vote').find('.dissent-description').show();
+	    //}
+		//else
+		//{
+		//	$(this).parent('.board-member-vote').find('.dissent-description').hide();
+		//}
+	});
+	
+	var toggleDissent = function($element){
+		var $tbDissent = $($element.parent('.board-member-vote').find('.dissent-description'));
+		if ($tbDissent)
+		{
+			var vote = $('label[for='+ $element.attr('id')+']').text();
+			var showOrHide = vote === "Dissent";
+			console.log("on toggleDissent vote " + vote + " " + showOrHide);
+			$tbDissent.toggle(showOrHide);
+		}
+	};
+	
+	//hide all dissent description boxes
+	$('.board-member-vote .dissent-description').each(function(index, value){
+		//get the radio button for the vote
+		
+		var $rbVote = $(this).closest('div.board-member-vote').find('input[type="radio"][name$="[vote_id]"]:checked');
+		console.log("each " + $rbVote.val())
+		if ($rbVote){
+			toggleDissent($($rbVote));
+		}
+	});
+	
+	
 	
 });
