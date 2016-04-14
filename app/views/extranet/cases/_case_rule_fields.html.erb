@@ -1,4 +1,4 @@
-<div class="fields case-rule-fields">
+<div class="fields case-rule-fields case-rule">
 	<%= f.hidden_field :rule_id, class: 'rule_id' %>
 	<%= f.hidden_field :_destroy %>
 	<div class="rule_selection" style="display:none;">
@@ -16,11 +16,11 @@
 	
 	<%= link_to "remove", "#", class: "remove_fields" %>
 
-	<ul class="case-rule-counts options-v">
+	<div class="case-rule-counts">
 		  <%= f.fields_for :case_rule_counts, f.object.case_rule_counts.order(:count_order) do |builder| %>
 		     <%= render "case_rule_count_fields", :f => builder %>
 		  <% end %>
-	</ul>
-	<p><%= link_to_add_fields "Add count to rule #{f.object.rule ? f.object.rule.code : ""}", f, :case_rule_counts%></p>
+		  <p><%= link_to_add_fields "Add count to rule #{f.object.rule ? f.object.rule.code : ""}", f, :case_rule_counts%></p>
+	</div>
 
 </div>
