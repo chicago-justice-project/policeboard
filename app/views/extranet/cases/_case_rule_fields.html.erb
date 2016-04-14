@@ -1,8 +1,10 @@
 <li class="fields case-rule-fields">  
-	<p><strong>Rule <%= f.object.rule.code %> (<%= f.object.case_rule_counts.count() %> counts)</strong>: 
-	<%= f.object.rule.description %></p>
-	<%= f.hidden_field :rule_id %></p>
+	<p><strong>Rule <span class="rule_code"><%= f.object.rule.code %></span> (<%= f.object.case_rule_counts.count() %> counts)</strong>: 
+	<span class="rule_description"><%= f.object.rule.description %></p><span>
+	<%= f.hidden_field :rule_id, class: 'rule_id' %></p>
 	
+	<div class="form-field" style="display:none;"><%= f.select :rule_id, options_for_select(@rules.map{ |r| [r.item, r.id, {'data-description'=>r.description}] }, selected_key = f.object.rule_id), {} ,{ :name => "rule_select" } %></div>
+
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "remove", "#", class: "remove_fields" %>
 
@@ -11,6 +13,8 @@
 	     <%= render "case_rule_count_fields", :f => builder %>
 	  <% end %>
 	</ul>
-	<%= link_to_add_fields "Add a rule count", f, :case_rule_counts, "add_fields", "Add a rule count" %>
+	<p>
+		<%= link_to_add_fields "Add count to rule #{f.object.rule.code}", f, :case_rule_counts%>
+	</p>
 </li>
 

@@ -21,6 +21,7 @@ module Extranet
 	  
 	  def edit
 	    @case = Case.find(params[:id])
+	    @rules = Rule.all
 	  end
 	  
 	  def update
