@@ -1,0 +1,12 @@
+<li class="fields case-rule-count-fields">
+	<p>
+		Count <%= f.object.count_order %>: 
+		<%= f.radio_button :is_guilty, :false %>Not guilty
+		<%= f.radio_button :is_guilty, :true %>Guilty
+		<%= f.radio_button :is_guilty, "null" %>Not available
+	</p>
+	
+	<%= f.text_area :content %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove", "#", class: "remove_fields" %>
+</li>

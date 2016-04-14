@@ -6,7 +6,7 @@
             <div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
         </li>
         <%= f.fields_for :defendant do |builder| %>
-            <%= render "form_defendant", :f => builder %>
+            <%= render "defendant_fields", :f => builder %>
         <% end %>
     </ol>
     
@@ -43,8 +43,8 @@
             <div class="form-label">Violated rules</div>
             <div class="form-field">
             <ul>
-                <%= f.fields_for :case_rules do |case_rule_form| %>
-                    <%= render "form_case_rules", :case_rule_form => case_rule_form %>
+                <%= f.fields_for :case_rules do |builder| %>
+                    <%= render "case_rule_fields", :f => builder %>
                 <% end %>
             </ul>
             </div>
