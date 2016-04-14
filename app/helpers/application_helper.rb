@@ -19,6 +19,6 @@ module ApplicationHelper
     #raise fields.inspect
     
     #link_to(name,'#', class: "add_fields", data: {id: 0, fields: fields.gsub("\n","")}) 
-    link_to(name,'#', class: "add_fields", data: {id: 0, fields: fields.gsub("\n","")}) 
+    link_to(name,'#', class: "add_fields", data: {id: 0, fields: fields.gsub("\n",""), association: association}) 
   end
 end

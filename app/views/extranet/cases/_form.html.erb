@@ -42,12 +42,12 @@
         <li class="form-row">
             <div class="form-label">Violated rules</div>
             <div class="form-field">
-            <ul>
-                <%= f.fields_for :case_rules do |builder| %>
-                    <%= render "case_rule_fields", :f => builder %>
-                <% end %>
-            </ul>
-
+	            <div id='case-rules'>
+	                <%= f.fields_for :case_rules do |builder| %>
+	                    <%= render "case_rule_fields", :f => builder %>
+	                <% end %>
+					<p><%= link_to_add_fields "Add violated rule", f, :case_rules %></p>
+	            </div>
             </div>
         </li>
     </ol>
