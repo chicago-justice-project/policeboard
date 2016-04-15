@@ -110,3 +110,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 /* Sign in */
 #signin { margin: 0 auto; max-width: 330px; }
 #signin .action { display: block; text-align: center; width: 100%; }
+
+/* Violated rules */
+.violated-rules { list-style: none; margin-left: 0; }
+.violated-rules li { border-bottom: 1px solid #ddd; margin-bottom: 1em; padding-bottom: 0.5em; }
+.violated-rules p { margin-bottom: 0.5em; }
