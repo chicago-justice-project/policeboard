@@ -13,7 +13,6 @@
     <hr />
     
     <h2>Case summary</h2>
-    
     <ol class="form">
         <li class="form-row">
             <div class="form-label"><%= f.label :date_initiated, "Time frame" %></div>
@@ -33,7 +32,6 @@
             <div class="form-field"><%= f.collection_select :decided_outcome_id, Outcome.all, :id, :name %></div>
         </li>
     </ol>
-    
     <hr />
     
     <h2>Rule violations</h2>
@@ -51,7 +49,6 @@
             </div>
         </li>
     </ol>
-    
     <hr />
     
     <h2>Board member voting</h2>
@@ -63,6 +60,7 @@
 	    			<%= f.fields_for :board_member_votes do |builder| %>
 	    				<%= render "board_member_vote_fields", :f => builder %>
 	    			<% end %>
+	    			<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
 	    		</div>
     		</div>
     	</li>

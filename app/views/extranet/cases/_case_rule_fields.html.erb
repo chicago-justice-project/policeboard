@@ -2,8 +2,8 @@
 	<%= f.hidden_field :rule_id, class: 'rule_id' %>
 	<%= f.hidden_field :_destroy %>
 	<div class="rule_selection" style="display:none;">
-	<p>Add a rule</p>
-	<%= f.select :rule_id, options_for_select(@rules.map{ |r| [r.item, r.id, {'data-description'=>r.description}] }, selected_key = f.object.rule_id), {prompt: 'Select rule', required: true} ,{ :name => "rule_select" } %>
+		<span class="label">Add a rule</span>
+		<%= f.select :rule_id, options_for_select(@rules.map{ |r| [r.item, r.id, {'data-description'=>r.description}] }, selected_key = f.object.rule_id), {prompt: 'Select rule', required: true} ,{ :name => "rule_select" } %>
 	</div>
 	<p class="rule_display">
 		<strong>
