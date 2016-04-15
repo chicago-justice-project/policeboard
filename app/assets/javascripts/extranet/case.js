@@ -107,10 +107,13 @@ $('#extranet-case-detail').ready(function () {
 	
 	var initBoardMemberVoteForm = function(new_id)
 	{
+		//initial display of the add board form, show drop down to select a board and hide the dissent descriptio
+		
 		var id = 'case_board_member_votes_attributes_' + new_id + '_board_member_id';
 		var $newItem = $('#board-member-votes input[id=' + id + ']').parent('.board-member-vote-fields');
 		if ($newItem){
-			$newItem.find('.board-selection').show();
+			$newItem.find('.board-selection').show();  
+			$newItem.find('.dissent-detail').hide();
 		}
 		return false;
 	};
