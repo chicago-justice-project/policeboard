@@ -11,7 +11,7 @@ class Case < ActiveRecord::Base
   has_many :complaints
   
   accepts_nested_attributes_for :defendant
-  accepts_nested_attributes_for :case_rules, :allow_destroy => true
+  accepts_nested_attributes_for :case_rules, :reject_if => lambda { |a| a[:rule_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :board_member_votes, :allow_destroy => true
   
 

@@ -70,15 +70,15 @@ class CaseDashboard < Administrate::BaseDashboard
     :defendant,
     :recommended_outcome,
     :decided_outcome,
-    :board_member_votes,
-    :case_rules,
-    :case_rule_counts,
-    :complaints,
+    #::board_member_votes,
+    #:case_rules,
+    #:case_rule_counts,
+    #:complaints,
     :number,
     :date_initiated,
     :date_decided,
-    :recommended_outcome_id,
-    :decided_outcome_id
+    #:recommended_outcome_id,
+    #:decided_outcome_id
   ]
 
   # Overwrite this method to customize how cases are displayed
