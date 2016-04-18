@@ -12,6 +12,13 @@ textarea { height: 5em; }
 /* Specifics
 ======================================================================*/
 
+/* Board member votes */
+.board-member-votes { list-style: none; margin-left: 0; }
+.board-member-votes .dissent-detail { display: none; margin: 0.5em 0; width: 100%; }
+.board-member-votes > li { display: flex; flex-wrap: wrap; justify-content: space-between; }
+.board-member-votes-name { flex: 0 0 auto; width: 30%; }
+.board-member-votes-options { flex: 1 1 auto; }
+
 /* Fields */
 .form { clear: both; overflow: hidden; }
 .form-field { float: right; width: 70%; }
@@ -103,3 +110,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 /* Sign in */
 #signin { margin: 0 auto; max-width: 330px; }
 #signin .action { display: block; text-align: center; width: 100%; }
+
+/* Violated rules */
+.violated-rules { list-style: none; margin-left: 0; }
+.violated-rules li { border-bottom: 1px solid #ddd; margin-bottom: 1em; padding-bottom: 0.5em; }
+.violated-rules p { margin-bottom: 0.5em; }

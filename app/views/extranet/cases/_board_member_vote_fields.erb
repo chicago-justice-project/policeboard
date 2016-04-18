@@ -1,21 +1,23 @@
-<div class="fields board-member-vote-fields board-member-vote">
+<li class=".fields board-member-vote-fields">
 	<%= f.hidden_field :_destroy %>
 	<div class="board-selection" style="display:none;">
 		<span class="label">Add a board</span>
 		<%= f.select :board_member_id, options_for_select(BoardMember.all.map{ |r| [r.full_name, r.id] }, selected_key = f.object.board_member_id), {prompt: 'Select board', required: true} ,{ :name => "board_select" } %>
 	</div>
 	
+	<span class="board-member-votes-name">
+    	<%= link_to "#", class: "remove_fields" do %>
+    		<i class="fa fa-times"></i>x
+    	<% end %>
+    	<%= f.object.board_member ? f.object.board_member.full_name : "" %>
+	</span>
 	
-	<%= link_to "#", class: "remove_fields" do %>
-		<i class="fa fa-times"></i>x
-	<% end %>
-	<div class="board-name"><%= f.object.board_member ? f.object.board_member.full_name : ""%></div>
-	<%= f.collection_radio_buttons :vote_id, Vote.all, :id, :name %>
-	<%= f.hidden_field :board_member_id %>
+	<span class="board-member-votes-options">
+    	<%= f.collection_radio_buttons :vote_id, Vote.all, :id, :name %>
+	</span>
 	
 	<div class="dissent-detail">
 		<p><%= f.label :dissent_description, "Reason for dissent" %></p>
-		<%= f.text_area :dissent_description, class: "dissent-description" %>
-	</div>	
-
-</div>
+		<%= f.text_area :dissent_description, class: "dissent-description txt" %>
+	</div>
+</li>

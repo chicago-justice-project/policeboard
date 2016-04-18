@@ -40,12 +40,12 @@
         <li class="form-row">
             <div class="form-label">Violated rules</div>
             <div class="form-field">
-	            <div id='case-rules'>
+	            <ul class="violated-rules">
 	                <%= f.fields_for :case_rules do |builder| %>
 	                    <%= render "case_rule_fields", :f => builder %>
 	                <% end %>
 					<p><%= link_to_add_fields "Add violated rule", f, :case_rules %></p>
-	            </div>
+	            </ul>
             </div>
         </li>
     </ol>
@@ -55,13 +55,14 @@
     <ol class="form">
     	<li class="form-row">
     		<div class="form-label">Board members</div>
-    		<div class="form-field"
-	    		<div id="board-member-votes">
+    		<div class="form-field">
+	    		<ul class="board-member-votes">
 	    			<%= f.fields_for :board_member_votes do |builder| %>
 	    				<%= render "board_member_vote_fields", :f => builder %>
 	    			<% end %>
 	    			<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
 	    		</div>
+	    		</ul>
     		</div>
     	</li>
     </ol>
