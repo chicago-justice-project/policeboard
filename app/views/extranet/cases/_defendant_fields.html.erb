@@ -9,7 +9,7 @@
 </li>
 <li class="form-row">
 	<div class="form-label"><%= f.label :rank_id, "Title" %></div>
-    <div class="form-field"><%= f.collection_select :rank_id, Rank.all, :id, :name %></div>
+    <div class="form-field"><%= f.collection_select :rank_id, Rank.all.reject{ |r| !r.name? }.sort_by{|r| r.name }, :id, :name %></div>
 </li>
 <li class="form-row">
 	<div class="form-label"><%= f.label :number, "Badge number" %></div>
