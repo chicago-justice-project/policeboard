@@ -5,6 +5,7 @@ module Extranet
 	  end
 	  
 	  def new
+	  	@rules = Rule.all
 	  	@case = Case.new
 	  	@case.build_defendant
 	  end
@@ -35,7 +36,8 @@ module Extranet
 	  	#if @c.update_attributes(case_params)
 	  	  #@c.update_attributes(:case_rules_attributes => case_rules)
 	  	if @c.update_attributes(case_params)
-	  	  redirect_to extranet_case_path, :notice => "Case successfully updated"
+		  	redirect_to extranet_cases_path, :notice => "Case successfully added"
+	  	    #redirect_to extranet_case_path, :notice => "Case successfully updated"
 	  	else
 	  	  render :action => 'edit'	  	
 	  	end
