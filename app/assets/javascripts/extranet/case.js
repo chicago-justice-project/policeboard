@@ -1,8 +1,8 @@
 $('#extranet-case-detail').ready(function () {
 	
 	$(document).on('click', '.remove_fields', function() {
-		console.log('Remove link called ' + $(this).attr('class'));
-		console.log($(this).closest('.fields').find('input[type=hidden][id$="_destroy"]'));
+		//console.log('Remove link called ' + $(this).attr('class'));
+		//console.log($(this).closest('.fields').find('input[type=hidden][id$="_destroy"]'));
 		$(this).closest('.fields').find('input[type=hidden][id$="_destroy"]').val("true");
 		$(this).closest('.fields').hide();
 		return false;
@@ -15,13 +15,13 @@ $('#extranet-case-detail').ready(function () {
 		$(this).before($(this).data('fields').replace(regexp, new_id));
 		
 		//if this is adding a new case rule, there's more work to be done to the fields
-		var isCaseRule = $(this).parent('.case_rule_fields');
+		var isCaseRule = $(this).closest('.case-rule-fields');
 	    if (isCaseRule){
 	    	initCaseRuleForm(new_id);
 	    }
 	    
 	    //if this is adding a new board
-		var isBoardMemberVote = $(this).parent('.board-member-vote');
+		var isBoardMemberVote = $(this).closest('.board-member-vote-fields');
 	    if (isBoardMemberVote){
 	    	initBoardMemberVoteForm(new_id);
 	    }
@@ -44,7 +44,6 @@ $('#extranet-case-detail').ready(function () {
 	//event for selecting a case rule to add
 	$('.violated-rules').on('change', '.case-rule-fields select[name=rule_select]', function(){
 		var $rule = $(this).find('option:selected');
-		console.log("rule_select changed to " + $rule.val() + "" + $rule.data('description'));
 		
 		//update the case rule code
 		$rule.parent().closest('.case-rule-fields').find('.rule_code').html($rule.val());
@@ -56,7 +55,6 @@ $('#extranet-case-detail').ready(function () {
 		
 	});
 	
-	
 	//board member voting
 	//show dissent reason text box when dissent is selected;
 	$(document).on('change', 'input[type="radio"][name$="[vote_id]"]', function(){
@@ -64,26 +62,29 @@ $('#extranet-case-detail').ready(function () {
 	});
 	
 	var toggleDissent = function($element){
-		var $tbDissent = $($element.parent('.board-member-vote').find('.dissent-description'));
+		var $tbDissent = $($element.closest('.board-member-vote-fields').find('.dissent-detail'));
 		if ($tbDissent)
 		{
 			var vote = $('label[for='+ $element.attr('id')+']').text();
 			var showOrHide = vote === "Dissent";
-			$tbDissent.closest('.dissent-detail').toggle(showOrHide);
+			$tbDissent.toggle(showOrHide);
 		}
 	};
 	
+	
+	
+	//$('.board-member-votes .dissent-description').first().closest('.board-member-vote-fields').find('.board-member-votes-options')
 	//hide all dissent description boxes
-	$('.board-member-vote .dissent-description').each(function(index, value){
+	$('.dissent-description').each(function(index, value){
 		//get the radio button for the vote
-		var $rbVote = $(this).closest('div.board-member-vote').find('input[type="radio"][name$="[vote_id]"]:checked');
+		var $rbVote = $(this).closest('.board-member-vote-fields').find('input:radio:checked');
 		if ($rbVote){
 			toggleDissent($($rbVote));
 		}
 	});	
 	
 	//board member add
-	$('#board-member-votes').on('change', '.board-member-vote-fields select[name=board_select]', function(){
+	$('.board-member-votes').on('change', '.board-member-vote-fields select[name=board_select]', function(){
 		//this is the select element
 		//board is the selected option
 		var $selectedBoard = $(this).find('option:selected');
@@ -91,14 +92,14 @@ $('#extranet-case-detail').ready(function () {
 		var boardId = $selectedBoard.val();
 		
 		//update the board name
-		$selectedBoard.parent()
-			.closest('div.board-member-vote-fields')
-			.find('.board-name')
+		$selectedBoard
+			.closest('.board-member-vote-fields')
+			.find('.board-member-votes-name')
 			.html(boardName);
 		
 		//updated the hidden board member id
-		$selectedBoard.parent()
-			.closest('div.board-member-vote-fields')
+		$selectedBoard
+			.closest('.board-member-vote-fields')
 			.find('input[type=hidden][id^=case_board_member_votes]')
 			.val(boardId);
 		
@@ -109,10 +110,9 @@ $('#extranet-case-detail').ready(function () {
 		//initial display of the add board form, show drop down to select a board and hide the dissent descriptio
 		
 		var id = 'case_board_member_votes_attributes_' + new_id + '_board_member_id';
-		var $newItem = $('#board-member-votes input[id=' + id + ']').parent('.board-member-vote-fields');
+		var $newItem = $('.board-member-votes select[id=' + id + ']');
 		if ($newItem){
-			$newItem.find('.board-selection').show();  
-			$newItem.find('.dissent-detail').hide();
+			$newItem.closest('.board-selection').show();
 		}
 		return false;
 	};
