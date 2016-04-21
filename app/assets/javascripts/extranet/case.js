@@ -1,7 +1,7 @@
 $('#extranet-case-detail').ready(function () {
 	
 	$(document).on('click', '.remove_fields', function() {
-		//console.log('Remove link called ' + $(this).attr('class'));
+		console.log('Remove link called ' + $(this).attr('class'));
 		//console.log($(this).closest('.fields').find('input[type=hidden][id$="_destroy"]'));
 		$(this).closest('.fields').find('input[type=hidden][id$="_destroy"]').val("true");
 		$(this).closest('.fields').hide();
