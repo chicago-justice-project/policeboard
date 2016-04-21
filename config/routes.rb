@@ -1,4 +1,33 @@
 Rails.application.routes.draw do
+  
+  #namespace :extranet do
+  #get 'rules/index'
+  #end
+
+  #namespace :extranet do
+  #get 'rules/new'
+  #end
+
+  #namespace :extranet do
+  #get 'rules/create'
+  #end
+
+  #namespace :extranet do
+  #get 'rules/edit'
+  #end
+
+  #namespace :extranet do
+  #get 'rules/update'
+  #end
+
+  #namespace :extranet do
+  #get 'rules/show'
+  #end
+
+  #namespace :extranet do
+  #get 'rules/destroy'
+  #end
+
   namespace :admin do
     DashboardManifest::DASHBOARDS.each do |dashboard_resource|
       resources dashboard_resource
@@ -21,6 +50,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   
   namespace :extranet do
-  	resources :cases
+  	resources :cases, :rules
   end
 end
