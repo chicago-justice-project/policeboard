@@ -1,0 +1,2 @@
+module Extranet::RulesHelper
+end

@@ -1,0 +1,28 @@
+<h1>Rule details</h1>
+<%= form_for [:extranet, @rule] do |f| %>
+	<ol class="form">
+        <li class="form-row">
+            <div class="form-label"><%= f.label :code, "Rule code" %></div>
+            <div class="form-field"><%= f.text_field :code, autofocus: true, :class => "txt-med" %></div>
+        </li>
+        <li class="form-row">
+        	<div class="form-label"><%= f.label :description %></div>
+        	<div class="form-field"><%= f.text_area :description %><div>
+        </li>
+        <li class="form-row">
+        	<div class="form-label"><%= f.label :comment %></div>
+        	<div class="form-field"><%= f.text_area :comment %><div>
+        </li>
+
+    </ol>
+    
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-field">
+	            <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_rules_path %>
+            </div>
+        </li>
+    </ol>
+	
+	
+<% end %>

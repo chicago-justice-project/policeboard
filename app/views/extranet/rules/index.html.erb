@@ -1,0 +1,28 @@
+<div class="content-box">
+	<% title "Rules" %>
+	<h1>Rules</h1>
+	
+	<p><%= link_to "Add rule", [:new, :extranet, :rule], :class => "action" %></p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Rule # <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Description <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Last modified <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @rules.each do |r|  %>
+                <tr>
+                    <td><%= link_to r.code, [:edit, :extranet, r] %></td>
+                    <td><%= r.description %></td>
+                    <td><%= r.updated_at %></td>
+                    <td><%= link_to "X", [:extranet, r], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
