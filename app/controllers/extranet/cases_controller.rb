@@ -15,7 +15,7 @@ module Extranet
 	  	if @case.save
 	  		redirect_to extranet_cases_path, :notice => "Case successfully added"
 	  	else
-	  		flash[:error] = "Oops there was an error"
+	  		flash[:error] = "Oops there was an error."
 	  		render 'new'
 	  	end
 	  end
@@ -36,7 +36,7 @@ module Extranet
 	  	#if @c.update_attributes(case_params)
 	  	  #@c.update_attributes(:case_rules_attributes => case_rules)
 	  	if @c.update_attributes(case_params)
-		  	redirect_to extranet_cases_path, :notice => "Case successfully added"
+		  	redirect_to extranet_cases_path, :notice => "Case successfully updated"
 	  	    #redirect_to extranet_case_path, :notice => "Case successfully updated"
 	  	else
 	  	  render :action => 'edit'	  	
