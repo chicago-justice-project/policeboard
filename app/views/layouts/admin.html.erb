@@ -66,7 +66,7 @@
 	    <div id="nav-secondary">
 		  	<ul>
               <li class="<%= navClass('cases') %>"><%= link_to 'Cases', extranet_cases_path %></li>
-              <li class="<%= navClass('board') %>"><a href='#'>Board</a></li>
+              <li class=""><%= navClass('board') %><%= link_to 'Board', extranet_board_members_path %></li>
               <li class="<%= navClass('rules') %>"><%= link_to 'Rules', extranet_rules_path %></li>
               <li class="<%= navClass('pages') %>"><a href='#'>Pages</a></li>
 		  	</ul>
