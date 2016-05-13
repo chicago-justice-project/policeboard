@@ -8,6 +8,9 @@ module Extranet
 	  	@rules = Rule.all
 	  	@case = Case.new
 	  	@case.build_defendant
+		1.times do
+			case_rule = @case.case_rules.build
+		end
 	  end
 	  
 	  def create

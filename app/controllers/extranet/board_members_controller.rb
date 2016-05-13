@@ -6,10 +6,13 @@ module Extranet
 	  
 	  def new
 		@board_member = BoardMember.new
+		1.times do
+			term = @board_member.terms.build
+		end
 	  end
 	  
 	  def create
-	  	@board_member = Board.new(board_member_params)
+	  	@board_member = BoardMember.new(board_member_params)
 	  	if @board_member.save
 	  		redirect_to extranet_board_members_path, :notice => "Board member successfully added"
 	  	else
@@ -42,11 +45,11 @@ module Extranet
 	  end
 	  
 	  def show
-	    @board_member = Board.find(params[:id])
+	    @board_member = BoardMember.find(params[:id])
 	  end
 	  
 	  def destroy
-	  	@board_member = Case.find(params[:id])
+	  	@board_member = BoardMember.find(params[:id])
 	  	@board_member.destroy
 	  	flash[:notice] = "Board member deleted"
 	  	redirect_to extranet_board_members_path	  
@@ -55,9 +58,9 @@ module Extranet
 	  private
 	  def board_member_params
 	  	params.require(:board_member).permit(:first_name, :last_name, :board_position, :job_title, :organization, 
-	  		:facebook_handle, :twitter_handle, :linkedin_handle, term_attributes: [:start, :end] )
+			term_attributes: [:id, :board_member_id, :start, :end] )
 	    
-	    #params.require(:board).permit! 
+	    #params.require(:board_member).permit! 
 
 	  end  
 	end
