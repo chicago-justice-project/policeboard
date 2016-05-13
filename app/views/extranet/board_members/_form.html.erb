@@ -1,0 +1,49 @@
+<h1>Board details</h1>
+<%= form_for [:extranet, @board_member] do |f| %>
+	<ol class="form">
+		<li class="form-row">
+			<div class="form-label"><%= f.label :first_name, "Name" %></div>
+			<div class="form-field">
+				<div class="field-single-line fields-name-short">
+					<p class="field-name-first"><%= f.text_field :first_name, :class => "txt" %></p>
+					<p class="field-name-last"><%= f.text_field :last_name, :class => "txt" %></p>
+				</div>
+			</div>
+		</li>
+		<li class="form-row">
+			<div class="form-label"><%= f.label :board_position %></div>
+			<div class="form-field"><%= f.text_field :board_position, :class => "txt" %></div>
+		</li>
+		<li class="form-row">
+			<div class="form-label"><%= f.label :organization %></div>
+			<div class="form-field"><%= f.text_field :organization, :class => "txt" %></div>
+		</li>
+		<li class="form-row">
+			<div class="form-label"><%= f.label :job_title %></div>
+			<div class="form-field"><%= f.text_field :job_title, :class => "txt" %></div>
+		</li>
+		
+		<%= f.fields_for :terms do |builder| %>
+			<li class="form-row">
+				<div class="form-label"><%= builder.label :start, "Appointed" %></div>
+				<div class="form-field">
+					<div class="field-single-line fields-name-short">
+						<p class="field-name-first"><%= builder.text_field :start, :class => "txt" %></p>
+						<p class="field-name-last"><%= builder.text_field :end, :class => "txt" %></p>
+					</div>
+				</div>
+			</li>
+			
+        <% end %>
+    </ol>
+    
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-field">
+	            <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_board_members_path %>
+            </div>
+        </li>
+    </ol>
+	
+	
+<% end %>

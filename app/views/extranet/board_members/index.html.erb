@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Name <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th>Status <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
                 <th>Last modified <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
                 <th></th>
             </tr>
@@ -17,6 +18,7 @@
             <% @board_members.each do |board|  %>
                 <tr>
                     <td><%= link_to board.last_name, [:edit, :extranet, board] %></td>
+                    <td><%= board.active ? "Current" : "Past" %></td>
                     <td><%= board.updated_at %></td>
                     <td><%= link_to "X", [:extranet, board], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
                 </tr>

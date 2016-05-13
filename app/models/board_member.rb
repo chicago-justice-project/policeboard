@@ -3,6 +3,8 @@ class BoardMember < ActiveRecord::Base
   has_many :board_member_votes
   has_many :terms
 
+  accepts_nested_attributes_for :terms, :allow_destroy => true
+
   def active
     self.terms.each do |term|
       if term.end && term.end >= DateTime.now.to_date

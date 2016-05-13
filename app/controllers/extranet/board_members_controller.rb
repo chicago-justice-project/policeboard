@@ -54,15 +54,11 @@ module Extranet
 	  
 	  private
 	  def board_member_params
-	  	params.require(:board_member).permit(:first_name, :last_name, :job_title, :organization, 
-	  		:facebook_handle, :twitter_handle, :linkedin_handle)
+	  	params.require(:board_member).permit(:first_name, :last_name, :board_position, :job_title, :organization, 
+	  		:facebook_handle, :twitter_handle, :linkedin_handle, term_attributes: [:start, :end] )
 	    
 	    #params.require(:board).permit! 
-	  
-	    #params.require(:case).permit(:number, :date_initiated, :date_decided, :recommended_outcome_id, :decided_outcome_id, 
-	    #	defendant_attributes: [:first_name, :last_name, :rank_id, :number], 
-	    #	:case_rules_attributes => [[:id, :_destroy]]
-	    #)
+
 	  end  
 	end
 end
