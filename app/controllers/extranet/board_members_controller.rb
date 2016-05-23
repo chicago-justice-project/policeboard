@@ -57,7 +57,7 @@ module Extranet
 	  
 	  private
 	  def board_member_params
-	  	params.require(:board_member).permit(:first_name, :last_name, :board_position, :job_title, :organization, 
+	  	params.require(:board_member).permit(:first_name, :last_name, :image, :board_position, :job_title, :organization, 
 			term_attributes: [:id, :board_member_id, :start, :end] )
 	    
 	    #params.require(:board_member).permit! 

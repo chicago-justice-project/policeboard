@@ -2,6 +2,7 @@ class BoardMember < ActiveRecord::Base
   has_many :cases, through: :board_member_votes
   has_many :board_member_votes
   has_many :terms
+  mount_uploader :image, ImageUploader
 
   accepts_nested_attributes_for :terms, :allow_destroy => true
   

@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210211917) do
+ActiveRecord::Schema.define(version: 20160523201643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authorities", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,16 +36,17 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "board_member_votes", ["vote_id"], name: "index_board_member_votes_on_vote_id", using: :btree
 
   create_table "board_members", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "board_position"
-    t.string   "job_title"
-    t.string   "organization"
-    t.string   "facebook_handle"
-    t.string   "twitter_handle"
-    t.string   "linkedin_handle"
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
+    t.string   "board_position",  limit: 255
+    t.string   "job_title",       limit: 255
+    t.string   "organization",    limit: 255
+    t.string   "facebook_handle", limit: 255
+    t.string   "twitter_handle",  limit: 255
+    t.string   "linkedin_handle", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   create_table "case_rule_counts", force: :cascade do |t|
@@ -71,7 +72,7 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "case_rules", ["rule_id"], name: "index_case_rules_on_rule_id", using: :btree
 
   create_table "cases", force: :cascade do |t|
-    t.string   "number"
+    t.string   "number",                 limit: 255
     t.integer  "defendant_id"
     t.date     "date_initiated"
     t.date     "date_decided"
@@ -86,7 +87,7 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "cases", ["recommended_outcome_id"], name: "index_cases_on_recommended_outcome_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",         limit: 255
     t.integer  "authority_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,7 +96,7 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "categories", ["authority_id"], name: "index_categories_on_authority_id", using: :btree
 
   create_table "complaints", force: :cascade do |t|
-    t.string   "number"
+    t.string   "number",     limit: 255
     t.integer  "case_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -104,9 +105,9 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "complaints", ["case_id"], name: "index_complaints_on_case_id", using: :btree
 
   create_table "defendants", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "number"
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "number",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rank_id"
@@ -115,13 +116,13 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "defendants", ["rank_id"], name: "index_defendants_on_rank_id", using: :btree
 
   create_table "outcomes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ranks", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        limit: 255
     t.boolean  "is_civilian"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -146,25 +147,25 @@ ActiveRecord::Schema.define(version: 20160210211917) do
   add_index "terms", ["board_member_id"], name: "index_terms_on_board_member_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

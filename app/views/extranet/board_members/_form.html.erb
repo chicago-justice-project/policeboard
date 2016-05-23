@@ -1,5 +1,5 @@
 <h1>Board details</h1>
-<%= form_for [:extranet, @board_member] do |f| %>
+<%= form_for [:extranet, @board_member], :html => {:multipart => true} do |f| %>
 	<ol class="form">
 		<li class="form-row">
 			<div class="form-label"><%= f.label :first_name, "Name" %></div>
@@ -9,6 +9,11 @@
 					<p class="field-name-last"><%= f.text_field :last_name, :class => "txt" %></p>
 				</div>
 			</div>
+		</li>
+		<li class="form-row">
+			<div class="form-label"><%= f.label :image %></div>
+			<div class="form-field"><%= image_tag @board_member.image_url  %>
+			<div class="form-field"><%= f.file_field :image %></div>
 		</li>
 		<li class="form-row">
 			<div class="form-label"><%= f.label :board_position %></div>
