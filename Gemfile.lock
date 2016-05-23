@@ -103,6 +103,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
     mimemagic (0.3.1)
+    mini_magick (4.5.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     momentjs-rails (2.11.0)
@@ -200,6 +201,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
+  mini_magick
   pg
   puma
   rails (= 4.2)

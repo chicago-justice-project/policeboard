@@ -12,7 +12,7 @@
 		</li>
 		<li class="form-row">
 			<div class="form-label"><%= f.label :image %></div>
-			<div class="form-field"><%= image_tag @board_member.image_url  %>
+			<div class="form-field"><%= image_tag @board_member.image_url(:thumb).to_s  %>
 			<div class="form-field"><%= f.file_field :image %></div>
 		</li>
 		<li class="form-row">

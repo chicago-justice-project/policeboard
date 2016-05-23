@@ -52,4 +52,5 @@ gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
 gem 'will_paginate'
 
+gem 'mini_magick'
 gem 'carrierwave'
