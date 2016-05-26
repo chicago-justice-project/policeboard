@@ -3,7 +3,7 @@
     
     <h1>Board</h1>
     
-    <p><%= link_to "Add board", [:new, :extranet, :board_member], :class => "action" %></p>
+    <p><%= link_to "Add board member", [:new, :extranet, :board_member], :class => "action" %></p>
     
     <table>
         <thead>
@@ -17,7 +17,7 @@
         <tbody>
             <% @board_members.each do |board|  %>
                 <tr>
-                    <td><%= link_to board.last_name, [:edit, :extranet, board] %></td>
+                    <td><%= link_to board.first_name + " " + board.last_name, [:edit, :extranet, board] %></td>
                     <td><%= board.active ? "Current" : "Past" %></td>
                     <td><%= board.updated_at %></td>
                     <td><%= link_to "X", [:extranet, board], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
