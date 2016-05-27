@@ -7,8 +7,11 @@
         </li>
         <li class="form-row">
         	<div class="form-label"><%= f.label :description %></div>
-        	<div class="form-field"><%= f.text_area :description %><div>
-        </li>
+        	<div class="form-field">
+			<%= f.text_area :description, :class => "tinymce", :rows => 40, :cols => 120 %>
+			<%= tinymce %>
+		<div>
+	</li>
         <li class="form-row">
         	<div class="form-label"><%= f.label :comment %></div>
         	<div class="form-field"><%= f.text_area :comment %><div>

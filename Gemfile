@@ -54,3 +54,5 @@ gem 'will_paginate'
 
 gem 'mini_magick'
 gem 'carrierwave'
+
+gem 'tinymce-rails'

@@ -22,5 +22,5 @@
 //= require responsive-init
 //= require search
 //= require table-scroll
-
+//= require tinymce
 
