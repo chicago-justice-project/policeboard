@@ -7,7 +7,7 @@
     <table>
         <thead>
             <tr>
-                <th>Rule # <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th># <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
                 <th>Description <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
                 <th>Last modified <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
                 <th></th>
@@ -16,9 +16,9 @@
         <tbody>
             <% @rules.each do |r|  %>
                 <tr>
-                    <td><%= link_to r.code, [:edit, :extranet, r] %></td>
-                    <td><%= r.description %></td>
-                    <td><%= r.updated_at %></td>
+                    <td><%= r.code %></td>
+                    <td><%= link_to r.description, [:edit, :extranet, r] %></td>
+                    <td class="nb"><%= r.updated_at %></td>
                     <td><%= link_to "X", [:extranet, r], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
                 </tr>
             <% end %>
