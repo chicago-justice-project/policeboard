@@ -1,7 +1,11 @@
 menubar: false,
-toolbar1: styleselect | undo redo | bold italic | bullist numlist | sub sup | indent outdent | justifyleft justifycenter justifyright | link unlink anchor | table | imagemanager | documentmanager | media sidebar | charmap | hr | removeformat code
-  - table
-  - fullscreen
+toolbar1: styleselect | undo redo | bold italic | bullist numlist | sub sup | indent outdent | justifyleft justifycenter justifyright | link unlink anchor | table | image  media | charmap | hr | removeformat code
 plugins:
   - image
   - link
+  - anchor
+  - charmap
+  - hr
+  - lists
+  - media
+  - table
