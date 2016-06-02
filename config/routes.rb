@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   
   namespace :extranet do
-  	resources :cases, :rules, :board_members
+    resources :rules, :board_members
+    resources :cases do
+       resources :case_files, only:[:destroy]
+    end
   end
 end

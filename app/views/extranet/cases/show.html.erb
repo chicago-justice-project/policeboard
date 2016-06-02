@@ -8,6 +8,15 @@
 <dt>Name</dt>
 <dd><%= @case.defendant.present? ? @case.defendant.full_name : '' %></dd>
 
+<dt>Case files</dt>
+<dd>
+  <%= form_for [:extranet, @case], url: extranet_case_case_files_path(@case), html: { multipart:  true },  method: :post do |f| %>
+    <%= f.file_field :files, multiple: true %>
+    <%= f.submit "Add files" %>
+    <% end %>
+  
+</dd>
+
 <dt>Judgement</dt>
 <dd><%= @case.date_decided %></dd>
 <dd><%= @case.decided_outcome.present? ? @case.decided_outcome.name : '' %></dd>

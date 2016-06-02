@@ -30,20 +30,24 @@ module Extranet
 	  
 	  def update
 	    #render :text => @some_object.inspect
-	    #raise case_params.inspect
-	    #debug.inspect
 	    
-	  	@c = Case.find(params[:id])
-        #case_rules = params[:case].delete(:case_rules_attributes)
-
-	  	#if @c.update_attributes(case_params)
-	  	  #@c.update_attributes(:case_rules_attributes => case_rules)
-	  	if @c.update_attributes(case_params)
-		  	redirect_to extranet_cases_path, :notice => "Case successfully updated"
-	  	    #redirect_to extranet_case_path, :notice => "Case successfully updated"
-	  	else
-	  	  render :action => 'edit'	  	
-	  	end
+	    #raise case_params.inspect
+	    #case_files = case_params[:files]
+	    #raise case_files.inspect
+            #debug.inspect
+	    
+	    @c = Case.find(params[:id])
+            new_files = case_params[:files]
+            files = @c.files
+            files += new_files
+            case_params[:files] = files
+           
+            if @c.update_attributes(case_params)
+	     redirect_to extranet_cases_path, :notice => "Case successfully updated"
+	    #redirect_to extranet_case_path, :notice => "Case successfully updated"
+	   else
+	      render :action => 'edit'	  	
+	   end
 	  	
 	  end
 	  
@@ -59,6 +63,12 @@ module Extranet
 	  end
 	  
 	  private
+	  def add_more_files(new_files)
+	    files = @case.files
+	    files += new_files
+            @case_files = files
+	  end
+
 	  def case_params
 	    params.require(:case).permit! 
 	  
