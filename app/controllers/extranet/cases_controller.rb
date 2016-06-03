@@ -38,6 +38,10 @@ module Extranet
 	    
 	    @c = Case.find(params[:id])
             new_files = case_params[:files]
+            if new_files.nil?
+	      new_files = []
+	    end
+
             files = @c.files
             files += new_files
             case_params[:files] = files
