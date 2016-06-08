@@ -11,21 +11,28 @@ $('#extranet-case-detail').ready(function () {
 	$(document).on('click', '.add_fields', function(){
 		var association = $(this).data('association');
 		var new_id = new Date().getTime();  
-	    var regexp = new RegExp("new_" + association, "g");  
+	    	var regexp = new RegExp("new_" + association, "g");  
 		$(this).before($(this).data('fields').replace(regexp, new_id));
+		
+		//($(this)) is the add_fields link and the form to be added is it's previous sibling
+		// will append this form to the correct form group
+		
+		var $form = $(this).prev('.fields');
 		
 		//if this is adding a new case rule, there's more work to be done to the fields
 		var isCaseRule = $(this).closest('.case-rule-fields');
-	    if (isCaseRule){
-	    	initCaseRuleForm(new_id);
-	    }
-	    
-	    //if this is adding a new board
+		if (isCaseRule){
+			$form.appendTo('.violated-rules');
+			initCaseRuleForm(new_id);
+		}
+	
+		//if this is adding a new board
 		var isBoardMemberVote = $(this).closest('.board-member-vote-fields');
-	    if (isBoardMemberVote){
-	    	initBoardMemberVoteForm(new_id);
-	    }
-	    		
+		if (isBoardMemberVote){
+			$form.appendTo('.board-member-votes');
+			console.log("calling init boardmember vote form " + new_id);  
+			initBoardMemberVoteForm(new_id);
+		}
 		return false;
 	});
 	
@@ -90,7 +97,7 @@ $('#extranet-case-detail').ready(function () {
 		var $selectedBoard = $(this).find('option:selected');
 		var boardName = $selectedBoard.text();
 		var boardId = $selectedBoard.val();
-		
+                alert(boardId);		
 		//update the board name
 		$selectedBoard
 			.closest('.board-member-vote-fields')
@@ -110,9 +117,10 @@ $('#extranet-case-detail').ready(function () {
 		//initial display of the add board form, show drop down to select a board and hide the dissent descriptio
 		
 		var id = 'case_board_member_votes_attributes_' + new_id + '_board_member_id';
+
 		var $newItem = $('.board-member-votes select[id=' + id + ']');
 		if ($newItem){
-			$newItem.closest('.board-selection').show();
+		  $newItem.closest('.board-selection').show();
 		}
 		return false;
 	};

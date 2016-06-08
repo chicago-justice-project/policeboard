@@ -76,7 +76,7 @@
     		<div class="form-field">
 	    		<ul class="board-member-votes">
 	    			<%= f.fields_for :board_member_votes do |builder| %>
-	    				<%= render "board_member_vote_fields", :f => builder %>
+						<%= render "board_member_vote_fields", :f => builder %>
 	    			<% end %>
 	    		</ul>
 				<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>

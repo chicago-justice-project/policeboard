@@ -9,14 +9,12 @@ class Case < ActiveRecord::Base
   has_many :case_rules, :dependent => :destroy
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
-  
-  mount_uploaders :files, CaseFileUploader
 
   accepts_nested_attributes_for :defendant
   accepts_nested_attributes_for :case_rules, :reject_if => lambda { |a| a[:rule_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :board_member_votes, :allow_destroy => true
   
-  
+  mount_uploaders :files, CaseFileUploader
 
   after_update :sort_case_rule_counts, :sort_case_rules
   

@@ -31,7 +31,7 @@ module Extranet
 	  def update
 	    #render :text => @some_object.inspect
 	    
-	    #raise case_params.inspect
+	    raise case_params.inspect
 	    #case_files = case_params[:files]
 	    #raise case_files.inspect
             #debug.inspect
