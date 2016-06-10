@@ -10,6 +10,7 @@ module Extranet
 	  	@case.build_defendant
 		1.times do
 			case_rule = @case.case_rules.build
+			board_member_vote = @case.board_member_votes.build
 		end
 	  end
 	  
@@ -29,27 +30,26 @@ module Extranet
 	  end
 	  
 	  def update
-	    #render :text => @some_object.inspect
-	    
-	    raise case_params.inspect
-	    #case_files = case_params[:files]
+	    #raise case_params.inspect
+		#board_member_votes = case_params[:board_member_votes]
+	    #raise board_member_votes.inspect
+		#case_files = case_params[:files]
 	    #raise case_files.inspect
             #debug.inspect
 	    
 	    @c = Case.find(params[:id])
-            new_files = case_params[:files]
-            if new_files.nil?
-	      new_files = []
-	    end
+		new_files = case_params[:files]
+		if new_files.nil?
+			new_files = []
+		end
 
-            files = @c.files
-            files += new_files
-            case_params[:files] = files
-           
-            if @c.update_attributes(case_params)
-	     redirect_to extranet_cases_path, :notice => "Case successfully updated"
-	    #redirect_to extranet_case_path, :notice => "Case successfully updated"
-	   else
+		files = @c.files
+		files += new_files
+		case_params[:files] = files
+	   
+		if @c.update_attributes(case_params)
+	      redirect_to extranet_cases_path, :notice => "Case successfully updated"
+		else
 	      render :action => 'edit'	  	
 	   end
 	  	

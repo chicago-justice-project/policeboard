@@ -16,9 +16,8 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
       render(association.to_s.singularize + "_fields", :f => builder)
     end
-    #raise fields.inspect
-    
-    #link_to(name,'#', class: "add_fields", data: {id: 0, fields: fields.gsub("\n","")}) 
+	#raise association.inspect
+   
     link_to(name,'#', class: "add_fields", data: {id: 0, fields: fields.gsub("\n",""), association: association}) 
   end
 end

@@ -46,8 +46,6 @@
         <li class="form-row">
            <div class="form-label"><%= f.label :decided_outcome_id, "Final decision" %></div>
             <%= f.collection_select :decided_outcome_id, Outcome.all.sort_by{ |o| o.name }, :id, :name, :include_blank => "No final decision" %>
-	      
-	   </div>
         </li>
     </ol>
     <hr />
@@ -63,7 +61,7 @@
 	                    <%= render "case_rule_fields", :f => builder %>
 	                <% end %>
 	            </ul>
-                <p><%= link_to_add_fields "Add violated rule", f, :case_rules %></p>
+				<p><%= link_to_add_fields "Add violated rule", f, :case_rules %></p>
             </div>
         </li>
     </ol>
@@ -74,12 +72,12 @@
     	<li class="form-row">
     		<div class="form-label">Board members</div>
     		<div class="form-field">
-	    		<ul class="board-member-votes">
+	    		<div class="board-member-votes">
 	    			<%= f.fields_for :board_member_votes do |builder| %>
 						<%= render "board_member_vote_fields", :f => builder %>
 	    			<% end %>
-	    		</ul>
-				<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
+					<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
+	    		</div>
     		</div>
     	</li>
     </ol>

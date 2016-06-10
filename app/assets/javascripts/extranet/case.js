@@ -1,7 +1,7 @@
 $('#extranet-case-detail').ready(function () {
 	
 	$(document).on('click', '.remove_fields', function() {
-		console.log('Remove link called ' + $(this).attr('class'));
+		//console.log('Remove link called ' + $(this).attr('class'));
 		//console.log($(this).closest('.fields').find('input[type=hidden][id$="_destroy"]'));
 		$(this).closest('.fields').find('input[type=hidden][id$="_destroy"]').val("true");
 		$(this).closest('.fields').hide();
@@ -11,26 +11,25 @@ $('#extranet-case-detail').ready(function () {
 	$(document).on('click', '.add_fields', function(){
 		var association = $(this).data('association');
 		var new_id = new Date().getTime();  
-	    	var regexp = new RegExp("new_" + association, "g");  
-		$(this).before($(this).data('fields').replace(regexp, new_id));
-		
+	    var regexp = new RegExp("new_" + association, "g");  
+		$(this).parent().before($(this).data('fields').replace(regexp, new_id));
+	
 		//($(this)) is the add_fields link and the form to be added is it's previous sibling
 		// will append this form to the correct form group
 		
 		var $form = $(this).prev('.fields');
-		
-		//if this is adding a new case rule, there's more work to be done to the fields
-		var isCaseRule = $(this).closest('.case-rule-fields');
-		if (isCaseRule){
+	
+		//if adding a new case rule, there's more work to be done to the fields
+		if (association == "case_rule_counts"){
+			console.log("calling init case rules form " + new_id);  
 			$form.appendTo('.violated-rules');
 			initCaseRuleForm(new_id);
 		}
 	
 		//if this is adding a new board
-		var isBoardMemberVote = $(this).closest('.board-member-vote-fields');
-		if (isBoardMemberVote){
-			$form.appendTo('.board-member-votes');
-			console.log("calling init boardmember vote form " + new_id);  
+		if (association == "board_member_votes"){
+			//console.log("calling init boardmember vote form " + new_id);  
+			//$form.appendTo('.board-member-votes');
 			initBoardMemberVoteForm(new_id);
 		}
 		return false;
@@ -69,7 +68,7 @@ $('#extranet-case-detail').ready(function () {
 	});
 	
 	var toggleDissent = function($element){
-		var $tbDissent = $($element.closest('.board-member-vote-fields').find('.dissent-detail'));
+		var $tbDissent = $($element.closest('.board-member-votes-fields').find('.dissent-detail'));
 		if ($tbDissent)
 		{
 			var vote = $('label[for='+ $element.attr('id')+']').text();
@@ -80,18 +79,18 @@ $('#extranet-case-detail').ready(function () {
 	
 	
 	
-	//$('.board-member-votes .dissent-description').first().closest('.board-member-vote-fields').find('.board-member-votes-options')
+	//$('.board-member-votes .dissent-description').first().closest('.board-members-vote-fields').find('.board-member-votes-options')
 	//hide all dissent description boxes
 	$('.dissent-description').each(function(index, value){
 		//get the radio button for the vote
-		var $rbVote = $(this).closest('.board-member-vote-fields').find('input:radio:checked');
+		var $rbVote = $(this).closest('.board-member-votes-fields').find('input:radio:checked');
 		if ($rbVote){
 			toggleDissent($($rbVote));
 		}
 	});	
 	
 	//board member add
-	$('.board-member-votes').on('change', '.board-member-vote-fields select[name=board_select]', function(){
+	$('.board-member-votes').on('change', '.board-member-votes-fields select[name=board_select]', function(){
 		//this is the select element
 		//board is the selected option
 		var $selectedBoard = $(this).find('option:selected');
@@ -100,13 +99,13 @@ $('#extranet-case-detail').ready(function () {
                 alert(boardId);		
 		//update the board name
 		$selectedBoard
-			.closest('.board-member-vote-fields')
+			.closest('.board-member-votes-fields')
 			.find('.board-member-votes-name')
 			.html(boardName);
 		
 		//updated the hidden board member id
 		$selectedBoard
-			.closest('.board-member-vote-fields')
+			.closest('.board-member-votes-fields')
 			.find('input[type=hidden][id^=case_board_member_votes]')
 			.val(boardId);
 		
