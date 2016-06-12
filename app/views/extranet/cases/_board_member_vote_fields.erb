@@ -3,7 +3,7 @@
 
 	<div class="board-selection" style="display:none;">
 		<span class="label">Add a board</span>
-		<%= f.select :board_member_id, options_for_select(BoardMember.all.sort_by{ |b| b.full_name}.map{ |b| [b.full_name, b.id] }, selected_key = f.object.board_member_id), {prompt: 'Select board', required: true} ,{ :name => "board_select" } %>
+		<%= f.collection_select :board_member_id, BoardMember.all.sort_by{ |b| b.full_name}, :id, :full_name %>
 	</div>
 	
 	<span class="board-member-votes-name">
