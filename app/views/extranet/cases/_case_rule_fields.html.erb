@@ -3,15 +3,21 @@
 	<%= f.hidden_field :_destroy %>
 	<div class="rule_selection" style="display:none;">
 		<span class="label">Add a rule</span>
-		<%= f.select :rule_id, options_for_select(@rules.map{ |r| [r.item, r.id, {'data-description'=>r.description}] }, selected_key = f.object.rule_id), {prompt: 'Select rule', required: true} ,{ :name => "rule_select" } %>
+		<%= f.collection_select :rule_id, Rule.all, :id, :item %>
 	</div>
 	<p class="rule_display">
-    	<span class="mute">(<%= link_to "Remove", "#", class: "remove_fields" %>)</span> <strong>Rule <span class="rule_code"><%= f.object.rule ? f.object.rule.code : "" %></span> <span class="case_rule_counts">(<%= f.object.case_rule_counts.count() %> counts)<span>:</strong> <span class="rule_description"><%= f.object.rule ? f.object.rule.description : "" %></span>
+		<span class="mute">(<%= link_to "Remove", "#", class: "remove_fields" %>)</span> 
+		<strong>Rule <span class="rule_code"><%= f.object.rule ? f.object.rule.code : "" %></span> 
+		<span class="case_rule_counts">(<%= f.object.case_rule_counts.count() %> counts):</strong></span> 
+		<span class="rule_description"><%= f.object.rule ? f.object.rule.description : "" %></span>
+	</p>
 
-	<div class="case-rule-counts">
-        <%= f.fields_for :case_rule_counts, f.object.case_rule_counts.order(:count_order) do |builder| %>
-            <%= render "case_rule_count_fields", :f => builder %>
-        <% end %>
-        <p><%= link_to_add_fields "Add count to rule #{f.object.rule ? f.object.rule.code : ""}", f, :case_rule_counts %></p>
+	<div>
+		<ul class="case-rule-counts case_rule_counts">
+			<%= f.fields_for :case_rule_counts, f.object.case_rule_counts.order(:count_order) do |builder| %>
+				<%= render "case_rule_count_fields", :f => builder %>
+			<% end %>
+		</ul>
+		<p><%= link_to_add_fields "Add count to rule #{f.object.rule ? f.object.rule.code : ""}", f, :case_rule_counts %></p>
 	</div>
 </li>

@@ -63,7 +63,7 @@
         <li class="form-row">
             <div class="form-label">Violated rules</div>
             <div class="form-field">
-	            <ul class="violated-rules" id="violated_rules">
+	            <ul class="violated-rules case_rules">
 	                <%= f.fields_for :case_rules do |builder| %>
 	                    <%= render "case_rule_fields", :f => builder %>
 	                <% end %>
@@ -79,7 +79,7 @@
     	<li class="form-row">
     		<div class="form-label">Board members</div>
     		<div class="form-field">
-	    		<ul class="board-member-votes" id="board_member_votes">
+	    		<ul class="board-member-votes board_member_votes">
 	    			<%= f.fields_for :board_member_votes do |builder| %>
 						<%= render "board_member_vote_fields", :f => builder %>
 	    			<% end %>

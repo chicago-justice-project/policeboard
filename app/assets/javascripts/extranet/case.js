@@ -13,7 +13,7 @@ $('#extranet-case-detail').ready(function () {
 		var new_id = new Date().getTime();  
 	    var regexp = new RegExp("new_" + association, "g");  
 		
-		$(this).parents('div.form-field').find('ul#' + association).append($(this).data('fields').replace(regexp, new_id));
+		$(this).parents('div').find('ul.' + association).append($(this).data('fields').replace(regexp, new_id));
 	
 		//($(this)) is the add_fields link and the form to be added is it's previous sibling
 		// will append this form to the correct form group
@@ -42,6 +42,7 @@ $('#extranet-case-detail').ready(function () {
 	var initCaseRuleForm = function(new_id)
 	{
 		var id = 'case_case_rules_attributes_' + new_id + '_rule_id';
+		console.log(id);
 		var $newItem = $('.violated-rules input[id=' + id + ']').parent('.case-rule-fields');
 		if ($newItem){
 			$newItem.find('.rule_selection').show();

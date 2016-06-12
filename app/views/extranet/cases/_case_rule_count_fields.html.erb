@@ -1,4 +1,4 @@
-<div class="fields case-rule-count-fields case-rule-count">
+<li class="fields case-rule-count-fields case-rule-count">
 	<p class="violated-rules-options">
     	<span class="mute">(<%= link_to "Remove", "#", class: "remove_fields" %>)</span>
 		Count <%= f.object.count_order %>: 
@@ -8,4 +8,4 @@
 	</p>
 	<p class="violated-rules-desc"><%= f.text_area :content, :class => "txt" %></p>
 	<%= f.hidden_field :_destroy %>
-</div>
+</li>
