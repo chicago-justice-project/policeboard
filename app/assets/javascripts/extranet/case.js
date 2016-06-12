@@ -12,17 +12,19 @@ $('#extranet-case-detail').ready(function () {
 		var association = $(this).data('association');
 		var new_id = new Date().getTime();  
 	    var regexp = new RegExp("new_" + association, "g");  
-		$(this).parent().before($(this).data('fields').replace(regexp, new_id));
+		
+		$(this).parents('div.form-field').find('ul#' + association).append($(this).data('fields').replace(regexp, new_id));
 	
 		//($(this)) is the add_fields link and the form to be added is it's previous sibling
 		// will append this form to the correct form group
 		
+		console.log(association);
 		var $form = $(this).prev('.fields');
 	
 		//if adding a new case rule, there's more work to be done to the fields
-		if (association == "case_rule_counts"){
+		if (association == "case_rules"){
 			console.log("calling init case rules form " + new_id);  
-			$form.appendTo('.violated-rules');
+			//$form.appendTo('.violated-rules');
 			initCaseRuleForm(new_id);
 		}
 	
