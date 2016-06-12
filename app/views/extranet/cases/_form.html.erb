@@ -1,6 +1,13 @@
 <h1>Case details</h1>
 <%= form_for [:extranet, @case] do |f| %>  
     <ol class="form">
+		<li class="form-row">
+			<div class="form-field"><p class="mute">
+				<%= f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") %>
+				<br /><%= f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") %>
+				</p>
+			</div>
+		</li>
         <li class="form-row">
             <div class="form-label"><%= f.label :number, "Case number" %></div>
             <div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
