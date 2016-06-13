@@ -13,7 +13,7 @@ $('#extranet-case-detail').ready(function () {
 		var new_id = new Date().getTime();  
 	    var regexp = new RegExp("new_" + association, "g");  
 		
-		$(this).parents('div').find('ul.' + association).append($(this).data('fields').replace(regexp, new_id));
+		$(this).parent().siblings('ul.' + association).append($(this).data('fields').replace(regexp, new_id));
 	
 		//($(this)) is the add_fields link and the form to be added is it's previous sibling
 		// will append this form to the correct form group
@@ -93,13 +93,14 @@ $('#extranet-case-detail').ready(function () {
 	});	
 	
 	//board member add
-	$('.board-member-votes').on('change', '.board-member-votes-fields select[name=board_select]', function(){
+	$('.board-member-votes').on('change', '.board-member-votes-fields select', function(){
 		//this is the select element
 		//board is the selected option
+		console.log($(this));
 		var $selectedBoard = $(this).find('option:selected');
 		var boardName = $selectedBoard.text();
 		var boardId = $selectedBoard.val();
-                alert(boardId);		
+		alert(boardId);		
 		//update the board name
 		$selectedBoard
 			.closest('.board-member-votes-fields')
@@ -116,12 +117,26 @@ $('#extranet-case-detail').ready(function () {
 	
 	var initBoardMemberVoteForm = function(new_id)
 	{
-		//initial display of the add board form, show drop down to select a board and hide the dissent descriptio
-		
+		//initial display of the add board form, show drop down to select a board and hide the dissent description
 		var id = 'case_board_member_votes_attributes_' + new_id + '_board_member_id';
-
 		var $newItem = $('.board-member-votes select[id=' + id + ']');
 		if ($newItem){
+		  
+		  $ddlBoard = $newItem.closest('.board-selection select');
+
+		  //board members already selected
+		  var currentBoardMembers = [];
+		  $('.board-selection select option:selected').each(function(i, selected){
+			currentBoardMembers[i] = $(selected).val();
+		  });
+		  
+		  $.each(currentBoardMembers, function(index, value){
+			 var idx = 'option[value="' + value + '"]';
+		     var $optToRemove = $ddlBoard.find('option[value="' + value + '"]');
+			 if ($optToRemove)
+				$optToRemove.remove();
+		  });
+		  
 		  $newItem.closest('.board-selection').show();
 		}
 		return false;

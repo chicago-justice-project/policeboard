@@ -30,18 +30,16 @@ module Extranet
 	  end
 	  
 	  def update
-	    #raise case_params.inspect
+	    #:raise case_params.inspect
 	    #board_member_votes = case_params[:board_member_votes]
 	    #raise board_member_votes.inspect
-	    
-            #debug.inspect
+	    #debug.inspect
 	    
 	    @c = Case.find(params[:id])
-	
-            new_files = case_params[:files]
+		new_files = case_params[:files]
 	    #raise new_files.inspect
-            if new_files.nil?
-		new_files = []
+        if new_files.nil?
+		  new_files = []
 	    end
 
 	    files = @c.files
