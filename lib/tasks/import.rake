@@ -141,7 +141,8 @@ namespace :import do
       initiated: 'Date_Initiated',
       decided: 'Date_of_Judgement',
       rec_outcome: 'Discipline_Recommended',
-      dec_outcome: 'FD Basic'
+      dec_outcome: 'FD Basic',
+      active: 'Active'
     ) do |c|
 
       i += 1
@@ -170,7 +171,8 @@ namespace :import do
         :date_initiated=>c[:initiated],
         :date_decided=>c[:decided],
         :recommended_outcome_id=>rec_id,
-        :decided_outcome_id=>dec_id
+        :decided_outcome_id=>dec_id,
+        :is_active=>c[:active]
       )
     end
   end
