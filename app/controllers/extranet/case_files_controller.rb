@@ -14,11 +14,13 @@ class Extranet::CaseFilesController < ApplicationController
    #raise params.inspect
    @case = Case.find(params[:case_id])
   end
+  
   def remove_image_at_index(index)
-    files = @case.files
-    delete_file = files.delete_at(index)
+    #remain_files = @case.files
+    raise remain_files.inspect
+    delete_file = remain_files.delete_at(index)
     delete_file.try(:remove!)
-    @case.files = files;
+    @case.files = remain_files;
   end
 
   def files_params
