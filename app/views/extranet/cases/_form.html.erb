@@ -58,7 +58,7 @@
         </li>
         <li class="form-row">
            <div class="form-label"><%= f.label :decided_outcome_id, "Final decision" %></div>
-            <%= f.collection_select :decided_outcome_id, Outcome.all.sort_by{ |o| o.name }, :id, :name, :include_blank => "No final decision" %>
+           <div class="form-field"><%= f.collection_select :decided_outcome_id, Outcome.all.sort_by{ |o| o.name }, :id, :name, :include_blank => "No final decision" %></div>
         </li>
     </ol>
     <hr />

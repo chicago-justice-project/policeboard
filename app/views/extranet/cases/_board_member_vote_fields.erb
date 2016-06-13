@@ -3,7 +3,7 @@
 
 	<div class="board-selection" style="display:none;">
 		<span class="label">Add a board</span>
-		<%= f.collection_select :board_member_id, BoardMember.all.sort_by{ |b| b.full_name}, :id, :full_name %>
+		<%= f.collection_select :board_member_id, (BoardMember.all - @case.board_member_votes.map{|v| v.board_member}).sort_by{ |b| b.full_name}, :id, :full_name %>
 	</div>
 	
 	<span class="board-member-votes-name">
