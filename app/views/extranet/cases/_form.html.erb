@@ -3,7 +3,7 @@
     <ol class="form">
 	<li class="form-row">
           <div class="form-label">Status</div>
-          <div class="form-field"><%= f.check_box :is_active %>Visibe to the public <span class="mute">(uncheck to hide)</span></div>
+          <div class="form-field"><%= f.check_box :is_active %>Visible to the public <span class="mute">(uncheck to hide)</span></div>
         </li>
 	
 	<li class="form-row">
@@ -84,7 +84,7 @@
     <ol class="form">
 	<li class="form-row">
 		<div class="form-label">Majority decision</div>
-		<div class="form-field"><%= f.text_area :majority_decision %></div>
+		<div class="form-field"><%= f.text_area :majority_decision, :class => "txt"%></div>
 	</li>
     	<li class="form-row">
     		<div class="form-label">Board members</div>
