@@ -7,35 +7,35 @@
         </li>
 	
 	<li class="form-row">
-	<div class="form-field">
-		<p class="mute">
-		<%= f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") %>
-		<br /><%= f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") %>
-		</p>
-	</div>
+		<div class="form-field">
+			<p class="mute">
+			<%= f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") %>
+			<br /><%= f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") %>
+			</p>
+		</div>
 	</li>
-        <li class="form-row">
-            <div class="form-label"><%= f.label :number, "Case number" %></div>
-            <div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
-        </li>
-        <%= f.fields_for :defendant do |builder| %>
-            <%= render "defendant_fields", :f => builder %>
-        <% end %>
-        <li class="form-row">
-	  <div class="form-label">Case files</div>
-	  <div class="form-field">
-            <ul class="flat">
-	    <% f.object.files.each_with_index  do |case_file, index| %>
-		<li>
-		   <%= link_to case_file.file.identifier, case_file.url %>
-		   <%= link_to "x", extranet_case_case_file_path(@case, index), :method => :delete, data: { confirm: "Are you sure you want to delete this file?" } %>
-		</li>
-            <% end %>
-	    </li>       
-	   <%= f.fields_for :files_ do |fb| %>
-		<%= f.file_field :files, multiple: true %>
-           <% end %> 
-	  </div>
+	<li class="form-row">
+		<div class="form-label"><%= f.label :number, "Case number" %></div>
+		<div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
+	</li>
+	<%= f.fields_for :defendant do |builder| %>
+		<%= render "defendant_fields", :f => builder %>
+	<% end %>
+	<li class="form-row">
+		<div class="form-label">Case files</div>
+		<div class="form-field">
+		<ul class="flat">
+			<% f.object.files.each_with_index  do |case_file, index| %>
+				<li>
+					<%= link_to case_file.file.identifier, case_file.url %>
+					<%= link_to "x", extranet_case_case_file_path(@case, index), :method => :delete, data: { confirm: "Are you sure you want to delete this file?" } %>
+				</li>
+			<% end %>
+		</li>       
+		<%= f.fields_for :files_ do |fb| %>
+			<%= f.file_field :files, multiple: true %>
+		<% end %> 
+		</div>
 	</li>
     </ol>
     

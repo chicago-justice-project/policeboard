@@ -16,11 +16,16 @@ class Extranet::CaseFilesController < ApplicationController
   end
   
   def remove_image_at_index(index)
-    #remain_files = @case.files
-    raise remain_files.inspect
-    delete_file = remain_files.delete_at(index)
-    delete_file.try(:remove!)
-    @case.files = remain_files;
+	if @case.files.count == 1
+		@case.remove_files = true
+    else
+		remain_files = @case.files
+		#raise remain_files.inspect
+		delete_file = remain_files.delete_at(index)
+		raise remain_files.inspect
+		delete_file.try(:remove!)
+		@case.files = remain_files;
+	end
   end
 
   def files_params
