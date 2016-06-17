@@ -30,7 +30,7 @@ module Extranet
 	  end
 	  
 	  def update
-	    #:raise case_params.inspect
+	    raise case_params[:files]
 	    #board_member_votes = case_params[:board_member_votes]
 	    #raise board_member_votes.inspect
 	    #debug.inspect

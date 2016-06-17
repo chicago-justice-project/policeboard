@@ -224,6 +224,26 @@ namespace :import do
     end
   end
 
+  
+  desc "Import case files"
+  task :case_files => :environment do
+    casefiles = Dir["#{Rails.root}/public/uploads/case/files/*"]
+    casefiles.each do |filepath|
+		puts filepath
+		cn = /.*\/(.*)_(.*)[.](.*)/.match(filepath)[1]
+		#puts cn
+		c = Case.find_by_number(cn)
+		if (!c.nil?)
+			current_files = c.files;
+			newfile = [ Pathname.new(filepath).open]
+			current_files += newfile;
+			c.files = current_files;
+			c.save!
+		end
+	end
+  end
+
+  
   desc "Import board votes"
   task :board_votes => :environment do
     i = -1
