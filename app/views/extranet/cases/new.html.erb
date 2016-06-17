@@ -1,8 +1,11 @@
 <% title "New case" %>
 <% body_id "extranet-case-detail" %>
 
-<%= render :partial => "form" %>
+<div class="content-box">
+	<%= render :partial => "form" %>
+</div>
 
 <p><%= link_to "Back to cases", extranet_cases_path %></p>
 
-
+<%= content_tag 'div', '', id: 'data', data: {isNew: 'true'} %>
+<%= javascript_include_tag "extranet/case" %>

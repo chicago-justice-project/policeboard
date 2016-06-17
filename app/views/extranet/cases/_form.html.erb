@@ -1,16 +1,20 @@
 <h1>Case details</h1>
 <%= form_for [:extranet, @case] do |f| %>  
+	
     <ol class="form">
 	<li class="form-row">
           <div class="form-label">Status</div>
-          <div class="form-field"><%= f.check_box :is_active %>Visible to the public <span class="mute">(uncheck to hide)</span></div>
+          <div class="form-field">
+			<%= f.check_box :is_active %>Visible to the public <span class="mute">(uncheck to hide)</span>
+			<%= f.hidden_field :id, :value => @case.id %>
+		  </div>
         </li>
 	
 	<li class="form-row">
 		<div class="form-field">
 			<p class="mute">
-			<%= f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") %>
-			<br /><%= f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") %>
+			<%= f.object.created_at ? f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") : "" %>
+			<br /><%= f.object.updated_at ? f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") : "" %>
 			</p>
 		</div>
 	</li>
@@ -90,9 +94,8 @@
     		<div class="form-label">Board members</div>
     		<div class="form-field">
 	    		<ul class="board-member-votes board_member_votes">
-	    			<%= f.fields_for :board_member_votes, @case.board_member_votes.sort_by { |b| b.board_member.last_name }  do |builder| %>
-
-				   <%= render "board_member_vote_fields", :f => builder %>
+	    			<%= f.fields_for :board_member_votes, @case.board_member_votes.sort_by { |b| b.board_member ? b.board_member.last_name : "" }  do |builder| %>
+						<%= render "board_member_vote_fields", :f => builder %>
 	    			<% end %>
 	    		</ul>
 				<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>

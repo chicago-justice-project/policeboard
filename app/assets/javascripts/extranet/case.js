@@ -1,5 +1,7 @@
 $('#extranet-case-detail').ready(function () {
 	
+	
+	
 	$(document).on('click', '.remove_fields', function() {
 		//console.log('Remove link called ' + $(this).attr('class'));
 		//console.log($(this).closest('.fields').find('input[type=hidden][id$="_destroy"]'));
@@ -37,12 +39,19 @@ $('#extranet-case-detail').ready(function () {
 		return false;
 	});
 	
+	var setupDisplayForNewCase = function(){
+		var isNew = $('div[id=data]').data('isnew');
+		if (isNew){
+			initCaseRuleForm(0);
+			initBoardMemberVoteForm(0);
+		}
+	};
 	
 	//case rules
 	var initCaseRuleForm = function(new_id)
 	{
 		var id = 'case_case_rules_attributes_' + new_id + '_rule_id';
-		console.log(id);
+		//console.log(id);
 		var $newItem = $('.violated-rules input[id=' + id + ']').parent('.case-rule-fields');
 		if ($newItem){
 			$newItem.find('.rule_selection').show();
@@ -79,8 +88,6 @@ $('#extranet-case-detail').ready(function () {
 			$tbDissent.toggle(showOrHide);
 		}
 	};
-	
-	
 	
 	//$('.board-member-votes .dissent-description').first().closest('.board-members-vote-fields').find('.board-member-votes-options')
 	//hide all dissent description boxes
@@ -119,6 +126,7 @@ $('#extranet-case-detail').ready(function () {
 	{
 		//initial display of the add board form, show drop down to select a board and hide the dissent description
 		var id = 'case_board_member_votes_attributes_' + new_id + '_board_member_id';
+		console.log("vote form for " + id);
 		var $newItem = $('.board-member-votes select[id=' + id + ']');
 		if ($newItem){
 		  
@@ -141,4 +149,7 @@ $('#extranet-case-detail').ready(function () {
 		}
 		return false;
 	};
+	
+	setupDisplayForNewCase();
+	
 });
