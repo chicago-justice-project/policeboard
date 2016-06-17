@@ -24,7 +24,7 @@ class CasesController < ApplicationController
 
   def show
     @case = Case.find(params[:id])
-    @files = Dir.glob("**/public/case_files/" + @case.number + "_*.pdf").map{|path| path.gsub("public/","/") }
+    #@files = Dir.glob("**/public/case_files/" + @case.number + "_*.pdf").map{|path| path.gsub("public/","/") }
   end
   
 end

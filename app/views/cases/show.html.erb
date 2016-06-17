@@ -14,11 +14,12 @@
         <li>
           <a class="toggle-files" href="#"><i class="fa fa-file-text-o"></i> Download original case files</a>
           <div class="files" style="display:none;">
-          <% @files.each do |file| %>
-            <%= link_to file.gsub("/case_files/" + @case.number + "_", ""), file %>
-          <% end %>
-          </div>
-        </li>
+	    <% @case.files.each do  |file| %>
+	       <%= link_to File.basename(file.path), file.url %>
+	    <% end %>
+     
+	  </div>
+	</li>
     </ul>
 
     <!-- <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p> -->
