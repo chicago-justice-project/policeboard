@@ -20,12 +20,12 @@ $('#extranet-case-detail').ready(function () {
 		//($(this)) is the add_fields link and the form to be added is it's previous sibling
 		// will append this form to the correct form group
 		
-		console.log(association);
+		//console.log(association);
 		var $form = $(this).prev('.fields');
 	
 		//if adding a new case rule, there's more work to be done to the fields
 		if (association == "case_rules"){
-			console.log("calling init case rules form " + new_id);  
+			//console.log("calling init case rules form " + new_id);  
 			//$form.appendTo('.violated-rules');
 			initCaseRuleForm(new_id);
 		}
@@ -103,11 +103,10 @@ $('#extranet-case-detail').ready(function () {
 	$('.board-member-votes').on('change', '.board-member-votes-fields select', function(){
 		//this is the select element
 		//board is the selected option
-		console.log($(this));
+		//console.log($(this));
 		var $selectedBoard = $(this).find('option:selected');
 		var boardName = $selectedBoard.text();
 		var boardId = $selectedBoard.val();
-		alert(boardId);		
 		//update the board name
 		$selectedBoard
 			.closest('.board-member-votes-fields')
@@ -126,7 +125,7 @@ $('#extranet-case-detail').ready(function () {
 	{
 		//initial display of the add board form, show drop down to select a board and hide the dissent description
 		var id = 'case_board_member_votes_attributes_' + new_id + '_board_member_id';
-		console.log("vote form for " + id);
+		//console.log("vote form for " + id);
 		var $newItem = $('.board-member-votes select[id=' + id + ']');
 		if ($newItem){
 		  

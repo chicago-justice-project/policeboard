@@ -18,6 +18,7 @@ class Case < ActiveRecord::Base
 
   after_update :sort_case_rule_counts, :sort_case_rules
   
+  validates :number, presence: true
   validates_integrity_of :files
   
   self.per_page = 10
