@@ -13,12 +13,11 @@
         </li>
         <li>
           <a class="toggle-files" href="#"><i class="fa fa-file-text-o"></i> Download original case files</a>
-          <div class="files" style="display:none;">
-	    <% @case.files.each do  |file| %>
-	       <%= link_to File.basename(file.path), file.url %>
-	    <% end %>
-     
-	  </div>
+          <ul class="files" style="display:none;">
+    	    <% @case.files.each do  |file| %>
+    	       <li><%= link_to '<i class="fa fa-file-text"></i>'.html_safe + File.basename(file.path), file.url %></li>
+    	    <% end %>
+          </ul>
 	</li>
     </ul>
 
