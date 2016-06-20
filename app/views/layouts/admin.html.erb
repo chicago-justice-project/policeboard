@@ -85,6 +85,7 @@
             <p>
                 From the <a href="http://www.chicagojustice.org">Chicago Justice Project</a>, dedicated to bringing transparency to Chicago's justice system. |
                 <% if user_signed_in? %>
+                    <a href="/extranet/cases">Admin</a> | 
 					<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
 				<% else %>
 					<%= link_to 'Sign in', new_user_session_path %>
