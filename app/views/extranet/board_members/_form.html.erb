@@ -1,58 +1,58 @@
 <h1>Board details</h1>
 <%= form_for [:extranet, @board_member], :html => {:multipart => true} do |f| %>
-	<ol class="form">
-		<li class="form-row">
-			<div class="form-label"><%= f.label :first_name, "Name" %></div>
-			<div class="form-field">
-				<div class="field-single-line fields-name-short">
-					<p class="field-name-first"><%= f.text_field :first_name, :class => "txt" %></p>
-					<p class="field-name-last"><%= f.text_field :last_name, :class => "txt" %></p>
-				</div>
-			</div>
-		</li>
-		<li class="form-row">
-			<div class="form-label"><%= f.label :image %></div>
-			<div class="form-field"><%= image_tag @board_member.image_url(:thumb).to_s  %>
-			<div class="form-field"><%= f.check_box :remove_image %>Remove image</div>
-			<div class="form-field"><%= f.file_field :image %></div>
-		</li>
-		<li class="form-row">
-			<div class="form-label"><%= f.label :board_position %></div>
-			<div class="form-field"><%= f.text_field :board_position, :class => "txt" %></div>
-		</li>
-		<li class="form-row">
-			<div class="form-label"><%= f.label :organization %></div>
-			<div class="form-field"><%= f.text_field :organization, :class => "txt" %></div>
-		</li>
-		<li class="form-row">
-			<div class="form-label"><%= f.label :job_title %></div>
-			<div class="form-field"><%= f.text_field :job_title, :class => "txt" %></div>
-		</li>
-		
-		<%= f.fields_for :terms do |builder| %>
-			<li class="form-row">
-				<div class="form-label"><%= builder.label :start, "Appointed" %></div>
-				<div class="form-field">
-					<div class="field-single-line fields-name-short">
-						<p class="field-range-start">Started <span class="mute">(YYYY-MM-DD)</span> <%= builder.text_field :start_at_string %></p>
-						<p class="field-range-end">Ended <span class="mute">(YYYY-MM-DD)</span> 
-						 	<%= builder.text_field :start_at_string %></p>
-						<%= builder.hidden_field :id %>
-						<%= builder.hidden_field :_destroy %>
-					</div>
-				</div>
-			</li>
-			
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-label"><%= f.label :first_name, "Name" %></div>
+            <div class="form-field">
+                <div class="field-single-line fields-name-short">
+                    <p class="field-name-first"><%= f.text_field :first_name, :class => "txt" %></p>
+                    <p class="field-name-last"><%= f.text_field :last_name, :class => "txt" %></p>
+                </div>
+            </div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :image %></div>
+            <div class="form-field"><%= image_tag @board_member.image_url(:thumb).to_s  %>
+            <div class="form-field"><%= f.check_box :remove_image %>Remove image</div>
+            <div class="form-field"><%= f.file_field :image %></div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :board_position %></div>
+            <div class="form-field"><%= f.text_field :board_position, :class => "txt" %></div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :organization %></div>
+            <div class="form-field"><%= f.text_field :organization, :class => "txt" %></div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :job_title %></div>
+            <div class="form-field"><%= f.text_field :job_title, :class => "txt" %></div>
+        </li>
+        
+        <%= f.fields_for :terms do |builder| %>
+            <li class="form-row">
+                <div class="form-label"><%= builder.label :start, "Appointed" %></div>
+                <div class="form-field">
+                    <div class="field-single-line fields-date-range">
+                        <p class="field-range-start"><%= builder.text_field :start_at_string, :class => "txt", :placeholder => "Start (YYYY-MM-DD)" %></p>
+                        <p class="field-range-to">to</p>
+                        <p class="field-range-end"><%= builder.text_field :start_at_string, :class => "txt", :placeholder => "End (YYYY-MM-DD)" %></p>
+                        <%= builder.hidden_field :id %>
+                        <%= builder.hidden_field :_destroy %>
+                    </div>
+                </div>
+            </li>
+            
         <% end %>
     </ol>
     
     <ol class="form">
         <li class="form-row">
             <div class="form-field">
-	            <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_board_members_path %>
+                <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_board_members_path %>
             </div>
         </li>
     </ol>
-	
-	
+    
+    
 <% end %>

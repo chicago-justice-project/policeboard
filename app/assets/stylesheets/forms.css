@@ -30,7 +30,7 @@ textarea { height: 5em; }
     /* Multiple fields on a single line */
     .field-single-line { width: 60%; }
     .field-single-line p { box-sizing: border-box; float: left; margin: 0; padding-right: 10px; }
-    .field-single-line .txt { width: 100%; }
+    .field-single-line .txt { margin: 0; width: 100%; }
     
         /* Location fields */
         .field-single-line .field-loc-city { width: 50%; }
@@ -53,7 +53,8 @@ textarea { height: 5em; }
             .fields-name-short .field-name-last { float: right; padding-right: 0; }
             
             /* Date range */
-            .fields-date-range .field-range-start, .fields-date-range .field-range-end { width: 50%; }
+            .fields-date-range .field-range-start, .fields-date-range .field-range-end { width: 45%; }
+            .fields-date-range .field-range-to { text-align: center; width: 10%; }
             .fields-date-range .field-range-end { float: right; padding-right: 0; }
         
         /* Phone */

@@ -51,8 +51,9 @@
             <div class="form-label"><%= f.label :date_initiated, "Time frame" %></div>
             <div class="form-field">
                 <div class="field-single-line fields-date-range">
-                    <p class="field-range-start">Opened <%= f.date_field :date_initiated, :class => "txt" %></p>
-                    <p class="field-range-end">Closed <%= f.date_field :date_decided, :class => "txt" %></p>
+                    <p class="field-range-start"><%= f.date_field :date_initiated, :class => "txt", :placeholder => "Start (YYYY-MM-DD)" %></p>
+                    <p class="field-range-to">to</p>
+                    <p class="field-range-end"><%= f.date_field :date_decided, :class => "txt", :placeholder => "End (YYYY-MM-DD)" %></p>
                 </div>
             </div>
         </li>
