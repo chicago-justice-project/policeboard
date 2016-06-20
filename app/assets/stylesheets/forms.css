@@ -20,7 +20,7 @@ textarea { height: 5em; }
 .board-member-votes-options { flex: 1 1 auto; }
 
 /* Fields */
-.form { clear: both; overflow: hidden; }
+.form { clear: both; list-style: none; margin-left: 0; overflow: hidden; }
 .form-field { float: right; width: 70%; }
 .form-field { margin-bottom: 1em; position: relative; }
 .form-field p { margin-bottom: 0.25em; }
