@@ -57,6 +57,13 @@
                 </div>
             </div>
         </li>
+	<li class="form-row">
+	   <div class="form-label"><%= f.label :is_open, "Status" %></div>
+	   <div class="form-field">
+	   <%= label :is_open, "Open" %> <%= f.radio_button :is_open, true, :value => true  %>
+	   <%= label :is_open, "Closed"%> <%= f.radio_button :is_open, false, :value => false %>
+           </div>
+	</li>
         <li class="form-row">
             <div class="form-label"><%= f.label :recommended_outcome_id, "Recommended discipline" %></div>
             <div class="form-field"><%= f.collection_select :recommended_outcome_id, Outcome.all.reject{|o| o.name == "Death"}.sort_by{ |o| o.name }, :id, :name %></div>

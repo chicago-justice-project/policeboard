@@ -41,6 +41,7 @@
                     @case.date_decided.nil? ? @case.date_decided : @case.date_decided.to_formatted_s(:long)
                 ].reject(&:blank?).join(' to ') %>
             </span>
+           <strong class="value"><%= @case.is_open ? "Open" : "Closed" %></strong>
         </li>
     </ul>
 </div>
