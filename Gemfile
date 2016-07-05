@@ -48,7 +48,7 @@ gem 'puma'
 
 ruby '2.2.4'
 
-gem 'font-awesome-rails'
+#gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
 gem 'will_paginate'
 
