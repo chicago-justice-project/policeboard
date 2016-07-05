@@ -1,6 +1,10 @@
 /*------------------------------------+
  | Part: Reset browser default styles |
  +------------------------------------*/
+
+/* Imports
+=====================================================================*/
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600,600italic,700,700italic);
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
 a, abbr, acronym, address, applet, big, blockquote, body, caption, cite, code, 
