@@ -61,8 +61,8 @@
 	   <div class="form-label"><%= f.label :is_open, "Status" %></div>
 	   <div class="form-field">
     
-	   <%= f.label :is_open, "Open", :value => true %> <%= f.radio_button :is_open, true, :value => true  %>
-	   <%= f.label :is_open, "Closed", :value => false%> <%= f.radio_button :is_open, false, :value => false %>
+	   <%= f.radio_button :is_open, true, :value => true  %> <%= f.label :is_open, "Open", :value => true %> 
+           <%= f.radio_button :is_open, false, :value => false %> <%= f.label :is_open, "Closed", :value => false%> 
            </div>
 	</li>
         <li class="form-row">
