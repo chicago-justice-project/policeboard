@@ -27,17 +27,12 @@ module Extranet
 	  
 	  def update
 	    #render :text => @some_object.inspect
-	    #raise case_params.inspect
+	    #raise board_member_params.inspect
 	    #debug.inspect
 	    
 	  	@board_member = BoardMember.find(params[:id])
-        #case_rules = params[:case].delete(:case_rules_attributes)
-
-	  	#if @c.update_attributes(case_params)
-	  	  #@c.update_attributes(:case_rules_attributes => case_rules)
 	  	if @board_member.update_attributes(board_member_params)
-		  	redirect_to extranet_board_members_path, :notice => "Case successfully updated"
-	  	    #redirect_to extranet_case_path, :notice => "Case successfully updated"
+		  	redirect_to extranet_board_members_path, :notice => "Board member  successfully updated"
 	  	else
 	  	  render :action => 'edit'	  	
 	  	end
@@ -58,7 +53,7 @@ module Extranet
 	  private
 	  def board_member_params
 	  	params.require(:board_member).permit(:first_name, :last_name, :image, :remove_image, :board_position, :job_title, :organization, 
-			term_attributes: [:id, :board_member_id, :start, :end] )
+			terms_attributes: [:id, :board_member_id, :start, :end] )
 	    
 	    #params.require(:board_member).permit! 
 
