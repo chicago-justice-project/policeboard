@@ -62,6 +62,7 @@ class Case < ActiveRecord::Base
   def self.search(keyword)
     Case
       .joins(:defendant)
+      .where(is_active:true)
       .where.not(defendant_id: nil)
       .where("LOWER(cases.number) LIKE :keyword " + 
         "OR LOWER(defendants.first_name) LIKE :keyword " + 
@@ -73,6 +74,7 @@ class Case < ActiveRecord::Base
   
   def self.count_per_year_for_outcome(recommended_outcome_id, decided_outcome_id)
     @count_per_year = Case
+      .where(is_active: true)
       .where.not(date_initiated: nil)
       .where(recommended_outcome_id: recommended_outcome_id, decided_outcome_id: decided_outcome_id)
       .order('EXTRACT(YEAR from date_initiated)')

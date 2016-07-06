@@ -6,7 +6,7 @@ class CasesController < ApplicationController
       @counter = "Matching cases: #{@cases.count}"
     else
       @header = "Recent cases"
-      @cases = Case.where.not(defendant_id: nil)
+      @cases = Case.where(is_active: true).where.not(defendant_id: nil)
       @counter = "Total cases: #{@cases.count}"
     end
     
@@ -24,6 +24,9 @@ class CasesController < ApplicationController
 
   def show
     @case = Case.find(params[:id])
+    if !@case.is_active 
+       redirect_to cases_path, :notice =>"Case not found"
+    end
     #@files = Dir.glob("**/public/case_files/" + @case.number + "_*.pdf").map{|path| path.gsub("public/","/") }
   end
   
