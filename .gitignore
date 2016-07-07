@@ -27,3 +27,5 @@
 /.elasticbeanstalk
 
 
+/uploads/board_member/*
+
