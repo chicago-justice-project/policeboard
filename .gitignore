@@ -30,3 +30,8 @@
 /uploads/board_member/*
 /uploads/case/*
 /uploads/TMP/*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
