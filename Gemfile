@@ -47,7 +47,7 @@ gem 'rails_12factor', group: :production
 gem 'puma'
 
 #updated to ruby 2.2.4 for devise
-ruby '2.2.4'
+ruby '2.2.5'
 
 #gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
