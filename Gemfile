@@ -55,4 +55,7 @@ gem 'will_paginate'
 gem 'mini_magick'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
+gem 'fog-aws'
+
+
 gem 'tinymce-rails'

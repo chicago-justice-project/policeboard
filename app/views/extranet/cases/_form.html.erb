@@ -31,7 +31,7 @@
 		<ul class="flat">
 			<% f.object.files.each_with_index  do |case_file, index| %>
 				<li>
-					<%= link_to case_file.file.identifier, case_file.url %>
+					<%= link_to case_file.file.path.split("/").last, case_file.url %>
 					<%= link_to "x", extranet_case_case_file_path(@case, index), :method => :delete, data: { confirm: "Are you sure you want to delete this file?" } %>
 				</li>
 			<% end %>
