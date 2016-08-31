@@ -58,5 +58,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 gem 'fog-aws'
 
-
 gem 'tinymce-rails'
+
+#for managing environment variables
+gem 'figaro'
