@@ -1,5 +1,6 @@
 require 'csv'
 require 'roo'
+require 'aws-sdk'
 
 namespace :import do
   board_members = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-members.xlsx").sheet(0)
@@ -227,11 +228,18 @@ namespace :import do
   
   desc "Import case files"
   task :case_files => :environment do
-    casefiles = Dir["#{Rails.root}/public/uploads/case/files/*"]
-    casefiles.each do |filepath|
+  
+	s3 = Aws::S3::Client.new(
+	access_key_id: ENV["AWS_ACCESS_KEY_ID"], 
+	secret_access_key:  ENV["AWS_SECRETY_KEY"],
+	region: ENV["AWS_REGION"]
+	)
+
+	s3.list_objects(bucket:'policeboard-production').each do |response|
+		filepath = response.contents.map(&:key)
 		puts filepath
 		cn = /.*\/(.*)_(.*)[.](.*)/.match(filepath)[1]
-		#puts cn
+		
 		c = Case.find_by_number(cn)
 		if (!c.nil?)
 			current_files = c.files;
