@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: c45699c318ca895f89fa3304204e48b5f1c411f1
+  revision: 1dbc8be0bb8cf3b48600c5451084ee13445747b0
   specs:
     carrierwave (1.0.0.beta)
       activemodel (>= 4.0.0)
@@ -247,4 +247,4 @@ RUBY VERSION
    ruby 2.2.5p319
 
 BUNDLED WITH
-   1.13.1
+   1.12.5
