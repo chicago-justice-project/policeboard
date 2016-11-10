@@ -40,7 +40,6 @@ gem 'spring',        group: :development
 # use devise for authentication
 gem 'devise'
 
-gem 'administrate'
 
 # For Heroku
 gem 'rails_12factor', group: :production
