@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 20160705151922) do
     t.integer  "decided_outcome_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.json     "files"
     t.boolean  "is_active"
     t.text     "majority_decision"
-    t.json     "files"
     t.boolean  "is_open"
   end
 
