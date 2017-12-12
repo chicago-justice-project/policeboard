@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   namespace :extranet do
     resources :rules, :board_members
     resources :board_members do
-      resources :terms, only:[:create]
+      resources :terms, only:[:create, :destroy]
     end
     resources :cases do
        resources :case_files, only:[:destroy]
