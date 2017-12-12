@@ -1,6 +1,6 @@
 <h1>Case details</h1>
-<%= form_for [:extranet, @case] do |f| %>  
-	
+<%= form_for [:extranet, @case] do |f| %>
+
     <ol class="form">
 	<li class="form-row">
           <div class="form-label">Status</div>
@@ -9,7 +9,7 @@
 			<%= f.hidden_field :id, :value => @case.id %>
 		  </div>
         </li>
-	
+
 	<li class="form-row">
 		<div class="form-field">
 			<p class="mute">
@@ -35,16 +35,16 @@
 					<%= link_to "x", extranet_case_case_file_path(@case, index), :method => :delete, data: { confirm: "Are you sure you want to delete this file?" } %>
 				</li>
 			<% end %>
-		</li>       
+		</li>
 		<%= f.fields_for :files_ do |fb| %>
 			<%= f.file_field :files, multiple: true %>
-		<% end %> 
+		<% end %>
 		</div>
 	</li>
     </ol>
-    
+
     <hr />
-    
+
     <h2>Case summary</h2>
     <ol class="form">
         <li class="form-row">
@@ -60,9 +60,9 @@
 	<li class="form-row">
 	   <div class="form-label"><%= f.label :is_open, "Status" %></div>
 	   <div class="form-field">
-    
-	   <%= f.radio_button :is_open, true, :value => true  %> <%= f.label :is_open, "Open", :value => true %> 
-           <%= f.radio_button :is_open, false, :value => false %> <%= f.label :is_open, "Closed", :value => false%> 
+
+	   <%= f.radio_button :is_open, true, :value => true  %> <%= f.label :is_open, "Open", :value => true %>
+           <%= f.radio_button :is_open, false, :value => false %> <%= f.label :is_open, "Closed", :value => false%>
            </div>
 	</li>
         <li class="form-row">
@@ -75,9 +75,9 @@
         </li>
     </ol>
     <hr />
-    
+
     <h2>Rule violations</h2>
-    
+
     <ol class="form">
         <li class="form-row">
             <div class="form-label">Violated rules</div>
@@ -92,13 +92,17 @@
         </li>
     </ol>
     <hr />
-    
+
     <h2>Board member voting</h2>
     <ol class="form">
 	<li class="form-row">
 		<div class="form-label">Majority decision</div>
 		<div class="form-field"><%= f.text_area :majority_decision, :class => "txt"%></div>
 	</li>
+  <li class="form-row">
+    <div class="form-label">Minority Opinion</div>
+    <div class="form-field"><%= f.text_area :minority_opinion, :class => "txt"%></div>
+  </li>
     	<li class="form-row">
     		<div class="form-label">Board members</div>
     		<div class="form-field">
@@ -112,7 +116,7 @@
     	</li>
     </ol>
     <hr />
-    
+
     <ol class="form">
         <li class="form-row">
             <div class="form-field">
