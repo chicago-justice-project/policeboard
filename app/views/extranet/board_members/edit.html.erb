@@ -4,5 +4,11 @@
 
 <div class="content-box">
     <%= render :partial => "form" %>
+    <%= link_to "Add Term", extranet_board_member_terms_path(@board_member), :method => :post %>
+    <br>
+    <br>
+    <% if @board_member.terms.length > 1 %>
+      <%= link_to 'Remove Last Term'.html_safe, extranet_board_member_term_path(@board_member, @board_member.terms.last), method: :delete %>
+    <% end %>
 </div>
 

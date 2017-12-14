@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   #namespace :extranet do
   #get 'rules/index'
   #end
@@ -37,20 +37,23 @@ Rails.application.routes.draw do
   #end
 
   root 'welcome#index'
-  
+
   get '/about', to: 'static_pages#about'
   get '/feedback', to: 'static_pages#feedback'
   get 'board/responsibilities', to: 'board#responsibilities'
-  
+
   resources :cases, only:[:show, :index]
   resources :board
   resources :rules, only: [:show, :index]
 
   #get 'admin/index'
   devise_for :users, controllers: { registrations: "registrations" }
-  
+
   namespace :extranet do
     resources :rules, :board_members
+    resources :board_members do
+      resources :terms, only:[:create, :destroy]
+    end
     resources :cases do
        resources :case_files, only:[:destroy]
     end
