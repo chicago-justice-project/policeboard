@@ -45,15 +45,14 @@ gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'puma'
 
-#updated to ruby 2.2.4 for devise
-ruby '2.2.5'
+ruby '2.2.9'
 
 #gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
 gem 'will_paginate'
 
 gem 'mini_magick'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 
 gem 'fog-aws'
 
