@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212190548) do
+ActiveRecord::Schema.define(version: 20180111213644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20171212190548) do
     t.boolean  "is_active"
     t.text     "majority_decision"
     t.boolean  "is_open"
-    t.text     "minority_opinion"
   end
 
   add_index "cases", ["decided_outcome_id"], name: "index_cases_on_decided_outcome_id", using: :btree
@@ -119,6 +118,13 @@ ActiveRecord::Schema.define(version: 20171212190548) do
   end
 
   add_index "defendants", ["rank_id"], name: "index_defendants_on_rank_id", using: :btree
+
+  create_table "minority_opinion", force: :cascade do |t|
+    t.integer  "case_id"
+    t.text     "opinion_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "outcomes", force: :cascade do |t|
     t.string   "name"
