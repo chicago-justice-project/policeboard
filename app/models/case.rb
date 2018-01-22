@@ -9,37 +9,39 @@ class Case < ActiveRecord::Base
   has_many :case_rules, :dependent => :destroy
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
+  has_many :minority_opinions
 
+  accepts_nested_attributes_for :minority_opinions
   accepts_nested_attributes_for :defendant
   accepts_nested_attributes_for :case_rules, :reject_if => lambda { |a| a[:rule_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :board_member_votes, :allow_destroy => true
-  
+
   mount_uploaders :files, CaseFileUploader
 
   after_update :sort_case_rule_counts, :sort_case_rules
-  
+
   validates :number, presence: true
   validates_integrity_of :files
-  
+
   self.per_page = 10
-  
+
   def sort_case_rule_counts
   	self.case_rules.each do |case_rule|
   	  case_rule.case_rule_counts.order(:count_order).each_with_index  do |rule_count, index|
   	    rule_count.count_order = index + 1
   	    rule_count.save
   	  end
-  	end 
+  	end
 
   end
-  
+
   def sort_case_rules
 	  self.case_rules.order(:rule_order).each_with_index do |case_rule, index|
 		  case_rule.rule_order = index + 1
 		  case_rule.save
 	  end
   end
-	  
+
 
   def agree_votes
     self.board_member_votes.where(vote_id: Vote.AGREE).map{|bmv| bmv.board_member}
@@ -64,14 +66,14 @@ class Case < ActiveRecord::Base
       .joins(:defendant)
       .where(is_active:true)
       .where.not(defendant_id: nil)
-      .where("LOWER(cases.number) LIKE :keyword " + 
-        "OR LOWER(defendants.first_name) LIKE :keyword " + 
+      .where("LOWER(cases.number) LIKE :keyword " +
+        "OR LOWER(defendants.first_name) LIKE :keyword " +
         "OR LOWER(defendants.last_name) LIKE :keyword " +
-        "OR LOWER(defendants.first_name||' '||defendants.last_name) LIKE :keyword " + 
+        "OR LOWER(defendants.first_name||' '||defendants.last_name) LIKE :keyword " +
         "OR LOWER(defendants.number) LIKE :keyword",
         { keyword: '%' + keyword.downcase + '%' })
   end
-  
+
   def self.count_per_year_for_outcome(recommended_outcome_id, decided_outcome_id)
     @count_per_year = Case
       .where(is_active: true)

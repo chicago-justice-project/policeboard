@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     end
     resources :cases do
        resources :case_files, only:[:destroy]
+       resources :minority_opinions, only:[:create, :destroy]
     end
   end
 end

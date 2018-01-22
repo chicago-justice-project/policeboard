@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111213644) do
+ActiveRecord::Schema.define(version: 20180122021809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,11 +119,16 @@ ActiveRecord::Schema.define(version: 20180111213644) do
 
   add_index "defendants", ["rank_id"], name: "index_defendants_on_rank_id", using: :btree
 
-  create_table "minority_opinion", force: :cascade do |t|
-    t.integer  "case_id"
+  create_table "minority_opinions", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.text     "opinion_text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "case_id"
+    t.string   "board_member_one"
+    t.string   "board_member_two"
+    t.string   "board_member_three"
+    t.string   "board_member_four"
+    t.integer  "number_of_votes"
   end
 
   create_table "outcomes", force: :cascade do |t|
