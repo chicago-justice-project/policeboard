@@ -4,6 +4,12 @@
 
 <div class="content-box">
     <%= render :partial => "form" %>
+    <%= link_to "Add Minority Opinion", extranet_case_minority_opinions_path(@case), :method => :post %>
+    <br>
+    <br>
+    <% if @case.minority_opinions.length > 0 %>
+      <%= link_to 'Remove Last Minority Opinion'.html_safe, extranet_case_minority_opinion_path(@case, @case.minority_opinions.last), method: :delete %>
+    <% end %>
 </div>
 
 <%= javascript_include_tag "extranet/case" %>

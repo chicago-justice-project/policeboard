@@ -100,23 +100,54 @@
 		<div class="form-field"><%= f.text_area :majority_decision, :class => "txt"%></div>
 	</li>
   <li class="form-row">
-    <div class="form-label">Minority Opinion</div>
-    <div class="form-field"><%= f.text_area :minority_opinion, :class => "txt"%></div>
+  	<div class="form-label">Board members</div>
+  	<div class="form-field">
+    	<ul class="board-member-votes board_member_votes">
+    		<%= f.fields_for :board_member_votes, @case.board_member_votes.sort_by { |b| b.board_member ? b.board_member.last_name : "" }  do |builder| %>
+				<%= render "board_member_vote_fields", :f => builder %>
+    		<% end %>
+    	</ul>
+			<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
+  	</div>
   </li>
-    	<li class="form-row">
-    		<div class="form-label">Board members</div>
-    		<div class="form-field">
-	    		<ul class="board-member-votes board_member_votes">
-	    			<%= f.fields_for :board_member_votes, @case.board_member_votes.sort_by { |b| b.board_member ? b.board_member.last_name : "" }  do |builder| %>
-						<%= render "board_member_vote_fields", :f => builder %>
-	    			<% end %>
-	    		</ul>
-				<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
-    		</div>
-    	</li>
-    </ol>
+  <li>
+    <%= f.fields_for :minority_opinions do |builder| %>
+      <li class="form-row">
+        <div class="form-label">Minority Opinion</div>
+        <div class="form-field">
+          <p class="field-field"><%= builder.text_area :opinion_text, :class => "txt" %></p>
+          <%= builder.hidden_field :id %>
+          <%= builder.hidden_field :_destroy %>
+        </div>
+      </li>
+      <li class="form-row">
+        <div class="form-label">Board Member 1</div>
+        <div class="form-field">
+          <%= builder.collection_select :board_member_one, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+        </div>
+      </li>
+      <li class="form-row">
+        <div class="form-label">Board Member 2</div>
+        <div class="form-field">
+          <%= builder.collection_select :board_member_two, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+        </div>
+      </li>
+      <li class="form-row">
+        <div class="form-label">Board Member 3</div>
+        <div class="form-field">
+          <%= builder.collection_select :board_member_three, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+        </div>
+      </li>
+      <li class="form-row">
+        <div class="form-label">Board Member 4</div>
+        <div class="form-field">
+          <%= builder.collection_select :board_member_four, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+        </div>
+      </li>
+    <% end %>
+  </li>
+</ol>
     <hr />
-
     <ol class="form">
         <li class="form-row">
             <div class="form-field">

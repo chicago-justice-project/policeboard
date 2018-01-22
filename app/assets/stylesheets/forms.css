@@ -31,32 +31,32 @@ textarea { height: 5em; }
     .field-single-line { width: 60%; }
     .field-single-line p { box-sizing: border-box; float: left; margin: 0; padding-right: 10px; }
     .field-single-line .txt { margin: 0; width: 100%; }
-    
+
         /* Location fields */
         .field-single-line .field-loc-city { width: 50%; }
         .field-single-line .field-loc-state { width: 20%; }
         .field-single-line .field-loc-postal { float: right; padding-right: 0; width: 30%; }
-        
+
         /* Name fields */
             /* Full name (first/middle/last) */
             .fields-name-full .field-name-first, .fields-name-full .field-name-last { width: 40%; }
             .fields-name-full .field-name-last { float: right; padding-right: 0; }
             .fields-name-full .field-name-middle { width: 20%; }
-            
+
             /* Long name (first/middle/last/suffix) */
             .fields-name-long .field-name-first, .fields-name-long .field-name-last { width: 30%; }
             .fields-name-long .field-name-middle, .fields-name-long .field-name-suffix { width: 20%; }
             .fields-name-long .field-name-suffix { float: right; padding-right: 0; }
-            
+
             /* Short name (first/last) */
             .fields-name-short .field-name-first, .fields-name-short .field-name-last { width: 50%; }
             .fields-name-short .field-name-last { float: right; padding-right: 0; }
-            
+
             /* Date range */
             .fields-date-range .field-range-start, .fields-date-range .field-range-end { width: 45%; }
             .fields-date-range .field-range-to { text-align: center; width: 10%; }
             .fields-date-range .field-range-end { float: right; padding-right: 0; }
-        
+
         /* Phone */
         .form .field-single-line .field-phone-number { width: 70%; }
         .form .field-single-line .field-phone-ext { padding-right: 0; width: 20%; }
@@ -104,7 +104,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 
     /* Cases landing */
     #case-search { font-size: 24px; width: 60%; }
-    
+
     /* In navigation */
     #nav .search { position: absolute; right: 0; top: 2em; width: 10em; }
 
