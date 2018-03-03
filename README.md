@@ -9,7 +9,6 @@ Dependencies
 * Bundler
 * Rails 4
 * PostgreSQL
-* Heroku
 * Foreman (install with `gem install foreman`)
 
 ### Clone the repo
@@ -34,11 +33,7 @@ For subsequent times, still with Postgres running first, just run `foreman start
 `bundle install` if new gems (modules/plugins) are used in the app, or
 `rake db:migrate db:import` if the database schema or raw input data have changed.
 
-## To be able to deploy to heroku
-You must be an authorized collaborator on the Heroku app to be able to deploy. Once you are, go to the root directory of your local app and run:
-```
-git remote add staging git@heroku.com:policeboardstaging.git
-git remote add production git@heroku.com:policeboard.git
-```
-To deploy to [staging](https://policeboardstaging.herokuapp.com/), run `git push staging master`. 
-To deploy to [production](https://policeboard.herokuapp.com/), run `git push production master`.
+## Deployment
+
+The app runs on AWS Elastic Beanstalk. Deployment docs coming soon.
+
