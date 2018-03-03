@@ -25,17 +25,9 @@
 # Ignore local environment config
 .env
 
-# Ignore the elastic beanstalk
-/.elasticbeanstalk
-
 /uploads/board_member/*
 /uploads/case/*
 /uploads/TMP/
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
 
 # Ignore application configuration
 /config/application.yml
