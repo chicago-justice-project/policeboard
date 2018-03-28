@@ -1,7 +1,9 @@
 module Extranet
 	class CasesController < Extranet::ApplicationController
+    helper_method :sort_column, :sort_direction
+
 	  def index
-	    @cases = Case.all
+	    @cases = Case.includes(:defendant, :decided_outcome).order(sort_column + " " + sort_direction)
 	  end
 	  
 	  def new
@@ -66,6 +68,14 @@ module Extranet
 	  end
 	  
 	  private
+    def sort_column
+      (Case.column_names + ["defendants.first_name", "outcomes.name"]).include?(params[:sort]) ? params[:sort] : "id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
 	  def add_more_files(new_files)
 	    files = @case.files
 	    files += new_files

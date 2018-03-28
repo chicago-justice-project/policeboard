@@ -20,4 +20,13 @@ module ApplicationHelper
    
     link_to(name,'#', class: "add_fields", data: {id: 0, fields: fields.gsub("\n",""), association: association}) 
   end
+
+  def sort_link(column, title = nil)
+    title ||= column.titleize
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    icon = sort_direction == "asc" ? "&#x25B2" : "&#x25BC"
+    icon = column == sort_column ? icon : ""
+    link_to "#{title} <span class='#{icon}'>#{icon}</span>".html_safe, 
+      params.permit(:per_page, :search, :sort, :direction).merge(sort: column, direction: direction)
+  end
 end

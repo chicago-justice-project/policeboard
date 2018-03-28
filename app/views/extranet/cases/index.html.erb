@@ -8,11 +8,12 @@
     <table>
         <thead>
             <tr>
-                <th>Case # <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
-                <th>Name <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
-                <th>Judgement date <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
-                <th>Outcome <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
-                <th>Last modified <i class="fa fa-caret-up"></i><i class="fa fa-caret-down"></i></th>
+                <th><%= sort_link("number", "Case #") %></th>
+                <th><%= sort_link("defendants.first_name", "Name") %></th>
+                <th><%= sort_link("date_decided", "Judgement date") %></th>
+                <th><%= sort_link("outcomes.name", "Outcome") %></th>
+                <th><%= sort_link("updated_at", "Last modified") %></th>
+                <th><%= sort_link("id", "Last created") %></th>
                 <th></th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                     <td><%= c.date_decided %></td>
                     <td><%= c.decided_outcome.present? ? c.decided_outcome.name : '' %></td>
                     <td><%= c.updated_at %></td>
+                    <td><%= c.created_at %></td>
                     <td><%= link_to "X", [:extranet, c], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
                 </tr>
             <% end %>
