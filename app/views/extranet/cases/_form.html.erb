@@ -144,13 +144,25 @@
       <% end %>
     </li>
     <% if @case.persisted? %>
-      <%= link_to "Add Minority Opinion", extranet_case_minority_opinions_path(@case), :method => :post %>
-      <br>
-      <br>
-      <% if @case.minority_opinions.length > 0 %>
-        <%= link_to 'Remove Last Minority Opinion'.html_safe, extranet_case_minority_opinion_path(@case, @case.minority_opinions.last), method: :delete %>
-      <% end %>
+      <div class="form-field">
+        <%= link_to "Add Minority Opinion", extranet_case_minority_opinions_path(@case), :method => :post %>
+        <br>
+        <br>
+        <% if @case.minority_opinions.length > 0 %>
+          <%= link_to 'Remove Last Minority Opinion'.html_safe, extranet_case_minority_opinion_path(@case, @case.minority_opinions.last), method: :delete %>
+        <% end %>
+      </div>
     <% end %>
+  </ol>
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-label">
+        <%= f.label :tweet, "Send Tweet" %>
+      </div>
+      <div class="form-field">
+        <%= f.check_box :tweet, {}, true, false %>
+      </div>
+    </li>
   </ol>
   <hr />
   <ol class="form">
