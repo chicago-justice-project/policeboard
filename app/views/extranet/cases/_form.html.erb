@@ -17,10 +17,17 @@
         </p>
       </div>
     </li>
+
+    <li class="form-row">
+      <div class="form-label"><%= f.label :number, "Category" %></div>
+      <div class="form-field"><%= f.select(:category, Case.categories.keys, prompt: "") %></div>
+    </li>
+
     <li class="form-row">
       <div class="form-label"><%= f.label :number, "Case number" %></div>
       <div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
     </li>
+
     <%= f.fields_for :defendant do |builder| %>
       <%= render "defendant_fields", :f => builder %>
     <% end %>
