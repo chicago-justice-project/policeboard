@@ -8,10 +8,8 @@
 	</div>
 	
 	<span class="board-member-votes-name">
-    	<%= link_to "#", class: "remove_fields" do %>
-    		<i class="fa fa-times"></i>x
-    	<% end %>
-    	<%= f.object.board_member ? f.object.board_member.full_name : "" %>
+    <span class="mute">(<%= link_to "Remove", "#", class: "remove_fields" %>)</span> 
+    <%= f.object.board_member ? f.object.board_member.full_name : "" %>
 	</span>
 	
 	<span class="board-member-votes-options">

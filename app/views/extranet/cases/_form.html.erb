@@ -1,158 +1,182 @@
 <h1>Case details</h1>
 <%= form_for [:extranet, @case] do |f| %>
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-label">Status</div>
+      <div class="form-field">
+        <%= f.check_box :is_active %>Visible to the public <span class="mute">(uncheck to hide)</span>
+        <%= f.hidden_field :id, :value => @case.id %>
+      </div>
+    </li>
+    <li class="form-row">
+      <div class="form-field">
+        <p class="mute">
+          <%= f.object.created_at ? f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") : "" %>
+          <br />
+          <%= f.object.updated_at ? f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") : "" %>
+        </p>
+      </div>
+    </li>
 
-    <ol class="form">
-	<li class="form-row">
-          <div class="form-label">Status</div>
-          <div class="form-field">
-			<%= f.check_box :is_active %>Visible to the public <span class="mute">(uncheck to hide)</span>
-			<%= f.hidden_field :id, :value => @case.id %>
-		  </div>
-        </li>
+    <li class="form-row">
+      <div class="form-label"><%= f.label :number, "Category" %></div>
+      <div class="form-field"><%= f.select(:category, Case.categories.keys, prompt: "") %></div>
+    </li>
 
-	<li class="form-row">
-		<div class="form-field">
-			<p class="mute">
-			<%= f.object.created_at ? f.object.created_at.strftime("Created on %B %d, %Y at %I:%M%p") : "" %>
-			<br /><%= f.object.updated_at ? f.object.updated_at.strftime("Last edited on %B %d, %Y at %I:%M%p") : "" %>
-			</p>
-		</div>
-	</li>
-	<li class="form-row">
-		<div class="form-label"><%= f.label :number, "Case number" %></div>
-		<div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
-	</li>
-	<%= f.fields_for :defendant do |builder| %>
-		<%= render "defendant_fields", :f => builder %>
-	<% end %>
-	<li class="form-row">
-		<div class="form-label">Case files</div>
-		<div class="form-field">
-		<ul class="flat">
-			<% f.object.files.each_with_index  do |case_file, index| %>
-				<li>
-					<%= link_to case_file.file.path.split("/").last, case_file.url %>
-					<%= link_to "x", extranet_case_case_file_path(@case, index), :method => :delete, data: { confirm: "Are you sure you want to delete this file?" } %>
-				</li>
-			<% end %>
-		</li>
-		<%= f.fields_for :files_ do |fb| %>
-			<%= f.file_field :files, multiple: true %>
-		<% end %>
-		</div>
-	</li>
-    </ol>
+    <li class="form-row">
+      <div class="form-label"><%= f.label :number, "Case number" %></div>
+      <div class="form-field"><%= f.text_field :number, autofocus: true, :class => "txt-med" %></div>
+    </li>
 
-    <hr />
-
-    <h2>Case summary</h2>
-    <ol class="form">
-        <li class="form-row">
-            <div class="form-label"><%= f.label :date_initiated, "Time frame" %></div>
-            <div class="form-field">
-                <div class="field-single-line fields-date-range">
-                    <p class="field-range-start"><%= f.date_field :date_initiated, :class => "txt", :placeholder => "Start (YYYY-MM-DD)" %></p>
-                    <p class="field-range-to">to</p>
-                    <p class="field-range-end"><%= f.date_field :date_decided, :class => "txt", :placeholder => "End (YYYY-MM-DD)" %></p>
-                </div>
-            </div>
-        </li>
-	<li class="form-row">
-	   <div class="form-label"><%= f.label :is_open, "Status" %></div>
-	   <div class="form-field">
-
-	   <%= f.radio_button :is_open, true, :value => true  %> <%= f.label :is_open, "Open", :value => true %>
-           <%= f.radio_button :is_open, false, :value => false %> <%= f.label :is_open, "Closed", :value => false%>
-           </div>
-	</li>
-        <li class="form-row">
-            <div class="form-label"><%= f.label :recommended_outcome_id, "Recommended discipline" %></div>
-            <div class="form-field"><%= f.collection_select :recommended_outcome_id, Outcome.all.reject{|o| o.name == "Death"}.sort_by{ |o| o.name }, :id, :name %></div>
-        </li>
-        <li class="form-row">
-           <div class="form-label"><%= f.label :decided_outcome_id, "Final decision" %></div>
-           <div class="form-field"><%= f.collection_select :decided_outcome_id, Outcome.all.sort_by{ |o| o.name }, :id, :name, :include_blank => "No final decision" %></div>
-        </li>
-    </ol>
-    <hr />
-
-    <h2>Rule violations</h2>
-
-    <ol class="form">
-        <li class="form-row">
-            <div class="form-label">Violated rules</div>
-            <div class="form-field">
-	            <ul class="violated-rules case_rules">
-	                <%= f.fields_for :case_rules do |builder| %>
-	                    <%= render "case_rule_fields", :f => builder %>
-	                <% end %>
-	            </ul>
-				<p><%= link_to_add_fields "Add violated rule", f, :case_rules %></p>
-            </div>
-        </li>
-    </ol>
-    <hr />
-
-    <h2>Board member voting</h2>
-    <ol class="form">
-	<li class="form-row">
-		<div class="form-label">Majority decision</div>
-		<div class="form-field"><%= f.text_area :majority_decision, :class => "txt"%></div>
-	</li>
-  <li class="form-row">
-  	<div class="form-label">Board members</div>
-  	<div class="form-field">
-    	<ul class="board-member-votes board_member_votes">
-    		<%= f.fields_for :board_member_votes, @case.board_member_votes.sort_by { |b| b.board_member ? b.board_member.last_name : "" }  do |builder| %>
-				<%= render "board_member_vote_fields", :f => builder %>
-    		<% end %>
-    	</ul>
-			<p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
-  	</div>
-  </li>
-  <li>
-    <%= f.fields_for :minority_opinions do |builder| %>
-      <li class="form-row">
-        <div class="form-label">Minority Opinion</div>
-        <div class="form-field">
-          <p class="field-field"><%= builder.text_area :opinion_text, :class => "txt" %></p>
-          <%= builder.hidden_field :id %>
-          <%= builder.hidden_field :_destroy %>
-        </div>
-      </li>
-      <li class="form-row">
-        <div class="form-label">Board Member 1</div>
-        <div class="form-field">
-          <%= builder.collection_select :board_member_one, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
-        </div>
-      </li>
-      <li class="form-row">
-        <div class="form-label">Board Member 2</div>
-        <div class="form-field">
-          <%= builder.collection_select :board_member_two, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
-        </div>
-      </li>
-      <li class="form-row">
-        <div class="form-label">Board Member 3</div>
-        <div class="form-field">
-          <%= builder.collection_select :board_member_three, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
-        </div>
-      </li>
-      <li class="form-row">
-        <div class="form-label">Board Member 4</div>
-        <div class="form-field">
-          <%= builder.collection_select :board_member_four, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
-        </div>
-      </li>
+    <%= f.fields_for :defendant do |builder| %>
+      <%= render "defendant_fields", :f => builder %>
     <% end %>
-  </li>
-</ol>
-    <hr />
-    <ol class="form">
-        <li class="form-row">
+    <li class="form-row">
+      <div class="form-label">Case files</div>
+      <div class="form-field">
+        <ul class="flat">
+          <% f.object.files.each_with_index  do |case_file, index| %>
+            <li>
+              <%= link_to case_file.file.path.split("/").last, case_file.url %>
+              <%= link_to "x", extranet_case_case_file_path(@case, index), :method => :delete, data: { confirm: "Are you sure you want to delete this file?" } %>
+            </li>
+          <% end %>
+        </ul>
+        <%= f.fields_for :files_ do |fb| %>
+          <%= f.file_field :files, multiple: true %>
+        <% end %>
+      </div>
+    </li>
+  </ol>
+  <hr />
+  <h2>Case summary</h2>
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-label"><%= f.label :date_initiated, "Time frame" %></div>
+      <div class="form-field">
+        <div class="field-single-line fields-date-range">
+          <p class="field-range-start"><%= f.date_field :date_initiated, :class => "txt", :placeholder => "Start (YYYY-MM-DD)" %></p>
+          <p class="field-range-to">to</p>
+          <p class="field-range-end"><%= f.date_field :date_decided, :class => "txt", :placeholder => "End (YYYY-MM-DD)" %></p>
+        </div>
+      </div>
+    </li>
+    <li class="form-row">
+      <div class="form-label"><%= f.label :is_open, "Status" %></div>
+      <div class="form-field">
+        <%= f.radio_button :is_open, true, :value => true  %> <%= f.label :is_open, "Open", :value => true %>
+        <%= f.radio_button :is_open, false, :value => false %> <%= f.label :is_open, "Closed", :value => false%>
+      </div>
+    </li>
+    <li class="form-row">
+      <div class="form-label"><%= f.label :recommended_outcome_id, "Recommended discipline" %></div>
+      <div class="form-field"><%= f.collection_select :recommended_outcome_id, Outcome.all.reject{|o| o.name == "Death"}.sort_by{ |o| o.name }, :id, :name %></div>
+    </li>
+    <li class="form-row">
+      <div class="form-label"><%= f.label :decided_outcome_id, "Final decision" %></div>
+      <div class="form-field"><%= f.collection_select :decided_outcome_id, Outcome.all.sort_by{ |o| o.name }, :id, :name, :include_blank => "No final decision" %></div>
+    </li>
+  </ol>
+  <hr />
+  <h2>Rule violations</h2>
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-label">Violated rules</div>
+      <div class="form-field">
+        <ul class="violated-rules case_rules">
+          <%= f.fields_for :case_rules do |builder| %>
+            <%= render "case_rule_fields", :f => builder %>
+          <% end %>
+        </ul>
+        <p><%= link_to_add_fields "Add violated rule", f, :case_rules %></p>
+      </div>
+    </li>
+  </ol>
+  <hr />
+  <h2>Board member voting</h2>
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-label">Majority decision</div>
+      <div class="form-field"><%= f.text_area :majority_decision, :class => "txt"%></div>
+    </li>
+    <li class="form-row">
+      <div class="form-label">Board members</div>
+      <div class="form-field">
+        <ul class="board-member-votes board_member_votes">
+          <%= f.fields_for :board_member_votes, @case.board_member_votes.sort_by { |b| b.board_member ? b.board_member.last_name : "" }  do |builder| %>
+            <%= render "board_member_vote_fields", :f => builder %>
+          <% end %>
+        </ul>
+        <p><%= link_to_add_fields "Add board member", f, :board_member_votes %></p>
+      </div>
+    </li>
+  </ol>
+  <ol class="form">
+    <li>
+      <%= f.fields_for :minority_opinions do |builder| %>
+        <ol class="form">
+          <li class="form-row">
+            <div class="form-label">Minority Opinion</div>
             <div class="form-field">
-                <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_cases_path %>
+              <p class="field-field"><%= builder.text_area :opinion_text, :class => "txt" %></p>
+              <%= builder.hidden_field :id %>
+              <%= builder.hidden_field :_destroy %>
             </div>
-        </li>
-    </ol>
+          </li>
+          <li class="form-row">
+            <div class="form-label">Board Member 1</div>
+            <div class="form-field">
+              <%= builder.collection_select :board_member_one, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-label">Board Member 2</div>
+            <div class="form-field">
+              <%= builder.collection_select :board_member_two, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-label">Board Member 3</div>
+            <div class="form-field">
+              <%= builder.collection_select :board_member_three, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+            </div>
+          </li>
+          <li class="form-row">
+            <div class="form-label">Board Member 4</div>
+            <div class="form-field">
+              <%= builder.collection_select :board_member_four, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+            </div>
+          </li>
+        </ol>
+      <% end %>
+    </li>
+    <% if @case.persisted? %>
+      <div class="form-field">
+        <%= link_to "Add Minority Opinion", extranet_case_minority_opinions_path(@case), :method => :post %>
+        <br>
+        <br>
+        <% if @case.minority_opinions.length > 0 %>
+          <%= link_to 'Remove Last Minority Opinion'.html_safe, extranet_case_minority_opinion_path(@case, @case.minority_opinions.last), method: :delete %>
+        <% end %>
+      </div>
+    <% end %>
+  </ol>
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-label">
+        <%= f.label :tweet, "Send Tweet" %>
+      </div>
+      <div class="form-field">
+        <%= f.check_box :tweet, {}, true, false %>
+      </div>
+    </li>
+  </ol>
+  <hr />
+  <ol class="form">
+    <li class="form-row">
+      <div class="form-field">
+        <%= f.submit "Save", :class => "action" %> <%= link_to "Cancel", extranet_cases_path %>
+      </div>
+    </li>
+  </ol>
 <% end %>

@@ -79,3 +79,5 @@ Rails.application.configure do
   # for Devise define default url options
   # config.action_mailer.default_url_options = { host: '', port: }
 end
+
+Rails.application.routes.default_url_options[:host] = 'http://cpbinfocenter.org'

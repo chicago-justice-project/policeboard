@@ -25,9 +25,8 @@
 # Ignore local environment config
 .env
 
-/uploads/board_member/*
-/uploads/case/*
-/uploads/TMP/
+public/**/**
+
 
 # Ignore application configuration
 /config/application.yml
