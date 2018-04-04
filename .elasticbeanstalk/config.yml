@@ -2,8 +2,6 @@ branch-defaults:
   master:
     environment: dev-env
     group_suffix: null
-  nginx-config:
-    environment: dev-env
 global:
   application_name: policeboard
   branch: null
