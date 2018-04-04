@@ -2,6 +2,10 @@ require 'action_view'
 include ActionView::Helpers::DateHelper
 
 class Case < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
+  attr_accessor :tweet
+
   belongs_to :defendant
   belongs_to :recommended_outcome, :class_name => "Outcome"
   belongs_to :decided_outcome, :class_name => "Outcome"
@@ -18,12 +22,21 @@ class Case < ActiveRecord::Base
 
   mount_uploaders :files, CaseFileUploader
 
+  enum category: ["Excessive Force--On Duty", "Other On-Duty Misconduct", "Domestic Altercation--Off Duty", "Other Off-Duty Misconduct", "Drug/Alcohol Abuse", "Bribery/Official Corruption", "Commission of a Crime", "Conduct Unbecoming--Off Duty", "Operation/Personnel Violations"]
+
   after_update :sort_case_rule_counts, :sort_case_rules
+
+  after_save :send_tweet, if: Proc.new {|r| r.tweet == "true" }
 
   validates :number, presence: true
   validates_integrity_of :files
 
   self.per_page = 10
+
+  def send_tweet
+    case_url = case_url(self)
+    Twitter.client.update("Case: #{defendant.full_name} #{case_url}")
+  end
 
   def sort_case_rule_counts
   	self.case_rules.each do |case_rule|

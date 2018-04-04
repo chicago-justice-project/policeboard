@@ -107,11 +107,6 @@ $('#extranet-case-detail').ready(function () {
 		var $selectedBoard = $(this).find('option:selected');
 		var boardName = $selectedBoard.text();
 		var boardId = $selectedBoard.val();
-		//update the board name
-		$selectedBoard
-			.closest('.board-member-votes-fields')
-			.find('.board-member-votes-name')
-			.html(boardName);
 		
 		//updated the hidden board member id
 		$selectedBoard
