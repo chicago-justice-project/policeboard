@@ -164,10 +164,18 @@
   <ol class="form">
     <li class="form-row">
       <div class="form-label">
-        <%= f.label :tweet, "Send Tweet" %>
+        <%= f.label :tweet_charges, "Send Charges Tweet" %>
       </div>
       <div class="form-field">
-        <%= f.check_box :tweet, {}, true, false %>
+        <%= f.check_box :tweet_charges, {}, true, false %>
+      </div>
+    </li>
+    <li class="form-row">
+      <div class="form-label">
+        <%= f.label :tweet_decision, "Send Decision Tweet" %>
+      </div>
+      <div class="form-field">
+        <%= f.check_box :tweet_decision, {}, true, false %>
       </div>
     </li>
   </ol>
