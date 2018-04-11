@@ -98,6 +98,7 @@ ul { list-style: disc; margin-left: 1.5em; }
     #case-header .highlights .title { display: block; }
     #case-header .highlights .value { color: #0a3557; display: block; font-size: 24px; }
 
+    #case-header .appealed { color: #0072ad; font-size: 16px; }
 /* Charts */
     /* Simple bar */
     .bar-chart td { vertical-align: middle; }
@@ -292,6 +293,52 @@ ul { list-style: disc; margin-left: 1.5em; }
     .disagree { color: #0a3557; }
     .novote { color: #ccc; }
 
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #676767;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px 5px 10px;
+  border-radius: 6px;
+  line-height: 1;
+  font-size: 14px;
+  white-space: nowrap;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip .tooltiptext-top {
+  bottom: 100%;
+  left: 50%; 
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #676767 transparent transparent transparent;
+}
 
 /* Widths
 =====================================================================*/
