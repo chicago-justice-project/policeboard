@@ -1,7 +1,14 @@
+<%= provide(:share_title, "Chicago Police Board case #{@case.number}, involving #{@case.defendant.rank.name}, #{@case.defendant.full_name}.") %> 
 <% title "Case" %>
 <% body_id "case-detail" %>
+
 <div class="content-box" id="case-header">
   <h1><%= @case.defendant.full_name %></h1>
+  <div class="social-share-container">
+    <div class="social-share-button"><%= share_on_facebook %></div>
+    <div class="social-share-button"><%= share_on_twitter("Here is a really interesting Chicago Police Board case #{@case.number}, involving #{@case.defendant.rank.name}, #{@case.defendant.full_name}.") %></div>
+  </div>
+
   <ul class="details">
     <li>Case #: <strong><%= @case.number %></strong></li>
     <!-- <li>Complaint registry #: <strong></strong></li> -->

@@ -29,4 +29,12 @@ module ApplicationHelper
     link_to "#{title} <span class='#{icon}'>#{icon}</span>".html_safe, 
       params.permit(:per_page, :search, :sort, :direction).merge(sort: column, direction: direction)
   end
+
+  def share_on_facebook
+    link_to image_tag("/assets/facebook.png"), 'https://www.facebook.com/sharer.php?u='+request.original_url, target: :blank
+  end
+
+  def share_on_twitter(title)
+    link_to image_tag("/assets/twitter.png"), 'https://twitter.com/share?text='+title+'&url='+request.original_url, target: :blank
+  end
 end

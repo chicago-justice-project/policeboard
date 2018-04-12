@@ -10,9 +10,26 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width">
   <meta name="apple-mobile-web-app-title" content="CPBIC">
 
-  <!-- Fav icon -->
+  <meta property="og:site_name" content="Chicago Police Board Information Center">
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="<%= yield(:share_title) %>" />
+  <meta property="og:description" content="Chicago Police Board Information Center" />
+  <meta property="og:image" content="<%= image_url('icon.png') %>" />
+  <meta property="og:image:secure_url" content="<%= image_url('icon.png') %>" />
+  <meta property="og:image:width" content="256" />
+  <meta property="og:image:height" content="256" />
+  <meta property="og:url" content="<%= request.url %>" />
+<!--   <meta property="fb:app_id" content="123456" /> -->
+  <meta name="twitter:site" content="@CPBInfoCenter">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="<%= yield(:share_title) %>">
+  <meta name="twitter:description"" content="Chicago Police Board Information Center">
+  <meta name="twitter:image" content="<%= image_url('icon.png') %>">
+  
+  
+  <!-- Fav icon --><meta name="keywords" content="" />
   <%= favicon_link_tag 'favicon.ico' %>
-  <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type:'image/png' %>
+  <%= favicon_link_tag 'favicon.png', rel: 'apple-touch-icon', type:'image/png' %>
 
   <!-- Scripts -->
   <%= javascript_include_tag 'application' %>
