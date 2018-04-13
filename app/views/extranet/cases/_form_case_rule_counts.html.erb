@@ -3,7 +3,7 @@
 		Count <%= rule_count_form.object.count_order %>: 
 		<%= rule_count_form.radio_button :is_guilty, :false %>Not guilty
 		<%= rule_count_form.radio_button :is_guilty, :true %>Guilty
-		<%= rule_count_form.radio_button :is_guilty, "null" %>Not available
+		<%= rule_count_form.radio_button :is_guilty, "" %>Not available
 	</p>
 	
 	<%= rule_count_form.text_area :content %>

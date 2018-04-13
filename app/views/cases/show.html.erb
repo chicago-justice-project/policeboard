@@ -78,7 +78,14 @@
             <p><%= case_rule.rule.description %></p>
             <dl class="case-rule-counts<%= case_rule.id %>" style="display:none;">
               <% case_rule.case_rule_counts.order(:count_order).each do |case_rule_count| %>
-                <dt><strong>Count <%= case_rule_count.count_order %></strong></dt>
+                <dt>
+                  <strong>
+                    Count <%= case_rule_count.count_order %> 
+                    <span class="count-decision">
+                      <%= (case_rule_count.is_guilty == true ? "Guilty" : "Not Guilty") unless case_rule_count.is_guilty.nil? %> 
+                    </span>
+                  </strong> 
+                </dt>
                 <dd><%= case_rule_count.content %></dd>
               <% end %>
             </dl>

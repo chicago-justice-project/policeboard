@@ -353,6 +353,10 @@ ul { list-style: disc; margin-left: 1.5em; }
   padding: 5px;
 }
 
+.count-decision {
+  color: #a00f12;
+}
+
 /* Widths
 =====================================================================*/
 @media screen and (max-width: 900px) {
