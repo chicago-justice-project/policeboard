@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329175930) do
+ActiveRecord::Schema.define(version: 20180413200531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180329175930) do
     t.text     "majority_decision"
     t.boolean  "is_open"
     t.integer  "category"
+    t.boolean  "appealed",               default: false
   end
 
   add_index "cases", ["decided_outcome_id"], name: "index_cases_on_decided_outcome_id", using: :btree
@@ -121,16 +122,21 @@ ActiveRecord::Schema.define(version: 20180329175930) do
   add_index "defendants", ["rank_id"], name: "index_defendants_on_rank_id", using: :btree
 
   create_table "minority_opinions", force: :cascade do |t|
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.text     "opinion_text"
     t.integer  "case_id"
-    t.string   "board_member_one"
-    t.string   "board_member_two"
-    t.string   "board_member_three"
-    t.string   "board_member_four"
+    t.integer  "board_member_one_id"
+    t.integer  "board_member_two_id"
+    t.integer  "board_member_three_id"
+    t.integer  "board_member_four_id"
     t.integer  "number_of_votes"
   end
+
+  add_index "minority_opinions", ["board_member_four_id"], name: "index_minority_opinions_on_board_member_four_id", using: :btree
+  add_index "minority_opinions", ["board_member_one_id"], name: "index_minority_opinions_on_board_member_one_id", using: :btree
+  add_index "minority_opinions", ["board_member_three_id"], name: "index_minority_opinions_on_board_member_three_id", using: :btree
+  add_index "minority_opinions", ["board_member_two_id"], name: "index_minority_opinions_on_board_member_two_id", using: :btree
 
   create_table "outcomes", force: :cascade do |t|
     t.string   "name"

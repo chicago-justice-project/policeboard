@@ -1,51 +1,59 @@
+<%= provide(:share_title, "Chicago Police Board case #{@case.number}, involving #{@case.defendant.rank.name}, #{@case.defendant.full_name}.") %> 
 <% title "Case" %>
 <% body_id "case-detail" %>
 
 <div class="content-box" id="case-header">
-    <h1><%= @case.defendant.full_name %></h1>
+  <h1><%= @case.defendant.full_name %></h1>
+  <div class="social-share-container">
+    <div class="social-share-button"><%= share_on_facebook %></div>
+    <div class="social-share-button"><%= share_on_twitter("Here is a really interesting Chicago Police Board case #{@case.number}, involving #{@case.defendant.rank.name}, #{@case.defendant.full_name}.") %></div>
+  </div>
 
-    <ul class="details">
-        <li>Case #: <strong><%= @case.number %></strong></li>
-        <!-- <li>Complaint registry #: <strong></strong></li> -->
-        <li>
-            <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
-            <strong><%= @case.defendant.number %></strong>
-        </li>
-        <li>
-          <a class="toggle-files" href="#"><i class="fa fa-file-text-o"></i> Download original case files</a>
-          <ul class="files" style="display:none;">
-    	    <% @case.files.each do  |file| %>
-    	       <li><%= link_to '<i class="fa fa-file-text"></i>'.html_safe + File.basename(file.path), file.url %></li>
-    	    <% end %>
-          </ul>
-	</li>
-    </ul>
-
-    <!-- <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p> -->
-
-    <ul class="highlights">
-        <li>
-            <span class="title">Recommendation</span>
-            <strong class="value"><%= @case.recommended_outcome.nil? ? "" : @case.recommended_outcome.name %></strong>
-        </li>
-        <li>
-            <span class="title">Decision</span>
-            <strong class="value"><%= @case.decided_outcome.nil? ? "" : @case.decided_outcome.name %></strong>
-        </li>
-        <li>
-            <span class="title">Length of process</span>
-            <strong class="value"><%= @case.length_of_process %></strong>
-            <span class="mute">
-                <%= [
+  <ul class="details">
+    <li>Case #: <strong><%= @case.number %></strong></li>
+    <!-- <li>Complaint registry #: <strong></strong></li> -->
+    <li>
+      <%= @case.defendant.rank.is_civilian ? "Employee" : "Police badge" %> #:
+      <strong><%= @case.defendant.number %></strong>
+    </li>
+    <li>
+      <a class="toggle-files" href="#"><i class="fa fa-file-text-o"></i> Download original case files</a>
+      <ul class="files" style="display:none;">
+        <% @case.files.each do  |file| %>
+          <li><%= link_to '<i class="fa fa-file-text"></i>'.html_safe + File.basename(file.path), file.url %></li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+  <!-- <p class="mute">Categories: <a href="#">Category</a>, <a href="#">Category</a>, <a href="#">Category</a></p> -->
+  <ul class="highlights">
+    <li>
+      <span class="title">Recommendation</span>
+      <strong class="value"><%= @case.recommended_outcome.nil? ? "" : @case.recommended_outcome.name %></strong>
+    </li>
+    <li>
+      <span class="title">Decision</span>
+      <strong class="value"><%= @case.decided_outcome.nil? ? "" : @case.decided_outcome.name %></strong>
+      <% if @case.appealed %>
+        <span class="appealed tooltip">
+          Appealed to the Cook County Circuit Court
+          <span class="tooltiptext tooltiptext-top">Read decision for impact of appeal</span>
+        </span>
+      <% end %>
+    </li>
+    <li>
+      <span class="title">Length of process</span>
+      <strong class="value"><%= @case.length_of_process %></strong>
+      <span class="mute">
+        <%= [
                     @case.date_initiated.nil? ? @case.date_initiated : @case.date_initiated.to_formatted_s(:long),
                     @case.date_decided.nil? ? @case.date_decided : @case.date_decided.to_formatted_s(:long)
                 ].reject(&:blank?).join(' to ') %>
-            </span>
-           <strong class="value"><%= @case.is_open ? "Open" : "Closed" %></strong>
-        </li>
-    </ul>
+      </span>
+      <strong class="value"><%= @case.is_open ? "Open" : "Closed" %></strong>
+    </li>
+  </ul>
 </div>
-
 <div class="content-box">
   <h2>Charged with violating <%= pluralize(@case.case_rules.count, 'rule') %> on <%= pluralize(@case.case_rule_counts.count, 'count') %></h2>
   <p><a class="toggle-case-rule-counts"><i class="fa fa-plus-square"></i> Show all counts</a></p>
@@ -59,53 +67,79 @@
     </thead>
     <tbody>
       <% @case.case_rules.order(:rule_order).each do |case_rule| %>
-      <tr>
-        <td class="nb"><strong>Rule <%= case_rule.rule.code %></strong></td>
-        <td class="nb">
-          <a class="toggle-case-rule-counts<%= case_rule.id %>" href="">
-            <%= pluralize(case_rule.case_rule_counts.count, 'count') %>
-          </a>
-        </td>
-        <td>
-          <p><%= case_rule.rule.description %></p>
-          <dl class="case-rule-counts<%= case_rule.id %>" style="display:none;">
-            <% case_rule.case_rule_counts.order(:count_order).each do |case_rule_count| %>
-              <dt><strong>Count <%= case_rule_count.count_order %></strong></dt>
-              <dd><%= case_rule_count.content %></dd>
-            <% end %>
-          </dl>
-        </td>
-      </tr>
+        <tr>
+          <td class="nb"><strong>Rule <%= case_rule.rule.code %></strong></td>
+          <td class="nb">
+            <a class="toggle-case-rule-counts<%= case_rule.id %>" href="">
+              <%= pluralize(case_rule.case_rule_counts.count, 'count') %>
+            </a>
+          </td>
+          <td>
+            <p><%= case_rule.rule.description %></p>
+            <dl class="case-rule-counts<%= case_rule.id %>" style="display:none;">
+              <% case_rule.case_rule_counts.order(:count_order).each do |case_rule_count| %>
+                <dt>
+                  <strong>
+                    Count <%= case_rule_count.count_order %> 
+                    <span class="count-decision">
+                      <%= (case_rule_count.is_guilty == true ? "Guilty" : "Not Guilty") unless case_rule_count.is_guilty.nil? %> 
+                    </span>
+                  </strong> 
+                </dt>
+                <dd><%= case_rule_count.content %></dd>
+              <% end %>
+            </dl>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
 <div class="content-box">
-    <h2>Board member vote</h2>
+  <h2>Board Member Votes & Decisions</h2>
+  <div id="voting-breakdown">
+    <h2>Majority Decision</h2>
 
-    <div id="voting-breakdown">
-        <div class="c3l">
-            <h2><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h2>
-            <p class="mute">Agreed with the final decision of the board</p>
-
-            <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
-        </div>
-
-        <div class="c3m">
-            <h2><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h2>
-            <p class="mute">Disagreed with the final decision of the board</p>
-
-            <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
-        </div>
-
-        <div class="c3r">
-            <h2><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h2>
-            <p class="mute">Did not vote or were not present for voting</p>
-
-            <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
-        </div>
+    <div class="c3l">
+      <h3><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h3>
+      <p class="mute">Agreed with the final decision of the board</p>
+      <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
     </div>
-</div>
+    <div class="c3m">
+      <h3><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h3>
+      <p class="mute">Disagreed with the final decision of the board</p>
+      <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
+    </div>
+    <div class="c3l">
+      <h3><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h3>
+      <p class="mute">Did not vote or were not present for voting</p>
+      <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
+    </div>
+    <p><%= @case.majority_decision %></p>
+  </div>
 
+  <div id="voting-breakdown">
+    <h2>Minority <%= "Opinion".pluralize(@case.minority_opinions.count)%></h2>
+
+    <% @case.minority_opinions.each do |minority_opinion| %>
+      <div class="minority_opinion">
+        <div class="minority_opinion_members">
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_one } if minority_opinion.board_member_one.present? %>
+          </div>
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_two } if minority_opinion.board_member_two.present? %>
+          </div>
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_three } if minority_opinion.board_member_three.present? %>
+          </div>
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_four } if minority_opinion.board_member_four.present? %>
+          </div>
+        </div>
+        <p><%= minority_opinion.opinion_text %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 <%= javascript_include_tag "case" %>
