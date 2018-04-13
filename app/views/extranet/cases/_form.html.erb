@@ -130,25 +130,25 @@
           <li class="form-row">
             <div class="form-label">Board Member 1</div>
             <div class="form-field">
-              <%= builder.collection_select :board_member_one, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+              <%= builder.collection_select :board_member_one_id, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
             </div>
           </li>
           <li class="form-row">
             <div class="form-label">Board Member 2</div>
             <div class="form-field">
-              <%= builder.collection_select :board_member_two, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+              <%= builder.collection_select :board_member_two_id, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
             </div>
           </li>
           <li class="form-row">
             <div class="form-label">Board Member 3</div>
             <div class="form-field">
-              <%= builder.collection_select :board_member_three, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+              <%= builder.collection_select :board_member_three_id, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
             </div>
           </li>
           <li class="form-row">
             <div class="form-label">Board Member 4</div>
             <div class="form-field">
-              <%= builder.collection_select :board_member_four, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
+              <%= builder.collection_select :board_member_four_id, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name, include_blank: true %>
             </div>
           </li>
         </ol>

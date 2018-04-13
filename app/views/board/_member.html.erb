@@ -1,0 +1,2 @@
+<div class="thumb"><%= image_tag member.photo, alt: [member.full_name, member.board_position].reject(&:blank?).join(', '), size: '70' %></div>
+<p><%= link_to [member.full_name, member.board_position].reject(&:blank?).join(', ') , board_path(member) %></p>

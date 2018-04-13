@@ -48,6 +48,9 @@ ul { list-style: disc; margin-left: 1.5em; }
 .c3l { margin-right: 3%; }
 .c3l, .c3m, .c3r { width: 31%; }
 
+
+.col-4 { width: 23%; margin-right: 2%; float: left; }
+
 /* Content */
 .content { box-sizing: border-box; margin: 0 auto; max-width: 1140px; padding: 0 20px; }
 .content-box { background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); margin-bottom: 20px; padding: 40px; position: relative; }
@@ -282,7 +285,10 @@ ul { list-style: disc; margin-left: 1.5em; }
 
     /* Voting breakdown */
     #voting-breakdown { margin-top: 20px; overflow: hidden; }
-    #voting-breakdown h2 { font-size: 32px; font-weight: 600; }
+    #voting-breakdown h2 { font-size: 22px; font-weight: 600; margin-bottom: 10px;}
+
+
+.minority_opinion_members { overflow: hidden; margin-top: 35px; margin-bottom: -5px; }
 
 /* Voting history */
 .voting-history td { vertical-align: middle; }

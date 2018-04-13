@@ -1,9 +1,7 @@
 <ul class="votes">
-    <% board_members.each do |bm| %>
-        <li>
-            <div class="thumb"><%= image_tag bm.photo, alt: [bm.full_name, bm.board_position].reject(&:blank?).join(', '), size: '70' %></div>
-            <p><strong><%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ') , board_path(bm) %></strong></p>
-            <p class="mute"><%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %></p>
-        </li>
-    <% end %>
+  <% board_members.each do |bm| %>
+    <li>
+      <%= render partial: "board/member", locals: { member: bm } %>
+    </li>
+  <% end %>
 </ul>

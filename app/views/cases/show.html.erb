@@ -96,23 +96,50 @@
   </table>
 </div>
 <div class="content-box">
-  <h2>Board member vote</h2>
+  <h2>Board Member Votes & Decisions</h2>
   <div id="voting-breakdown">
+    <h2>Majority Decision</h2>
+
     <div class="c3l">
-      <h2><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h2>
+      <h3><i class="fa fa-check-circle"></i> <%= @case.agree_votes.count %> agreed</h3>
       <p class="mute">Agreed with the final decision of the board</p>
       <%= render partial: "board/vote_list", locals: { board_members: @case.agree_votes } %>
     </div>
     <div class="c3m">
-      <h2><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h2>
+      <h3><i class="fa fa-times-circle"></i> <%= @case.dissent_votes.count %> disagreed</h3>
       <p class="mute">Disagreed with the final decision of the board</p>
       <%= render partial: "board/vote_list", locals: { board_members: @case.dissent_votes } %>
     </div>
-    <div class="c3r">
-      <h2><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h2>
+    <div class="c3l">
+      <h3><i class="fa fa-ban"></i> <%= @case.abstain_votes.count %> did not vote</h3>
       <p class="mute">Did not vote or were not present for voting</p>
       <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
     </div>
+    <p><%= @case.majority_decision %></p>
+  </div>
+
+  <div id="voting-breakdown">
+    <h2>Minority <%= "Opinion".pluralize(@case.minority_opinions.count)%></h2>
+
+    <% @case.minority_opinions.each do |minority_opinion| %>
+      <div class="minority_opinion">
+        <div class="minority_opinion_members">
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_one } if minority_opinion.board_member_one.present? %>
+          </div>
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_two } if minority_opinion.board_member_two.present? %>
+          </div>
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_three } if minority_opinion.board_member_three.present? %>
+          </div>
+          <div class="col-4">
+            <%= render partial: "board/member", locals: { member: minority_opinion.board_member_four } if minority_opinion.board_member_four.present? %>
+          </div>
+        </div>
+        <p><%= minority_opinion.opinion_text %></p>
+      </div>
+    <% end %>
   </div>
 </div>
 <%= javascript_include_tag "case" %>
