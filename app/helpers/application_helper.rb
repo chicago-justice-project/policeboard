@@ -31,10 +31,10 @@ module ApplicationHelper
   end
 
   def share_on_facebook
-    link_to image_tag("/assets/facebook.png"), 'https://www.facebook.com/sharer.php?u='+request.original_url, target: :blank
+    link_to image_tag("facebook.png"), 'https://www.facebook.com/sharer.php?u='+request.original_url, target: :blank
   end
 
   def share_on_twitter(title)
-    link_to image_tag("/assets/twitter.png"), 'https://twitter.com/share?text='+title+'&url='+request.original_url, target: :blank
+    link_to image_tag("twitter.png"), 'https://twitter.com/share?text='+title+'&url='+request.original_url, target: :blank
   end
 end
