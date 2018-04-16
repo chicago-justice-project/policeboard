@@ -115,7 +115,7 @@
       <p class="mute">Did not vote or were not present for voting</p>
       <%= render partial: "board/vote_list", locals: { board_members: @case.abstain_votes } %>
     </div>
-    <p><%= @case.majority_decision %></p>
+    <p class="float-left"><%= @case.majority_decision %></p>
   </div>
 
   <div id="voting-breakdown">
