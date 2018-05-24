@@ -34,8 +34,13 @@
   <!-- Scripts -->
   <%= javascript_include_tag 'application' %>
 
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js' %>
+
   <!-- Styles -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+
+  
 </head>
 <body id=<%= yield (:body_id) %>>
 <div id="wrapper">

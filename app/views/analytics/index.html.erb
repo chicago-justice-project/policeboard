@@ -1,0 +1,70 @@
+<% title "Analytics" %>
+<% body_id "analytics-index" %>
+<div class="content-box">
+  <h1>Case Analytics</h1>
+</div>
+
+
+<div class="content-box cases_filed_by_year">
+  <div></div>
+
+  <div class="filters">
+    <%= form_tag({url: analytics_path}, {method: :get}) do  %>
+      <%= label_tag :start_year %>
+      <%= text_field_tag :start_year, params[:start_year]|| Date.today.year - 4 %>
+
+      <%= label_tag :end_year %>
+      <%= text_field_tag :end_year, params[:end_year] || Date.today.year %>
+
+      <%= submit_tag "Update" %>
+    <% end %>
+  </div>
+</div>
+
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    $('.cases_filed_by_year div').highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Number of cases filed by year'
+      },
+      // subtitle: {
+      //   text: 'Source: WorldClimate.com'
+      // },
+      xAxis: {
+        min: 0,
+        max: <%= @cases_filed_by_year_range.count > 5 ? 4 : @cases_filed_by_year_range.count - 1 %>,
+        scrollbar: {
+          enabled: <%= @cases_filed_by_year_range.count > 5 %>
+        },
+        categories: <%= @cases_filed_by_year_range %>,
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+            text: 'Number of cases'
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: &nbsp;&nbsp;</td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: <%= raw(@cases_filed_by_year_series.to_json) %>
+    });
+  });
+</script>

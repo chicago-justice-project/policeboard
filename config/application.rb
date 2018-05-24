@@ -31,5 +31,6 @@ module Policeboard
     # config.i18n.default_locale = :de
 
     # config.serve_static_assets = true
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
