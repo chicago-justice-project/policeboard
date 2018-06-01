@@ -12,8 +12,8 @@ class AnalyticsController < ApplicationController
     decided_outcome_ids = Outcome.where(name: ["Returned to Duty", "Settlement", "Suspension", "Termination"]).map(&:id)
     @cases_filed_by_year_range.each do |year|
       puts year
-      cases_per_year = Case.where('extract(year from date_initiated) = ? OR extract(year from date_decided) = ?', year, year)
-      decisions_per_year = Case.where('extract(year from date_initiated) = ? OR extract(year from date_decided) = ?', year, year).where(decided_outcome_id: decided_outcome_ids)
+      cases_per_year = Case.where('extract(year from date_initiated) = ?', year)
+      decisions_per_year = Case.where('extract(year from date_decided) = ?', year).where(decided_outcome_id: decided_outcome_ids)
 
       total_cases.push(cases_per_year.count) 
       decided_cases.push(decisions_per_year.count) 
