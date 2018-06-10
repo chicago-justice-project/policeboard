@@ -8,8 +8,8 @@
 <%=
   CSV.generate_line([
     c.number,
-    c.defendant.full_name,
-    c.defendant.rank.try(:name),
+    c.defendant.try(:full_name),
+    c.defendant.try(:rank).try(:name),
     c.recommended_outcome.try(:name),
     c.decided_outcome.try(:name),
     c.date_initiated,
