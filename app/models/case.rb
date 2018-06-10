@@ -37,7 +37,7 @@ class Case < ActiveRecord::Base
 
   def send_tweet_charges
     return unless defendant.present?
-    
+
     message = "Alert: New case filed with Police Board against #{defendant.rank.name} #{defendant.full_name} - #{number} - read the charges #{case_url(self)}"
     Twitter.client.update(message)
   end
@@ -50,20 +50,20 @@ class Case < ActiveRecord::Base
   end
 
   def sort_case_rule_counts
-  	self.case_rules.each do |case_rule|
-  	  case_rule.case_rule_counts.order(:count_order).each_with_index  do |rule_count, index|
-  	    rule_count.count_order = index + 1
-  	    rule_count.save
-  	  end
-  	end
+    self.case_rules.each do |case_rule|
+      case_rule.case_rule_counts.order(:count_order).each_with_index  do |rule_count, index|
+        rule_count.count_order = index + 1
+        rule_count.save
+      end
+    end
 
   end
 
   def sort_case_rules
-	  self.case_rules.order(:rule_order).each_with_index do |case_rule, index|
-		  case_rule.rule_order = index + 1
-		  case_rule.save
-	  end
+    self.case_rules.order(:rule_order).each_with_index do |case_rule, index|
+      case_rule.rule_order = index + 1
+      case_rule.save
+    end
   end
 
 
