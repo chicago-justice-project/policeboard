@@ -1,0 +1,19 @@
+<%-
+  headers = [
+    'Case Number', 'Name', 'Title', 'Recommended Discipline', 'Final decision', 'Start date', 'End date'
+  ]
+-%>
+<%= CSV.generate_line headers %>
+<%- @cases.each do |c| -%>
+<%=
+  CSV.generate_line([
+    c.number,
+    c.defendant.full_name,
+    c.defendant.rank.try(:name),
+    c.recommended_outcome.try(:name),
+    c.decided_outcome.try(:name),
+    c.date_initiated,
+    c.date_decided,
+  ])
+-%>
+<%- end -%>
