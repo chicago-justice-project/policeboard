@@ -3,7 +3,15 @@ module Extranet
     helper_method :sort_column, :sort_direction
 
     def index
-      @cases = Case.includes(:defendant, :decided_outcome).order(sort_column + " " + sort_direction)
+      @cases = Case.includes(:defendant, :recommended_outcome, :decided_outcome).order(sort_column + " " + sort_direction)
+
+      respond_to do |format|
+        format.html
+        format.csv do
+          headers['Content-Disposition'] = "attachment; filename=\"case-list.csv\""
+          headers['Content-Type'] ||= 'text/csv'
+        end
+      end
     end
 
     def new

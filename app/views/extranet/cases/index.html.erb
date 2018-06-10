@@ -1,10 +1,11 @@
 <div class="content-box">
     <% title "Cases" %>
-    
+
     <h1>Cases</h1>
-    
+    <p><%= link_to "Download CSV", extranet_cases_path(format: :csv) %></p>
+
     <p><%= link_to "Add case", [:new, :extranet, :case], :class => "action" %></p>
-    
+
     <table>
         <thead>
             <tr>
