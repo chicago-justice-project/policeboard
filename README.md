@@ -35,5 +35,5 @@ For subsequent times, still with Postgres running first, just run `foreman start
 
 ## Deployment
 
-The app runs on AWS Elastic Beanstalk. Deployment docs coming soon.
+The app runs on AWS Elastic Beanstalk. To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
 

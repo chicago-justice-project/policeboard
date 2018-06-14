@@ -225,47 +225,46 @@ namespace :import do
     end
   end
 
-  
+
   desc "Import case files"
   task :case_files => :environment do
-  
-	s3 = Aws::S3::Resource.new(
-	access_key_id: ENV["AWS_ACCESS_KEY_ID"], 
-	secret_access_key:  ENV["AWS_SECRETY_KEY"],
-	region: ENV["AWS_REGION"]
-	)
-	
-    bucket = s3.bucket('policeboard-production')
-	
-	bucket.objects.each do |obj|
-	  filepath = obj.key
-	  puts filepath
-	  match = /.*\/(.*)_(.*)[.](.*)/.match(filepath)
-	  if (!match.nil?)
-		cn = match[1]
-		puts cn
-		if (!cn.nil?)
-			c = Case.find_by_number(cn)
-			if (!c.nil?)
-				current_files = c.files
-				if (!current_files.nil?)
-					foundIndex = current_files.find_index {|f| f.path == filepath }
-					if (!foundIndex.nil? && foundIndex < 0)
-						newfile = [ Pathname.new("https://policeboard-production.s3.amazonaws.com/" + filepath).open]
-						current_files += newfile;
-						c.files = current_files;
-						c.save!
-					end
-				end
-			end
-		end
-	  end
-	end
-	
-	
+
+    s3 = Aws::S3::Resource.new(
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key:  ENV["AWS_SECRETY_KEY"],
+      region: ENV["AWS_REGION"]
+    )
+
+    bucket = s3.bucket(ENV["AWS_BUCKET"])
+
+    bucket.objects.each do |obj|
+      filepath = obj.key
+      puts filepath
+      match = /.*\/(.*)_(.*)[.](.*)/.match(filepath)
+      if (!match.nil?)
+        cn = match[1]
+        puts cn
+        if (!cn.nil?)
+          c = Case.find_by_number(cn)
+          if (!c.nil?)
+            current_files = c.files
+            if (!current_files.nil?)
+              foundIndex = current_files.find_index {|f| f.path == filepath }
+              if (!foundIndex.nil? && foundIndex < 0)
+                path = "https://#{ENV["AWS_BUCKET"]}.s3.amazonaws.com/#{filepath}"
+                newfile = [ Pathname.new(path).open ]
+                current_files += newfile;
+                c.files = current_files;
+                c.save!
+              end
+            end
+          end
+        end
+      end
+    end
   end
 
-  
+
   desc "Import board votes"
   task :board_votes => :environment do
     i = -1
