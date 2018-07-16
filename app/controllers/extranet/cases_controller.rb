@@ -37,6 +37,7 @@ module Extranet
 
     def edit
       @case = Case.find(params[:id])
+      @case.build_defendant if @case.defendant.nil?
       @rules = Rule.all
     end
 
