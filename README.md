@@ -5,7 +5,7 @@ A responsive web app for the archive of the most serious allegations of miscondu
 ## To run locally
 
 Dependencies
-* Ruby 2.2.0
+* Ruby 2.2.9
 * Bundler
 * Rails 4
 * PostgreSQL
@@ -27,13 +27,19 @@ For the first time, make sure Postgres is running, then execute:
 ```
 bundle install
 rake db:create db:migrate
+rake import:all
 foreman start
 ```
+
 For subsequent times, still with Postgres running first, just run `foreman start`. Occassionally you may need to preface that with:
-`bundle install` if new gems (modules/plugins) are used in the app, or
-`rake db:migrate db:import` if the database schema or raw input data have changed.
+`bundle install` if new gems (modules/plugins) are used in the app, or `rake db:migrate` if the database schema has changed, or `rake import:all` if raw input data has changed.
+
+Note this data is obtained from excel spreadsheets included in the repo, and may vary from production.
 
 ## Deployment
 
-The app runs on AWS Elastic Beanstalk. To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
+The app runs on AWS Elastic Beanstalk. The database lives on Amazon RDS. To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
 
+### Images
+
+Some images are stored in AWS S3, while others are stored in the assets folder. The image uploading process for AWS is managed by [CarrierWave](https://rubydoc.info/gems/carrierwave/frames). For images handled by S3, if the image does not exist, expect to see a broken link as there is currently no fallback or placeholder.
