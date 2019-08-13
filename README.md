@@ -27,6 +27,7 @@ For the first time, make sure Postgres is running, then execute:
 ```
 bundle install
 rake db:create db:migrate
+rake db:seed
 rake import:all
 foreman start
 ```
@@ -34,7 +35,7 @@ foreman start
 For subsequent times, still with Postgres running first, just run `foreman start`. Occassionally you may need to preface that with:
 `bundle install` if new gems (modules/plugins) are used in the app, or `rake db:migrate` if the database schema has changed, or `rake import:all` if raw input data has changed.
 
-Note this data is obtained from excel spreadsheets included in the repo, and may vary from production.
+Note this data is obtained from excel spreadsheets included in the repo, and may vary from production. Also note that the "rake db:seed" command creates a test user that you can use to log into the administrative side of the application when you run it locally. The username is "test@test.com" and password is "password".
 
 ## Deployment
 

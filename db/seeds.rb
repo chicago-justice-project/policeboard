@@ -8,4 +8,4 @@
 
 #users = User.create([ { :email => "annat@webitects.com", :password => "password", :password_confirmation => "password" } ])
 
-users = User.create([{:email => "nickr@webitects.com", :password => "password", :password_confirmation => "password"}, {:email => "tsiska@chicagojustice.org", :password => "password", :password_confirmation => "password"}])
+users = User.create([{:email => "test@test.com", :password => "password", :password_confirmation => "password"}, {:email => "tsiska@chicagojustice.org", :password => "password", :password_confirmation => "password"}])
