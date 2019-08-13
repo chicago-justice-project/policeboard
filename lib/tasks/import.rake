@@ -3,13 +3,14 @@ require 'roo'
 require 'aws-sdk'
 
 namespace :import do
-  board_members = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-members.xlsx").sheet(0)
-  board_terms   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-terms.xlsx").sheet(0)
-  board_votes   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-votes.xlsx").sheet(0)
-  cases         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/cases.xlsx").sheet(0)
-  case_rules    = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/case-rules.xlsx").sheet(0)
-  raw_data      = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/raw-data.xlsx").sheet(0)
-  rules         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/rules.xlsx").sheet(0)
+  board_members   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-members.xlsx").sheet(0)
+  board_terms     = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-terms.xlsx").sheet(0)
+  board_votes     = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-votes.xlsx").sheet(0)
+  cases           = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/cases.xlsx").sheet(0)
+  case_rules      = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/case-rules.xlsx").sheet(0)
+  raw_data        = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/raw-data.xlsx").sheet(0)
+  rules           = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/rules.xlsx").sheet(0)
+  superintendents = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/superintendents.xlsx").sheet(0)
 
   desc "Reimport db"
   task :reimport_db do
@@ -129,6 +130,28 @@ namespace :import do
       puts "Defendant: #{num.to_i} #{fname} #{lname} #{rank_id}"
 
       Defendant.create(:first_name=>fname, :last_name=>lname, :number=>num.to_i, :rank_id=>rank_id)
+    end
+  end
+
+  desc "Import superintendents"
+  task :superintendents => :environment do
+    i = -1
+    superintendents.each(
+      first_name: 'First Name',
+      last_name: 'Last Name',
+      start_of_term: 'Start Date',
+      end_of_term: 'End Date'
+    ) do |su|
+      i += 1
+      next if i == 0
+      Superintendent.create(
+        :first_name=>su[:first_name],
+        :last_name=>su[:last_name],
+        :start_of_term=>su[:start_of_term],
+        :end_of_term=>su[:end_of_term],
+        :created_at=>Time.now,
+        :updated_at=>Time.now
+      )
     end
   end
 
