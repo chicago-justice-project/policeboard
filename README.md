@@ -37,6 +37,14 @@ For subsequent times, still with Postgres running first, just run `foreman start
 
 Note this data is obtained from excel spreadsheets included in the repo, and may vary from production. Also note that the "rake db:seed" command creates a test user that you can use to log into the administrative side of the application when you run it locally. The username is "test@test.com" and password is "password".
 
+### Troubleshooting
+
+If running the app using Ubuntu or Windows Subsystem for Linux (WSL), you may come across an error similar to this when trying to access the app on your browser:
+
+>could not connect to server: No such file or directory Is the server running locally and accepting connections on Unix domain socket "/var/run/postgresql/.s.PGSQL.5432"?
+
+To fix this, try adding `host: localhost` to the default settings section in the `database.yml` file.
+
 ## Deployment
 
 The app runs on AWS Elastic Beanstalk. The database lives on Amazon RDS. To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
