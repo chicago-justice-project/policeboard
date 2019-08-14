@@ -29,6 +29,16 @@ module Extranet
         end
       end
 
+      def update
+        @superintendent = Superintendent.find(params[:id])
+        if @superintendent.update_attributes(superintendent_params)
+          redirect_to extranet_superintendents_path, :notice => "Superintendent successfully added"
+        else
+          # TO DO : implement error display
+          render :action => 'edit'
+        end
+      end
+
       private
       def superintendent_params
         params.require(:superintendent).permit(:first_name, :last_name, :start_of_term, :end_of_term)
