@@ -33,6 +33,9 @@ class AnalyticsController < ApplicationController
       }
     ]
 
+    # just for testing
+    @board_members = BoardMember.last(5)
+    # just for testing END
   end
 
 end

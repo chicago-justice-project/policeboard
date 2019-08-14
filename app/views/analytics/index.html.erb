@@ -2,8 +2,25 @@
 <% body_id "analytics-index" %>
 <div class="content-box">
   <h1>Case Analytics</h1>
+  <p>
+    Using data visualizations, we seek to make public data on the Chicago Police Board easier to consume and understand. All visualizations are automatically updated with the most recent cases available in the database.
+  </p>
 </div>
 
+<div class="content-box">
+  <h2>
+    Termination cases filed during tenure of superintendents
+  </h2>
+  <p>
+    Placeholder text... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+  <!--testing out putting some images START -->
+  <% @board_members.each do |bm| %>
+    <%= image_tag bm.photo, size: '70' %>
+  <% end %>
+  <!-- testing END -->
+  <canvas id="terminations-by-superintendent"></canvas>
+</div>
 
 <div class="content-box cases_filed_by_year">
   <div></div>
@@ -22,8 +39,42 @@
 </div>
 
 <script src="http://code.highcharts.com/stock/highstock.js"></script>
-
+<%= javascript_include_tag "https://cdn.jsdelivr.net/npm/chart.js@2.8.0" %>
 <script type="text/javascript">
+  // *******************************
+  // ****** Charts.js code *********
+  // *******************************
+  var context = document.getElementById('terminations-by-superintendent').getContext('2d');
+  var chart = new Chart(context, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+          labels: ['1999', '2000', '2001', '2002', '2003', '2004', '2005'],
+          datasets: [{
+              label: "# of termination cases filed during Johnson's tenure",
+              backgroundColor: 'rgb(160, 15, 18, 0.2)',
+              borderColor: 'rgb(160, 15, 18)',
+              data: [0, 10, 5, 2, 20, 30, 45],
+              fill: 1
+          },
+          {
+              label: "# of terminations under Johnson's tenure",
+              //backgroundColor: 'rgb(160, 15, 18, 0.2)',
+              borderColor: 'rgb(160, 15, 18)',
+              data: [10, 15, 7, 18, 28, 31, 60],
+              borderDash: [2.5,5],
+              fill: false
+          },
+          ]
+      },
+
+      // Configuration options go here
+      options: {}
+  });
+
+  //highcharts code: cases filed by year
   $(function () {
     $('.cases_filed_by_year div').highcharts({
       chart: {
@@ -32,9 +83,6 @@
       title: {
         text: 'Number of cases filed by year'
       },
-      // subtitle: {
-      //   text: 'Source: WorldClimate.com'
-      // },
       xAxis: {
         min: 0,
         max: <%= @cases_filed_by_year_range.count > 5 ? 4 : @cases_filed_by_year_range.count - 1 %>,
