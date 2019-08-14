@@ -68,4 +68,7 @@ gem 'figaro'
 
 gem 'aws-sdk'
 
+#for debugging
+gem 'byebug', group: [:development, :test]
+
 
