@@ -107,6 +107,7 @@ GEM
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     ipaddress (0.8.3)
+    izitoast (1.4.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -241,6 +242,7 @@ DEPENDENCIES
   fog-aws
   foreman
   htmlbeautifier
+  izitoast
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick
@@ -262,4 +264,4 @@ RUBY VERSION
    ruby 2.2.9p480
 
 BUNDLED WITH
-   1.16.1
+   1.17.3

@@ -1,0 +1,39 @@
+<h1>Superintendent details</h1>
+<%= form_for [:extranet, @superintendent], :html => {:multipart => true} do |f| %>
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-label"><%= f.label :first_name, "Name" %></div>
+            <div class="form-field">
+                <div class="field-single-line fields-name-short">
+                    <p class="field-name-first"><%= f.text_field :first_name, :class => "txt" %></p>
+                    <p class="field-name-last"><%= f.text_field :last_name, :class => "txt" %></p>
+                </div>
+            </div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :start_of_term, "Start of term" %></div>
+            <div class="form-field">
+                <div class="field-single-line fields-date-range">
+                    <p class="field-range-start"><%= f.date_field :start_of_term, :class => "txt", :placeholder => "Start (YYYY-MM-DD)" %></p>
+                </div>
+            </div>
+        </li>
+        <li class="form-row">
+            <div class="form-label"><%= f.label :end_of_term, "End of term" %></div>
+            <div class="form-field">
+                <div class="field-single-line fields-date-range">
+                <p class="field-range-start"><%= f.date_field :end_of_term, :class => "txt", :placeholder => "End (YYYY-MM-DD)" %></p>
+                </div>
+            </div> 
+        </li>
+    </ol>
+
+    <ol class="form">
+        <li class="form-row">
+            <div class="form-field">
+                <%= f.submit "Save", :class => "action" %> 
+                <%= link_to "Cancel", extranet_superintendents_path %>
+            </div>
+        </li>
+    </ol>
+<% end %>
