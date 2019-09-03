@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
 
   namespace :extranet do
-    resources :rules, :board_members
+    resources :rules, :board_members, :superintendents
     resources :board_members do
       resources :terms, only:[:create, :destroy]
     end

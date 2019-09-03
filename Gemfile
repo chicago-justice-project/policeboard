@@ -68,7 +68,12 @@ gem 'figaro'
 
 gem 'aws-sdk'
 
+<<<<<<< HEAD
 #for debugging
 gem 'byebug', group: [:development, :test]
 
 
+=======
+#for notification banners
+gem 'izitoast'
+>>>>>>> a0c800ed1e1365c83f33a3d1fbb89a6dc6ceb624

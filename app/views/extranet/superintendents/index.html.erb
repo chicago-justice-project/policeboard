@@ -1,0 +1,29 @@
+<div class="content-box">
+    <% title "Superintendents" %>
+    <div id="notification"></div>
+    <h1>Superintendents</h1>
+    <p><%= link_to "Add superintendent", [:new, :extranet, :superintendent], :class => "action" %></p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start of term</th>
+                <th>End of term</th>
+                <th>Last modified</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @superintendents.each do |s|  %>
+                <tr>
+                    <td><%= link_to s.first_name + " " + s.last_name, [:edit, :extranet, s] %></td>
+                    <td><%= s.start_of_term %></td>
+                    <td><%= s.end_of_term %></td>
+                    <td><%= s.updated_at %></td>
+                    <td><%= link_to "X", [:extranet, s], :confirm => 'Are you sure?', :method => :delete, :title => "Delete" %> </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
