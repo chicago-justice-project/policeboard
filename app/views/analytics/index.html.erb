@@ -14,11 +14,15 @@
   <p>
     Placeholder text... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </p>
-  <!--testing out putting some images START -->
-  <% @board_members.each do |bm| %>
-    <%= image_tag bm.photo, size: '70' %>
-  <% end %>
-  <!-- testing END -->
+  <div class="su-images">
+    <% @superintendents.each_with_index do |su, index| %>
+      <% if index == 0 %>
+        <%= image_tag su.photo, :class=>"superintendent-thumb", 'superintendent-id'=>su.id %>
+      <% else %>
+        <%= image_tag su.photo, :class=>"superintendent-thumb deselected", 'superintendent-id'=>su.id %>
+      <% end %>
+    <% end %>
+  </div>
   <canvas id="terminations-by-superintendent"></canvas>
 </div>
 
@@ -41,40 +45,103 @@
 <script src="http://code.highcharts.com/stock/highstock.js"></script>
 <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/chart.js@2.8.0" %>
 <script type="text/javascript">
-  // *******************************
-  // ****** Charts.js code *********
-  // *******************************
-  var context = document.getElementById('terminations-by-superintendent').getContext('2d');
-  var chart = new Chart(context, {
-      // The type of chart we want to create
-      type: 'line',
+/*-----------------------------------------------+
+ | Visualization: Terminations by superintendent |
+ | Plugin: ChartJS                               |
+ +-----------------------------------------------*/
+ $(function () {
+    window.terminationsBySuperintendentData = <%=raw @terminations_by_superintendent_data["datasets"].to_json %>;
+    datasets = generateTerminationsBySuperintendentDatasets();
+    var context = document.getElementById('terminations-by-superintendent').getContext('2d');
+    window.terminationsBySuperintendentChart = new Chart(context, {
+        type: 'line',
+        data: {
+            labels: <%= @terminations_by_superintendent_data["labels"] %>,
+            datasets: datasets
+        },
+        options: {} 
+    });
+ });
 
-      // The data for our dataset
-      data: {
-          labels: ['1999', '2000', '2001', '2002', '2003', '2004', '2005'],
-          datasets: [{
-              label: "# of termination cases filed during Johnson's tenure",
-              backgroundColor: 'rgb(160, 15, 18, 0.2)',
-              borderColor: 'rgb(160, 15, 18)',
-              data: [0, 10, 5, 2, 20, 30, 45],
-              fill: 1
-          },
-          {
-              label: "# of terminations under Johnson's tenure",
-              //backgroundColor: 'rgb(160, 15, 18, 0.2)',
-              borderColor: 'rgb(160, 15, 18)',
-              data: [10, 15, 7, 18, 28, 31, 60],
-              borderDash: [2.5,5],
-              fill: false
-          },
-          ]
-      },
+function generateTerminationsBySuperintendentDatasets() {
+  var colors = terminationsBySuperintendentColors();
+  var borderDash = [2.5, 5];
+  var result = [];
+  var superintendents = <%=raw @superintendents.to_json %>;
 
-      // Configuration options go here
-      options: {}
+  window.terminationsBySuperintendentData.forEach(function(item, index) {
+    if (item.selected) {
+      var lastName = superintendents.find(su => {return su.id == item.id}).last_name;
+      console.log(lastName);
+
+      var dataRecommended = {
+        label: "# cases where " + lastName + " recommended termination",
+        backgroundColor: colors[index]["backgroundColor"],
+        borderColor: colors[index]["borderColor"],
+        fill: '+1',
+        data: item.num_cases_termination_recommended
+      };
+
+      var dataDecided = {
+        label: "# of cases resulting in termination under " + lastName + "'s tenure",
+        borderColor: colors[index]["borderColor"],
+        borderDash: borderDash,
+        fill: false,
+        data: item.num_cases_termination_decided
+      }
+
+      result.push(dataRecommended, dataDecided);
+    }
   });
+  return result;
+}
 
-  //highcharts code: cases filed by year
+function toggleSuperintendentDataVisibility(suId) {
+  var i = window.terminationsBySuperintendentData.findIndex(obj => obj.id = suId);
+  window.terminationsBySuperintendentData[i].selected = !(window.terminationsBySuperintendentData[i].selected);
+
+  var superintendents = <%=raw @superintendents.to_json %>;
+  var lastName = superintendents.find(su => su.id == suId).last_name;
+  console.log("toggle "+ lastName);
+}
+
+function updateTerminationsBySuperintendentChart() {
+  var datasets = generateTerminationsBySuperintendentDatasets();
+  var chart = window.terminationsBySuperintendentChart;
+  chart.data.datasets = window.terminationsBySuperintendentData;
+  chart.data.labels.findIndex(label => label.includes)
+  // TO DO: update labels
+  chart.update();
+}
+
+function terminationsBySuperintendentColors() {
+  return [
+    {"borderColor": "rgb(160, 15, 18)", "backgroundColor": "rgb(160, 15, 18, 0.2)"}, //red
+    {"borderColor": "rgb(0, 114, 173)", "backgroundColor": "rgb(0, 114, 173, 0.2)"}, //blue 
+    {"borderColor": "rgb(53, 111, 36)", "backgroundColor": "rgb(53, 111, 36, 0.2)"}, //green
+    {"borderColor": "rgb(154, 143, 18)", "backgroundColor": "rgb(154, 143, 18, 0.2)"},
+    {"borderColor": "rgb(181, 88, 4)", "backgroundColor": "rgb(181, 88, 4, 0.2)"},
+    {"borderColor": "rgb(29, 167, 153)", "backgroundColor": "rgb(29, 167, 153, 0.2)"},
+    {"borderColor": "rgb(109, 45, 149)", "backgroundColor": "rgb(109, 45, 149, 0.2)"}
+  ];
+}
+
+//register on click event for superintendent images
+$(".superintendent-thumb").on("click", function() {
+  alert("test");
+});
+
+//remove before merging to main
+function test() {
+  var chart = window.terminationsBySuperintendentChart;
+  chart.data.labels.pop();
+  chart.update();  
+}
+
+/*-------------------------------------------------+
+ | Visualization: Cases filed by year              |
+ | Plugin: Highcharts                              |
+ +-------------------------------------- ----------*/
   $(function () {
     $('.cases_filed_by_year div').highcharts({
       chart: {
