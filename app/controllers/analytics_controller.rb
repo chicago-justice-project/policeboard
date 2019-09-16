@@ -43,6 +43,7 @@ class AnalyticsController < ApplicationController
     end
 
     labels = *(1..max_num_years)
+    labels = labels.collect { |label| "Year " + label.to_s }
     @terminations_by_superintendent_data = Hash("datasets" => datasets, "labels" => labels)
   end
 
