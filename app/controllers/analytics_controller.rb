@@ -24,7 +24,7 @@ class AnalyticsController < ApplicationController
         .push(Case.count_for_outcome(curr_year_start, curr_year_end, Outcome.get_outcome_id("Termination"), 0))
 
         num_cases_termination_decided
-        .push(Case.count_for_outcome(curr_year_start, curr_year_end, 0, Outcome.get_outcome_id("Termination")))
+        .push(Case.count_for_outcome(curr_year_start, curr_year_end, Outcome.get_outcome_id("Termination"), Outcome.get_outcome_id("Termination")))
 
         #move forward by one year
         curr_year_start = curr_year_start.next_year(1).to_date
