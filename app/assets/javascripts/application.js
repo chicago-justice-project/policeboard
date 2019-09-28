@@ -25,4 +25,5 @@
 //= require policeboard
 //= require tinymce
 //= require iziToast
+//= require terminations-by-superintendent
 
