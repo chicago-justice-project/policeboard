@@ -20,6 +20,7 @@
 //= require jquery.sparkline.min
 //= require responsive.min
 //= require responsive-init
+//= require array_polyfill
 //= require search
 //= require table-scroll
 //= require policeboard
