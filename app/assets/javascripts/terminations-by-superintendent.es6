@@ -32,11 +32,17 @@
                                     "# of cases resulting in termination under " + lastName + "'s tenure";
             color = this.colors[colorIndex];
         }
+
+        let pointBackgroundColor = [];
+        for (i = 0; i < data.length - 1; i++) {
+            pointBackgroundColor.push(color["borderColor"]);
+        }
     
         var dataset = {
             label: label,
             borderColor: color["borderColor"],
-            data: data
+            data: data,
+            pointBackgroundColor: pointBackgroundColor
         }
     
         if (isRecommended) {
@@ -69,7 +75,6 @@
         //add average datasets if option checked
         let displayAverages = document.getElementById("display-averages").checked;
         if (displayAverages) {
-            console.log("we are displaying avgs");
             datasets = datasets.concat(TerminationsBySuperintendent.generateAverageDataSets());
         }
         chart.data.datasets = datasets;
@@ -220,8 +225,9 @@
                     }]
                 }     
                 }
-            });  
+            });              
         }); 
+
         
         //register on click event for superintendent images
         $(".superintendent-thumb").on("click", function() {
