@@ -163,19 +163,19 @@ ul { list-style: disc; margin-left: 1.5em; }
 #header .content { display: flex; justify-content: space-between; }
 
     /* Logo */
-    #logo { align-items: center; display: flex; justify-content: space-between; width: 51.92%; }
-    #logo-img { display: block; width: 52.7%; }
+    #logo { align-items: center; display: block; justify-content: space-between; width: 39%; }
+    #logo-img { display: block; width: auto; max-width: 300px; }
     #logo-img img { width: 100%; }
+    img#logo-full { display: block; }
     
     #logo-tagline {
-        border-left: 1px solid rgba(0, 0, 0, 0.15);
         box-sizing: border-box;
         color: rgba(0, 0, 0, 0.5);
         display: block;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 300;
-        padding-left: 20px;
-        width: 44.25%;
+        padding: 2px 0 0 10px;
+        width: 82%;
     }
     
     #logo-reverse { display: none; }
@@ -230,9 +230,9 @@ ul { list-style: disc; margin-left: 1.5em; }
             #home #nav-toggle { background: #fff; color: #0072ad; }
     
     /* Navigation */
-    #nav { font-size: 19px; font-weight: 300; padding-top: 10px; position: relative; text-align: right; }
+    #nav { font-size: 19px; font-weight: 300; padding-top: 56px; position: relative; text-align: right; }
     #nav .current a { color: #000; font-weight: 600; }
-    #nav li { display: inline-block; margin-left: 1em; position: relative; }
+    #nav li { display: inline-block; margin-left: 0.9em; position: relative; }
     #nav ul { list-style: none; margin: 0; }
 
 	#nav-secondary { font-size: 16px; text-align:left; }
@@ -437,7 +437,15 @@ ul { list-style: disc; margin-left: 1.5em; }
         
         /* Header */
         #header .content { display: block; }
-        #logo { width: 80%; }
+        #logo { width: 80%; display: flex; }
+        #logo-img { width: 52.7%; max-width: 355px; }
+        #logo-tagline {
+           font-size: 14px; 
+           padding: 0 0 0 20px;
+           margin-top: 10px;
+           width: 44.25%;
+           border-left: 1px solid rgba(0, 0, 0, 0.15);
+        }
         
         /* Intro */
         #intro { padding-top: 30%; }
