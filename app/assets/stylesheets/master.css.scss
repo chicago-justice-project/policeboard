@@ -336,21 +336,68 @@ ul { list-style: disc; margin-left: 1.5em; }
   .rtable--5cols > .rtable-cell  { width: 20%; }
   .rtable--6cols > .rtable-cell  { width: 16.6%; }
 
-  /* Superintendent images */
-.superintendent-thumb {
-    width: 67px;
-    height: auto;
-    border: 1px solid #DDD;
-    border-radius: 3px;
-    background: #08C;
-    padding: 4.5px;
-    margin-right: 14px;
-    cursor: pointer;
+/* Superintendent thumbnails */
+$test: 1;
+
+:export {
+  test: $test;
 }
 
+ul.su-thumbnails {
+  display: block;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  margin-left: 0px;
+}
+
+.superintendent-thumb {
+  float: left;
+  width: 73px;
+  height: auto;
+  border: 5px solid #08C;
+  border-radius: 3px;
+  padding: 4.5px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+
+  $opacity: 0.8;
+
+  .superintendent-thumb.su-0 {
+    border-color: rgba(160, 15, 18, $opacity);  //red
+  }
+  .superintendent-thumb.su-1 {
+    border-color: rgba(0, 114, 173, $opacity);  //blue
+  }
+  .superintendent-thumb.su-2 {
+    border-color: rgba(53, 111, 36, $opacity);  //green
+  }
+  .superintendent-thumb.su-3 {
+    border-color: rgba(154, 143, 18, $opacity); //yellow
+  }
+  .superintendent-thumb.su-4 {
+    border-color: rgba(181, 88, 4, $opacity); //orange
+  }
+  .superintendent-thumb.su-5 {
+    border-color: rgba(29, 167, 153, $opacity);  //aqua
+  }
+  .superintendent-thumb.su-6 {
+    border-color: rgba(109, 45, 149, $opacity);
+  }
+
 .superintendent-thumb.deselected {
-    filter: grayscale(100%);
-    background: white;
+  filter: grayscale(100%);
+  border: 1px solid #DDD;
+  margin-top: 4px;
+}
+
+.superintendent-thumb p {
+  font-size: small;
+  text-align: center;
+  color: #686868;
+  font-weight: 500;
+  margin-bottom: 0px;
 }
 
 /* Tooltip container */

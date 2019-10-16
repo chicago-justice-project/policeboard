@@ -42,18 +42,29 @@
 
     <div class="rtable-cell label">Select superintendents</div>
     <div class="rtable-cell content">
-      <div class="su-images">
+      <ul class="su-thumbnails">
         <% @superintendents.each_with_index do |su, index| %>
-          <% if index == 0 %>
-            <%= image_tag su.photo, :class=>"superintendent-thumb", :title=>su.full_name, 'superintendent-id'=>su.id %>
-          <% else %>
-            <%= image_tag su.photo, :class=>"superintendent-thumb deselected", :title=>su.full_name, 'superintendent-id'=>su.id %>
-          <% end %>
+          <li>
+            <% if index == 0 %>
+              <div class="superintendent-thumb su-<%=index%>" superintendent-id=<%=su.id%>>
+                <%= image_tag su.photo, :title=>su.full_name, 'superintendent-id'=>su.id, 'color-index'=>index %>
+                <p><%= su.first_name.upcase %><br><%= su.last_name.upcase %></p>
+              </div>
+            <% else %>
+              <div class="superintendent-thumb deselected su-<%=index%>" superintendent-id=<%=su.id%>>
+                <%= image_tag su.photo, :title=>su.full_name, 'color-index'=>index %>
+                <p><%= su.first_name.upcase %><br><%= su.last_name.upcase %></p>
+              </div>
+            <% end %>
+          </li>
         <% end %>
-      </div>
+      </ul>
+    </div>
     </div>
 
-  </div>
+
+
+
 
   <canvas id="terminations-by-superintendent"></canvas>
 

@@ -54,15 +54,32 @@ class TerminationsBySuperintendent {
     }
 
     static getDatasetColor(isAverage, colorIndex){
-        let color = [];
+        let rgb = {};
         if (isAverage) {
-            color = this.colors.find(c => c["forDataset"] == "average");
+            rgb = this.colors.find(c => c["forDataset"] == "average");
         }
         else {
-            color = this.colors[colorIndex];
+            rgb = this.colors[colorIndex];
         }
 
-        return color;
+        return {"borderColor": this.generateRGBValue(rgb, "lineBorder"),
+                "backgroundColor": this.generateRGBValue(rgb, "lineBackground")};
+    }
+
+    static generateRGBValue(rgb, getColorFor) {
+        let opacity = 1;
+        switch(getColorFor) {
+            case "lineBackground":
+                opacity = 0.2;
+                break;
+            case "thumbBorder":
+                opacity = 0.8;
+                break;
+            default:
+                break;
+        }
+
+        return `rgba(${rgb["red"]}, ${rgb["green"]}, ${rgb["blue"]}, ${opacity})`;
     }
 
     static getPointBackgroundColor(color, data) {
@@ -106,7 +123,6 @@ class TerminationsBySuperintendent {
     
         for (var i = 0; i < maxNumYears; i++) {
             let currAverages = this.getAvgUnselectedForCurrYear(i);
-            console.log(currAverages['avgRecommended']);
             avgRecommended.push(currAverages['avgRecommended']);
             avgDecided.push(currAverages['avgDecided']);
         }
@@ -200,15 +216,16 @@ class TerminationsBySuperintendent {
 }
 
 TerminationsBySuperintendent.colors = [
-    {"borderColor": "rgb(160, 15, 18)", "backgroundColor": "rgb(160, 15, 18, 0.2)"}, //red
-    {"borderColor": "rgb(0, 114, 173)", "backgroundColor": "rgb(0, 114, 173, 0.2)"}, //blue 
-    {"borderColor": "rgb(53, 111, 36)", "backgroundColor": "rgb(53, 111, 36, 0.2)"}, //green
-    {"borderColor": "rgb(154, 143, 18)", "backgroundColor": "rgb(154, 143, 18, 0.2)"},
-    {"borderColor": "rgb(181, 88, 4)", "backgroundColor": "rgb(181, 88, 4, 0.2)"},
-    {"borderColor": "rgb(29, 167, 153)", "backgroundColor": "rgb(29, 167, 153, 0.2)"},
-    {"borderColor": "rgb(109, 45, 149)", "backgroundColor": "rgb(109, 45, 149, 0.2)"},
-    {"forDataset": "average", "borderColor": "rgb(128, 128, 128)", backgroundColor: "rgb(128, 128, 128, 0.2)"} //grey
+    {"red": 160, "green": 15, "blue": 18},  //red
+    {"red": 0, "green": 114, "blue": 173},  //blue
+    {"red": 53, "green": 111, "blue": 36},  //green
+    {"red": 154, "green": 143, "blue": 18},
+    {"red": 181, "green": 88, "blue": 4},
+    {"red": 29, "green": 167, "blue": 153},
+    {"red": 109, "green": 45, "blue": 149},
+    {"forDataset": "average", "red": 128, "green": 128, "blue": 128}    //grey
 ];
+
 
 function setupTerminationsBySuperintendent(superintendents, data) {
     $(function () {
