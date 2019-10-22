@@ -91,6 +91,68 @@ class TerminationsBySuperintendent {
         return pointBackgroundColor;
     }
 
+    static generateLegend() {
+        let legendList = document.createElement("ul");
+        legendList.id = "legend-list";
+
+        this.chart.data.datasets.forEach(function(dataset, index) {
+            let legendItem = document.createElement("li");
+            let legendText = document.createTextNode(dataset.label);
+            legendItem.appendChild(TerminationsBySuperintendent.generateLegendSVG(dataset));
+            legendItem.appendChild(legendText);
+            legendList.appendChild(legendItem);
+
+            if (index % 2) {
+                legendList.appendChild(document.createElement("br"));
+            }
+        });
+
+        document.getElementById("terminations-by-superintendent-legend").appendChild(legendList);
+    }
+
+    static updateLegend() {
+        document.getElementById("terminations-by-superintendent-legend").innerHTML = "";
+        this.generateLegend();
+    }
+
+    static generateLegendSVG(dataset) {
+        let isDashed = (typeof dataset.borderDash == 'undefined');
+
+        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute('height', '16');
+        svg.setAttribute('width', '35');
+
+        let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M 7 11.5 l 15 0");
+        path.setAttribute("stroke", dataset.borderColor);
+        path.setAttribute("stroke-width", 2.5);
+        path.setAttribute("fill", "none");
+        if (isDashed) path.setAttribute("stroke-dasharray", "3 3");
+
+        let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.setAttribute("stroke", dataset.borderColor);
+        g.setAttribute("stroke-width", 3);
+        g.setAttribute("fill", dataset.borderColor);
+
+        let startPoint = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        startPoint.setAttribute("cx", 3);
+        startPoint.setAttribute("cy", 11.5);
+        startPoint.setAttribute("r", 1.5);
+
+        let endPoint = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        endPoint.setAttribute("cx", 26);
+        endPoint.setAttribute("cy", 11.5);
+        endPoint.setAttribute("r", 1.5);
+
+        g.appendChild(startPoint);
+        g.appendChild(endPoint);
+
+        svg.appendChild(path);
+        svg.appendChild(g);
+
+        return svg;
+    }
+
     static toggleSuperintendentDataVisibility(suElement, superintendents) {
         const id = $(suElement).attr("superintendent-id");
     
@@ -111,9 +173,7 @@ class TerminationsBySuperintendent {
             datasets = datasets.concat(this.generateAverageDataSets());
         }
         this.chart.data.datasets = datasets;
-    
-        this.updateYearsOfTenureLabels(displayAverages);
-        this.chart.update();
+        this.updateChart(displayAverages);
     }
 
     static generateAverageDataSets() {
@@ -152,20 +212,25 @@ class TerminationsBySuperintendent {
     static displayAverageData() {
         let avgDatasets = this.generateAverageDataSets();
         this.chart.data.datasets = this.chart.data.datasets.concat(avgDatasets);    
-    
-        //update x-axis labels
-        this.updateYearsOfTenureLabels(true);
-    
-        this.chart.update();
+        this.updateChart();
     }
 
     static hideAverageData() {
         //if averages are displayed, they will be last 2 datasets - check if last 2 datasets are averages
         if (this.chart.data.datasets[this.chart.data.datasets.length - 1].label.includes("average")) {
             this.chart.data.datasets.splice(-2, 2); //remove last 2 data elements
-            this.updateYearsOfTenureLabels(false);
-            this.chart.update();
+            this.updateChart();
         }
+    }
+    
+    static updateChartIncludeAverages() {
+        this.updateChart(true);
+    }
+
+    static updateChart(includeAverages = false) {
+        this.updateYearsOfTenureLabels(includeAverages);   //update x-axis labels
+        this.updateLegend(this.chart);
+        this.chart.update();
     }
 
     static updateYearsOfTenureLabels(includeAverages) {
@@ -245,25 +310,29 @@ function setupTerminationsBySuperintendent(superintendents, data) {
                 datasets: datasets
             },
             options: {
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Number of Cases'
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of Cases'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year of Tenure'
+                        }
+                    }]
+                },
+                legend: {
+                    display: false
                 }
-                }],
-                xAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Year of Tenure'
-                }
-                }]
-            }     
             }
-        });              
-    }); 
+        });  
 
+        TerminationsBySuperintendent.generateLegend();          
+    }); 
     
     //register on click event for superintendent images
     $(".superintendent-thumb").on("click", function() {

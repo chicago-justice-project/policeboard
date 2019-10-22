@@ -308,6 +308,19 @@ ul { list-style: disc; margin-left: 1.5em; }
     max-height: 500px;
 }
 
+#terminations-by-superintendent-legend ul {
+  list-style: none;
+  text-align: center;
+  margin: 0 0;
+}
+
+#terminations-by-superintendent-legend li {
+  display: inline-table;
+  font-size: small;
+  color: #595959;
+  padding-left: 15px;
+}
+
 /* Analytics options table */
 /* https://css-tricks.com/accessible-simple-responsive-tables - Responsive tables with flexbox */
 .rtable {
