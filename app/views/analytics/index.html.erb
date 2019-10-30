@@ -24,6 +24,10 @@
   </p><p>
     The year time frames are calculated starting the day the Superintendent takes command and are not on a calendar year. 
     The last year for every Superintendent is a partial year, and will be displayed as an unfilled data point on the graph. 
+    You'll notice that not all cases where the superintendent recommends termination actually result in termination - the cases that don't result in termination could still be pending, or could have resulted in a different outcome. 
+    On average in a given year, 26% of cases where recommendation is termination result in the police officer's resignation. 
+    Also, be aware that cases which result in a board decision usually take about a year or more to come to a disposition. 
+  </p><p>
     Charges filed by the superintendent are based on recommendations made by either the <a href="http://www.chicagocopa.org">Civilian Office of Police Accountability (COPA)</a> or the <a href="https://portal.chicagopolice.org/portal/page/portal/ClearPath/Internal%20Affairs%20Division">Internal Affairs Division (IAD)</a> of the Chicago Police Department. 
     For more details about the process, check out a step by step breakdown <%= link_to 'here', about_path(:anchor => "process-header") %>.
   </p>
@@ -40,8 +44,8 @@
       </label>
     </div>
 
-    <div class="rtable-cell label">Select superintendents</div>
-    <div class="rtable-cell content">
+    <div class="rtable-cell label-2">Select superintendents</div>
+    <div class="rtable-cell content-2">
       <ul class="su-thumbnails">
         <% @superintendents.each_with_index do |su, index| %>
           <li>
