@@ -341,8 +341,8 @@ ul { list-style: disc; margin-left: 1.5em; }
   }
   
   /* Table column sizing */
-  .rtable--2cols > .rtable-cell.label { width: 20% }
-  .rtable--2cols > .rtable-cell.content { width: 80% }
+  .rtable--2cols > .rtable-cell.label, .rtable--2cols > .rtable-cell.label-2  { width: 20% }
+  .rtable--2cols > .rtable-cell.content, .rtable--2cols > .rtable-cell.content-2 { width: 80% }
   .rtable--2cols > .rtable-cell  { width: 50%; }
   .rtable--3cols > .rtable-cell  { width: 33.33%; }
   .rtable--4cols > .rtable-cell  { width: 25%; }
@@ -371,7 +371,8 @@ ul.su-thumbnails {
   border: 5px solid #08C;
   border-radius: 3px;
   padding: 4.5px;
-  margin-right: 14px;
+  margin-right: 3px;
+  margin-bottom: 3px;
   cursor: pointer;
 }
 
@@ -402,7 +403,7 @@ ul.su-thumbnails {
 .superintendent-thumb.deselected {
   filter: grayscale(100%);
   border: 1px solid #DDD;
-  margin-top: 4px;
+  margin: 4px 7px 7px 4px;
 }
 
 .superintendent-thumb p {
@@ -514,6 +515,14 @@ ul.su-thumbnails {
         #intro { padding-top: 30%; }
         #intro h1 { font-size: 30px; }
         #intro-primary { width: auto; }
+
+    /*Analytics page*/
+    ul.su-thumbnails { max-width: 350px; }
+
+    /* Analytics options table */
+    /* Table column sizing */
+    .rtable--2cols > .rtable-cell.label, .rtable--2cols > .rtable-cell.label-2 { width: 35% }
+    .rtable--2cols > .rtable-cell.content, .rtable--2cols > .rtable-cell.content-2 { width: 65% }
 }
 
 @media screen and (max-width: 600px) {
@@ -537,6 +546,17 @@ ul.su-thumbnails {
         #process .description, #process .step { float: none; width: auto; }
         #process > li { margin-bottom: 1em; }
         #process .step p { margin: 0; }
+
+    /*Analytics page*/
+    ul.su-thumbnails { max-width: none; }
+
+    /* Analytics options table */
+    /* Table column sizing */
+    .rtable--2cols > .rtable-cell.label { width: 70% }
+    .rtable--2cols > .rtable-cell.content{ width: 30% }
+    .rtable--2cols > .rtable-cell.label-2 { width: 100% }
+    .rtable--2cols > .rtable-cell.content-2 { width: 100%; margin-top: -10px; }
+
 }
 
 /* iziToast Notification Banners
