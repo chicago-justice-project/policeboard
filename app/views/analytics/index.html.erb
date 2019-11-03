@@ -1,9 +1,75 @@
 <% title "Analytics" %>
 <% body_id "analytics-index" %>
+
 <div class="content-box">
+
   <h1>Case Analytics</h1>
+  <p>
+    Using data visualizations, we seek to make public data on the Chicago Police Board easier to consume and understand. All visualizations are automatically updated with the most recent cases available in the database.
+  </p>
+
 </div>
 
+<div class="content-box">
+
+  <h2>
+    Termination cases filed during tenure of superintendents
+  </h2>
+
+  <p>
+    The following chart visualizes the number of times the Superintendent of the Chicago Police Department filed charges with the Chicago Police Board seeking to terminate the employment of a Chicago Police officer. 
+    It also displays the number of cases which actually result in the termination of an officer. 
+    This visualization allows you to compare across the tenures of the last five Superintendent’s to determine what differences there might be between the number of times individual Superintendents sought to terminate the employment of Chicago Police Officers. 
+    Because case data is only available from 1998 onwards, superintendents who have been in office prior to that date will not be included in the visualization.
+  </p><p>
+    The year time frames are calculated starting the day the Superintendent takes command and are not on a calendar year. 
+    The last year for every Superintendent is a partial year, and will be displayed as an unfilled data point on the graph. 
+    You'll notice that not all cases where the superintendent recommends termination actually result in termination - the cases that don't result in termination could still be pending, or could have resulted in a different outcome. 
+    On average in a given year, 26% of cases where recommendation is termination result in the police officer's resignation. 
+    Also, be aware that cases which result in a board decision usually take about a year or more to come to a disposition. 
+  </p><p>
+    Charges filed by the superintendent are based on recommendations made by either the <a href="http://www.chicagocopa.org">Civilian Office of Police Accountability (COPA)</a> or the <a href="https://portal.chicagopolice.org/portal/page/portal/ClearPath/Internal%20Affairs%20Division">Internal Affairs Division (IAD)</a> of the Chicago Police Department. 
+    For more details about the process, check out a step by step breakdown <%= link_to 'here', about_path(:anchor => "process-header") %>.
+  </p>
+  
+  <h3>Options</h3>
+
+  <div class="rtable rtable--2cols">
+
+    <div class="rtable-cell label">Display averages of data for superintendents not currently selected</div>
+    <div class="rtable-cell content">
+      <label class="el-checkbox el-checkbox-sm">
+      <input type="checkbox" id="display-averages" checked>
+      <span class="el-checkbox-style"></span>
+      </label>
+    </div>
+
+    <div class="rtable-cell label-2">Select superintendents</div>
+    <div class="rtable-cell content-2">
+      <ul class="su-thumbnails">
+        <% @superintendents.each_with_index do |su, index| %>
+          <li>
+            <% if index == 0 %>
+              <div class="superintendent-thumb su-<%=index%>" superintendent-id=<%=su.id%>>
+                <%= image_tag su.photo, :title=>su.full_name, 'superintendent-id'=>su.id, 'color-index'=>index %>
+                <p><%= su.first_name.upcase %><br><%= su.last_name.upcase %></p>
+              </div>
+            <% else %>
+              <div class="superintendent-thumb deselected su-<%=index%>" superintendent-id=<%=su.id%>>
+                <%= image_tag su.photo, :title=>su.full_name, 'color-index'=>index %>
+                <p><%= su.first_name.upcase %><br><%= su.last_name.upcase %></p>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div id="terminations-by-superintendent-legend"></div>
+  <canvas id="terminations-by-superintendent"></canvas>
+
+</div>
 
 <div class="content-box cases_filed_by_year">
   <div></div>
@@ -22,8 +88,19 @@
 </div>
 
 <script src="http://code.highcharts.com/stock/highstock.js"></script>
-
+<%= javascript_include_tag "https://cdn.jsdelivr.net/npm/chart.js@2.8.0" %>
 <script type="text/javascript">
+/*-----------------------------------------------+
+ | Visualization: Terminations by superintendent |
+ | Plugin: ChartJS                               |
+ +-----------------------------------------------*/
+var superintendents = <%= raw @superintendents.to_json %>;
+setupTerminationsBySuperintendent(superintendents,<%=raw @terminations_by_superintendent_data.to_json %>);
+
+/*-------------------------------------------------+
+ | Visualization: Cases filed by year              |
+ | Plugin: Highcharts                              |
+ +-------------------------------------- ----------*/
   $(function () {
     $('.cases_filed_by_year div').highcharts({
       chart: {
@@ -32,9 +109,6 @@
       title: {
         text: 'Number of cases filed by year'
       },
-      // subtitle: {
-      //   text: 'Source: WorldClimate.com'
-      // },
       xAxis: {
         min: 0,
         max: <%= @cases_filed_by_year_range.count > 5 ? 4 : @cases_filed_by_year_range.count - 1 %>,

@@ -13,5 +13,6 @@
  *= require reset
  *= require master
  *= require forms
+ *= require checkbox
  *= require_self
  */

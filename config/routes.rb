@@ -45,7 +45,6 @@ Rails.application.routes.draw do
   resources :cases, only:[:show, :index]
   resources :board
   resources :rules, only: [:show, :index]
-
   resources :analytics, only: [:show, :index]
 
   #get 'admin/index'

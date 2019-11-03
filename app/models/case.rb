@@ -24,6 +24,9 @@ class Case < ActiveRecord::Base
   mount_uploaders :files, CaseFileUploader
 
   enum category: ["Excessive Force--On Duty", "Other On-Duty Misconduct", "Domestic Altercation--Off Duty", "Other Off-Duty Misconduct", "Drug/Alcohol Abuse", "Bribery/Official Corruption", "Commission of a Crime", "Conduct Unbecoming--Off Duty", "Operation/Personnel Violations", "Other (BIA)"]
+  enum recommended_outcome_id: { termination_recommended: 1 } #use _suffix option after upgrading to Rails 5
+  enum decided_outcome_id: { termination_decided: 1 }         #use _suffix option after upgrading to Rails 5
+
 
   after_update :sort_case_rule_counts, :sort_case_rules
 
@@ -111,5 +114,30 @@ class Case < ActiveRecord::Base
       @count << (@count_per_year[year.to_f] || 0)
     end
     @count
+  end
+
+  # If counting only by recommended outcome, pass 0 for decided outcome and vice versa.
+  # Returns a count of cases of the specified outcome for the given date range
+  def self.count_for_outcome(start_date, end_date, recommended_outcome_id, decided_outcome_id)
+    #filter count by both recommended and decided
+    if recommended_outcome_id != 0 && decided_outcome_id != 0
+      Case.where(recommended_outcome_id: recommended_outcome_id)
+      .where(decided_outcome_id: decided_outcome_id)
+      .where(is_active: true)
+      .where(:date_initiated=> start_date..end_date)
+      .count
+    #filter count by recommended
+    elsif recommended_outcome_id != 0
+      Case.where(recommended_outcome_id: recommended_outcome_id)
+      .where(is_active: true)
+      .where(:date_initiated=> start_date..end_date)
+      .count
+    #filter count by decided
+    else
+      Case.where(decided_outcome_id: decided_outcome_id)
+      .where(is_active: true)
+      .where(:date_initiated=> start_date..end_date)
+      .count
+    end
   end
 end

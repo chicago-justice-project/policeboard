@@ -1,0 +1,10 @@
+// note: this babel config file doesn't work yet, still have yet to figure out why it's not being read
+{
+    "presets": [
+        ["env", {
+          "targets": {
+            "ie": "10"
+          }
+        }]
+      ]
+}
