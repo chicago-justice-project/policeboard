@@ -22,7 +22,5 @@
 //= require responsive-init
 //= require search
 //= require table-scroll
-//= require policeboard
 //= require tinymce
-//= require iziToast
 

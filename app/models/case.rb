@@ -1,10 +1,11 @@
 require 'action_view'
 include ActionView::Helpers::DateHelper
+include CaseSearch
 
 class Case < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
-  attr_accessor :tweet_charges
+  attr_accessor :tweet_charges, :search_text
   attr_accessor :tweet_decision
 
   belongs_to :defendant
@@ -15,6 +16,7 @@ class Case < ActiveRecord::Base
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
   has_many :minority_opinions
+  has_many :case_text_files
 
   accepts_nested_attributes_for :minority_opinions
   accepts_nested_attributes_for :defendant
@@ -56,7 +58,6 @@ class Case < ActiveRecord::Base
         rule_count.save
       end
     end
-
   end
 
   def sort_case_rules
@@ -65,7 +66,6 @@ class Case < ActiveRecord::Base
       case_rule.save
     end
   end
-
 
   def agree_votes
     self.board_member_votes.where(vote_id: Vote.AGREE).map{|bmv| bmv.board_member}
@@ -85,31 +85,24 @@ class Case < ActiveRecord::Base
     end
   end
 
-  def self.search(keyword)
-    Case
-      .joins(:defendant)
-      .where(is_active:true)
-      .where.not(defendant_id: nil)
-      .where("LOWER(cases.number) LIKE :keyword " +
-        "OR LOWER(defendants.first_name) LIKE :keyword " +
-        "OR LOWER(defendants.last_name) LIKE :keyword " +
-        "OR LOWER(defendants.first_name||' '||defendants.last_name) LIKE :keyword " +
-        "OR LOWER(defendants.number) LIKE :keyword",
-        { keyword: '%' + keyword.downcase + '%' })
+  def search_blurb
+    search_text if defined?(search_text)
   end
 
-  def self.count_per_year_for_outcome(recommended_outcome_id, decided_outcome_id)
-    @count_per_year = Case
-      .where(is_active: true)
-      .where.not(date_initiated: nil)
-      .where(recommended_outcome_id: recommended_outcome_id, decided_outcome_id: decided_outcome_id)
-      .order('EXTRACT(YEAR from date_initiated)')
-      .group('EXTRACT(YEAR from date_initiated)')
-      .count
-    @count = []
-    (@count_per_year.keys.first.to_i..@count_per_year.keys.last.to_i).each do |year|
-      @count << (@count_per_year[year.to_f] || 0)
+  class << self
+    def count_per_year_for_outcome(recommended_outcome_id, decided_outcome_id)
+      @count_per_year = Case
+        .where(is_active: true)
+        .where.not(date_initiated: nil)
+        .where(recommended_outcome_id: recommended_outcome_id, decided_outcome_id: decided_outcome_id)
+        .order('EXTRACT(YEAR from date_initiated)')
+        .group('EXTRACT(YEAR from date_initiated)')
+        .count
+      @count = []
+      (@count_per_year.keys.first.to_i..@count_per_year.keys.last.to_i).each do |year|
+        @count << (@count_per_year[year.to_f] || 0)
+      end
+      @count
     end
-    @count
   end
 end

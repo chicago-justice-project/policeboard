@@ -23,11 +23,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'twitter'
+gem 'pdf-reader'
 
 group :development do
   gem 'foreman'
   gem 'htmlbeautifier'
   gem 'spring'
+  gem 'byebug'
 end
 
 # Use ActiveModel has_secure_password
@@ -68,9 +70,4 @@ gem 'figaro'
 
 gem 'aws-sdk'
 
-#for debugging
-gem 'byebug', group: [:development, :test]
 
-
-#for notification banners
-gem 'izitoast'

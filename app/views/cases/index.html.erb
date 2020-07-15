@@ -2,10 +2,13 @@
 
 <div class="content-box">
   <h1>Cases</h1>
-  
+
   <div id="case-search">
       <div class="search">
           <%= form_tag(cases_path, :method => "get", id: "case-search-content") do %>
+          <%= select_tag "search_type",
+              options_for_select(Case::SEARCH_CATEGORIES, :selected => params[:search_type]),
+              {class: 'classic'}%>
             <%= text_field_tag :search, params[:search], class: "txt", placeholder: "Search cases..." %>
             <%= button_tag(type: 'submit', class: "action") do %>
              <i class="fa fa-search"></i>
@@ -18,7 +21,7 @@
 <div class="content-box">
   <div class="c2l">
     <h2><%= @header %></h2>
-    
+
     <ul class="cases">
       <% if @cases.present? %>
         <%= render partial: "case", collection: @cases, as: :c %>
@@ -29,7 +32,7 @@
     </ul>
     <p><%= link_to raw('View all cases &raquo;'), cases_path if params[:search]%></p>
   </div>
- 
+
   <div class="c2r">
     <h2><%= @counter %></h2>
     <div id="cases-annual-trend" <%= 'hidden' if params[:search] %>>
@@ -46,7 +49,7 @@ $(function () {
       type: 'area'
     },
     title: {
-      text: ''   
+      text: ''
     },
     xAxis: {
       allowDecimals: false,

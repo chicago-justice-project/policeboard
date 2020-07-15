@@ -3,14 +3,13 @@ require 'roo'
 require 'aws-sdk'
 
 namespace :import do
-  board_members   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-members.xlsx").sheet(0)
-  board_terms     = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-terms.xlsx").sheet(0)
-  board_votes     = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-votes.xlsx").sheet(0)
-  cases           = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/cases.xlsx").sheet(0)
-  case_rules      = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/case-rules.xlsx").sheet(0)
-  raw_data        = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/raw-data.xlsx").sheet(0)
-  rules           = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/rules.xlsx").sheet(0)
-  superintendents = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/superintendents.xlsx").sheet(0)
+  board_members = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-members.xlsx").sheet(0)
+  board_terms   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-terms.xlsx").sheet(0)
+  board_votes   = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/board-member-votes.xlsx").sheet(0)
+  cases         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/cases.xlsx").sheet(0)
+  case_rules    = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/case-rules.xlsx").sheet(0)
+  raw_data      = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/raw-data.xlsx").sheet(0)
+  rules         = Roo::Excelx.new("#{Rails.root.to_s}/lib/assets/rules.xlsx").sheet(0)
 
   desc "Reimport db"
   task :reimport_db do
@@ -130,26 +129,6 @@ namespace :import do
       puts "Defendant: #{num.to_i} #{fname} #{lname} #{rank_id}"
 
       Defendant.create(:first_name=>fname, :last_name=>lname, :number=>num.to_i, :rank_id=>rank_id)
-    end
-  end
-
-  desc "Import superintendents"
-  task :superintendents => :environment do
-    superintendents.drop(1)
-    superintendents.each(
-      first_name: 'First Name',
-      last_name: 'Last Name',
-      start_of_term: 'Start Date',
-      end_of_term: 'End Date'
-    ) do |su|
-      Superintendent.create(
-        :first_name=>su[:first_name],
-        :last_name=>su[:last_name],
-        :start_of_term=>su[:start_of_term],
-        :end_of_term=>su[:end_of_term],
-        :created_at=>Time.now,
-        :updated_at=>Time.now
-      )
     end
   end
 
@@ -302,5 +281,62 @@ namespace :import do
       puts "#{c.number} #{bm.first_name} #{bm.last_name} #{vote.name}"
       BoardMemberVote.create(:case_id=>c.id, :board_member_id=>bm.id, :vote_id=>vote.id)
     end
+  end
+
+  desc "Import Case Text Files"
+  task :case_text_files => :environment do
+
+    s3 = Fog::Storage.new({
+        provider: 'AWS',
+        aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+        aws_secret_access_key: ENV["AWS_SECRET_KEY"],
+        region: ENV["AWS_REGION"]
+    })
+
+    bucket = s3.directories.new(key: ENV["AWS_BUCKET"])
+
+    folder ='uploads/case/files/'
+
+    cases = Case.where('files is not null')
+    puts "Checking #{cases.count} Records"
+
+    cases.each do |xcase|
+      xcase.files.each do |file|
+        file_name = File.basename(file.path)
+        next if case_text_file_exists(xcase.id, file_name)
+
+        full_file_name = folder + file_name
+
+        pdf = bucket.files.get(full_file_name)
+
+        next if pdf.nil?
+
+        puts "creating record #{xcase.id}  with #{full_file_name}"
+        CaseTextFile
+        .create!(case_id: xcase.id,
+                 name: file_name,
+                 search_text:  pdf_to_text(pdf))
+      end
+    end
+  end
+
+  def pdf_to_text(pdf)
+    reader = PDF::Reader.new(file_to_stream(pdf))
+    pdf_text = StringIO.new
+    reader.pages.each do |page|
+      pdf_text << page.text unless page.text.empty?
+    end
+    pdf_text.string
+  end
+
+  def file_to_stream(file)
+    stream = StringIO.new
+    stream << file.body.force_encoding('UTF-8')
+    stream
+  end
+
+  def case_text_file_exists(case_id, file_name)
+    ctf = CaseTextFile.find_by(case_id: case_id, name: file_name)
+    ctf.present?
   end
 end

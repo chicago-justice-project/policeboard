@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190808063729) do
+ActiveRecord::Schema.define(version: 20190825220617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,14 @@ ActiveRecord::Schema.define(version: 20190808063729) do
 
   add_index "case_rules", ["case_id"], name: "index_case_rules_on_case_id", using: :btree
   add_index "case_rules", ["rule_id"], name: "index_case_rules_on_rule_id", using: :btree
+
+  create_table "case_text_files", force: :cascade do |t|
+    t.integer  "case_id"
+    t.string   "name"
+    t.text     "search_text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "cases", force: :cascade do |t|
     t.string   "number"
@@ -157,15 +165,6 @@ ActiveRecord::Schema.define(version: 20190808063729) do
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "superintendents", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.date     "start_of_term"
-    t.date     "end_of_term"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "terms", force: :cascade do |t|

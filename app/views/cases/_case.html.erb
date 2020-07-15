@@ -10,5 +10,9 @@
         <li><%= c.date_initiated.nil? ? "" : c.date_initiated.to_formatted_s(:long) %></li>
         <li>Case <%= c.number %></li>
         <li><%= c.length_of_process.nil? ? "" : "Length of process: #{c.length_of_process}" %></li>
+        <% if c.search_text %>
+            <br>
+            <li> <%= c.search_text.html_safe %></li>
+        <% end %>
     </ul>
 </li>

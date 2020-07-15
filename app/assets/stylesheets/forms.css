@@ -96,14 +96,26 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .txt-num { width: 4em; }
 
 /* Search */
-.search { background: #fff; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; padding-right: 3em; white-space: nowrap; }
+.search { background: #fff; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; white-space: nowrap; }
 .search label { display: none; }
 .search * { vertical-align: middle; }
-.search button { -webkit-appearance: none; background: none; border: 0; color: #505050; cursor: pointer; font-size: 16px; margin-right: -2em; padding: 0.5em 0; width: 3em; }
+.search button { -webkit-appearance: none; background: none; border: 0; color: #505050; cursor: pointer; font-size: 16px; padding: 0.5em 0; }
 .search .txt { border: 0; box-shadow: none; margin: 0; padding: 0.5em; text-indent: 0.6em; width: 100%; }
+.search select { line-height: normal; border: none; }
 
-    /* Cases landing */
-    #case-search { font-size: 24px; width: 60%; }
+select.classic {width: 42%}
+.classic + .txt { width: 58%; }
+.classic ~ button { padding: 1.1em 0.4em 0 0 }
+
+#case-search-content {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+}
+/* Cases landing */
+    #case-search {font-size: 24px; width: 75%; min-width: 465px; }
 
     /* In navigation */
     #nav .search { position: absolute; right: 0; top: 2em; width: 10em; }
@@ -116,3 +128,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .violated-rules { list-style: none; margin-left: 0; }
 .violated-rules li { border-bottom: 1px solid #ddd; margin-bottom: 1em; padding-bottom: 0.5em; }
 .violated-rules p { margin-bottom: 0.5em; }
+
+@media screen and (max-width: 600px) {
+    #case-search {
+        width: 100%;
+        min-width: 0;
+    }
+}

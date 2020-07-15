@@ -1,7 +1,7 @@
 
 CarrierWave.configure do |config|
 
-  if Rails.env.development? || Rails.env.test?
+  if Rails.env.test?
     CarrierWave.configure do |config|
       config.storage = :file
     end
@@ -21,7 +21,7 @@ CarrierWave.configure do |config|
   config.fog_public     = true    # optional, defaults to true
   config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
 
-  if Rails.env.production?
+  unless Rails.env.production?
     CarrierWave.configure do |config|
       config.storage = :fog
     end
