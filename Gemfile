@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'simple_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -10,7 +10,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 5.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -28,6 +28,7 @@ group :development do
   gem 'foreman'
   gem 'htmlbeautifier'
   gem 'spring'
+  gem 'listen'
 end
 
 # Use ActiveModel has_secure_password
@@ -50,7 +51,7 @@ gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '~> 2.2.9'
+ruby '~> 2.7'
 
 #gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
@@ -74,3 +75,5 @@ gem 'byebug', group: [:development, :test]
 
 #for notification banners
 gem 'izitoast'
+
+gem 'bootsnap'
