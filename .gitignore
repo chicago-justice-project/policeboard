@@ -30,3 +30,7 @@ public/**/**
 
 # Ignore application configuration
 /config/application.yml
+.idea/*
+deploy/*
+.generators
+.rakeTasks

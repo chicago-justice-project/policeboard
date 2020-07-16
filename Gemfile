@@ -51,7 +51,7 @@ gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '~> 2.7'
+ruby '~> 2.6'
 
 #gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
