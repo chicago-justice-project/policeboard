@@ -5,7 +5,7 @@ branch-defaults:
 global:
   application_name: policeboard
   branch: null
-  default_platform: 64bit Amazon Linux 2 v3.0.3 running Ruby 2.7
+  default_platform: Ruby 2.6 running on 64bit Amazon Linux 2
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: null
