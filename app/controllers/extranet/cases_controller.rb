@@ -30,8 +30,10 @@ module Extranet
       if @case.save
         redirect_to extranet_cases_path, :notice => "Case successfully added"
       else
+        error_message = @case.errors.full_messages
+        Rails.logger.error error_message
         #flash[:error] = "Oops there was an error."
-        redirect_to new_extranet_case_path, :notice => "Oops there was an error saving this case. "
+        redirect_to new_extranet_case_path, :alert => "Oops there was an error saving this case. "
       end
     end
 
