@@ -1,41 +1,5 @@
 Rails.application.routes.draw do
-
-  #namespace :extranet do
-  #get 'rules/index'
-  #end
-
-  #namespace :extranet do
-  #get 'rules/new'
-  #end
-
-  #namespace :extranet do
-  #get 'rules/create'
-  #end
-
-  #namespace :extranet do
-  #get 'rules/edit'
-  #end
-
-  #namespace :extranet do
-  #get 'rules/update'
-  #end
-
-  #namespace :extranet do
-  #get 'rules/show'
-  #end
-
-  #namespace :extranet do
-  #get 'rules/destroy'
-  #end
-
-  #namespace :admin do
-  #  DashboardManifest::DASHBOARDS.each do |dashboard_resource|
-  #    resources dashboard_resource
-  #  end
-
-  #  root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
-  #end
-
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
   get '/about', to: 'static_pages#about'
@@ -57,8 +21,8 @@ Rails.application.routes.draw do
       resources :terms, only:[:create, :destroy]
     end
     resources :cases do
-       resources :case_files, only:[:destroy]
-       resources :minority_opinions, only:[:create, :destroy]
+      resources :case_files, only:[:destroy]
+      resources :minority_opinions, only:[:create, :destroy]
     end
   end
 end

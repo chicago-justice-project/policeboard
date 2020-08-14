@@ -47,8 +47,21 @@ To fix this, try adding `host: localhost` to the default settings section in the
 
 ## Deployment
 
-The app runs on AWS Elastic Beanstalk. The database lives on Amazon RDS. To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
+The app runs on AWS Elastic Beanstalk. The database lives on Amazon RDS. 
+To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
+
+To deploy, create a zip bundle by using the build.sh script in the root director.  This will create
+a zip file in deploy/ called "policeboard.zip".  You can then upload this to Elastic Beanstalk.  
+
+All builds should go to Staging first and be vetted there.  Once they are working correctly, they can then
+be promoted to production from within Elastic Beanstalk.
 
 ### Images
 
-Some images are stored in AWS S3, while others are stored in the assets folder. The image uploading process for AWS is managed by [CarrierWave](https://rubydoc.info/gems/carrierwave/frames). For images handled by S3, if the image does not exist, expect to see a broken link as there is currently no fallback or placeholder.
+Some images are stored in AWS S3, while others are stored in the assets folder. 
+The image uploading process for AWS is managed by [CarrierWave](https://rubydoc.info/gems/carrierwave/frames). 
+For images handled by S3, if the image does not exist, it will display a fallback image.
+
+CarrierWave automatically intercepts any requests for an S3 sourced image to the /uploads path.  If S3 is configured
+as it is in staging and production, the path will automatically be transposed to the S3 path.  S3 files should be
+configured for public read access.
