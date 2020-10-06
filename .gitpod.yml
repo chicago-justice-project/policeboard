@@ -3,7 +3,6 @@ image:
 
 tasks:
   - init: bundle install
-    command: bundle install
     command: rake db:create db:migrate
     command: rake db:seed
     command: rake import:all
