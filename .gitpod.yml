@@ -1,0 +1,9 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: bundle install
+    command: rake db:create db:migrate
+    command: rake db:seed
+    command: rake import:all
+    command: foreman start
