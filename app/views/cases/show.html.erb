@@ -53,6 +53,12 @@
       <strong class="value"><%= @case.is_open ? "Open" : "Closed" %></strong>
     </li>
   </ul>
+  <ul class="highlights">
+    <li>
+      <span class="title">Investigated By</span>
+      <strong class="value"><%= @case.investigated_by.nil? ? "Not Specified":@case.investigated_by %></strong>
+    </li>
+  </ul>
 </div>
 <div class="content-box">
   <h2>Charged with violating <%= pluralize(@case.case_rules.count, 'rule') %> on <%= pluralize(@case.case_rule_counts.count, 'count') %></h2>

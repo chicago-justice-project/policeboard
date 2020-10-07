@@ -70,7 +70,10 @@
     </li>
     <li class="form-row">
       <div class="form-label"><%= f.label :investigated_by, "Investigated By" %></div>
-      <div class="form-field"><%= f.select :investigated_by, ['','BIA', 'IPRA']%></div>
+      <div class="form-field">
+        <%= f.radio_button :investigated_by, "BIA" %> BIA
+        <%= f.radio_button :investigated_by, "IPRA" %> IPRA
+      </div>
     </li>
     <li class="form-row">
       <div class="form-label"><%= f.label :recommended_outcome_id, "Recommended discipline" %></div>
