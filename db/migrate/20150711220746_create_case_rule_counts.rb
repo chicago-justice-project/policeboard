@@ -1,4 +1,4 @@
-class CreateCaseRuleCounts < ActiveRecord::Migration
+class CreateCaseRuleCounts < ActiveRecord::Migration[4.2]
   def change
     create_table :case_rule_counts do |t|
       t.references :case_rule, index: true

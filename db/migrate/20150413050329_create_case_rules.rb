@@ -1,4 +1,4 @@
-class CreateCaseRules < ActiveRecord::Migration
+class CreateCaseRules < ActiveRecord::Migration[4.2]
   def change
     create_table :case_rules do |t|
       t.references :case, index: true
