@@ -3,4 +3,4 @@ image:
 
 tasks:
   - init: bundle install && rake db:create db:migrate db:seed import:all
-  - command: mkdir -p tmp/pids
+  - init: mkdir -p tmp/pids
