@@ -71,8 +71,7 @@
     <li class="form-row">
       <div class="form-label"><%= f.label :investigated_by, "Investigative Agency" %></div>
       <div class="form-field">
-        <%= f.radio_button :investigated_by, "BIA" %> BIA
-        <%= f.radio_button :investigated_by, "IPRA" %> IPRA
+        <%= f.select :investigated_by, ["BIA","COPA","IGO","IPRA","OPS"], { selected: @case.investigated_by || nil, prompt: "Select Agency"}%>
       </div>
     </li>
     <li class="form-row">
