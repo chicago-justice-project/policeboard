@@ -7,4 +7,4 @@ tasks:
       rake db:create db:migrate
       rake db:seed
       rake import:all
-      foreman start
+      mkdir tmp/pids

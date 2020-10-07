@@ -1,4 +1,4 @@
-class CreateBoardMemberVotes < ActiveRecord::Migration
+class CreateBoardMemberVotes < ActiveRecord::Migration[4.2]
   def change
     create_table :board_member_votes do |t|
       t.references :case, index: true
