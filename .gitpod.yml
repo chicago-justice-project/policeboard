@@ -3,7 +3,8 @@ image:
 
 tasks:
   - init: bundle install
-    command: rake db:create db:migrate
-    command: rake db:seed
-    command: rake import:all
-    command: foreman start
+    command: >
+      rake db:create db:migrate
+      rake db:seed
+      rake import:all
+      mkdir tmp/pids

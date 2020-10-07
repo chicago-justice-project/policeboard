@@ -1,4 +1,4 @@
-class CreateSuperintendents < ActiveRecord::Migration
+class CreateSuperintendents < ActiveRecord::Migration[4.2]
   def change
     create_table :superintendents do |t|
       t.string :first_name
