@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_210533) do
+ActiveRecord::Schema.define(version: 2020_10_07_191242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_210533) do
     t.boolean "is_open"
     t.integer "category"
     t.boolean "appealed", default: false
+    t.string "investigated_by"
     t.index ["decided_outcome_id"], name: "index_cases_on_decided_outcome_id"
     t.index ["defendant_id"], name: "index_cases_on_defendant_id"
     t.index ["recommended_outcome_id"], name: "index_cases_on_recommended_outcome_id"
