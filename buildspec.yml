@@ -7,11 +7,6 @@ phases:
       - echo Build started on `date`
       - echo Building the zip file...
       - ./build.sh
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the zip image...
-      - echo NOT YET IMPLEMENTED
 
 artifacts:
   files: deploy/policeboard.zip
