@@ -7,6 +7,7 @@ phases:
       - echo Build started on `date`
       - echo Building the zip file...
       - ./build.sh
+      - mv deploy/policeboard.zip policeboard.zip
 
 artifacts:
-  files: deploy/policeboard.zip
+  files: policeboard.zip
