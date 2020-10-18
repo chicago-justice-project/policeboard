@@ -1,5 +1,3 @@
 #!/bin/sh
 
-mkdir -p ./deploy
-rm deploy/policeboard.zip
-zip deploy/policeboard.zip -r * .ebextensions/* .elasticbeanstalk/* -x 'deploy/*' -x 'tmp/*'
+zip policeboard.zip -r * .ebextensions/* .elasticbeanstalk/*  -x 'tmp/*' -x 'log/*'
