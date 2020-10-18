@@ -9,4 +9,4 @@ phases:
       - ./build.sh
 
 artifacts:
-  files: deploy/*
+  files: deploy/**/*
