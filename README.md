@@ -48,13 +48,14 @@ To fix this, try adding `host: localhost` to the default settings section in the
 ## Deployment
 
 The app runs on AWS Elastic Beanstalk. The database lives on Amazon RDS. 
-To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
 
-To deploy, create a zip bundle by using the build.sh script in the root director.  This will create
-a zip file in deploy/ called "policeboard.zip".  You can then upload this to Elastic Beanstalk.  
+AWS Code Pipeline is configured to build from the staging branch of the Github repo.  This 
+should happen automatically whenever new code is committed.  If it doesn't, you may
+need to log into AWS.  If you need credentials, ask a CJP administrator.
 
-All builds should go to Staging first and be vetted there.  Once they are working correctly, they can then
-be promoted to production from within Elastic Beanstalk.
+Once the code has been vetted in staging, it should be merged into the master branch. 
+Automatic deployments are not running on master at this time, but you can deploy the staging
+code into production from the Elastic Beanstalk admin interface.
 
 ### Images
 
