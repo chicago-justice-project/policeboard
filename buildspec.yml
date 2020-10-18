@@ -10,4 +10,4 @@ phases:
       - ls -ld deploy
 
 artifacts:
-  files: deploy
+  files: deploy/
