@@ -76,7 +76,7 @@ module Extranet
 
     private
     def sort_column
-      (Case.column_names + ["defendants.first_name", "outcomes.name"]).include?(params[:sort]) ? params[:sort] : "id"
+      (Case.column_names + ["defendants.first_name", "outcomes.name"]).include?(params[:sort]) ? params[:sort] : "number"
     end
 
     def sort_direction

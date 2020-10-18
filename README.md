@@ -65,3 +65,12 @@ For images handled by S3, if the image does not exist, it will display a fallbac
 CarrierWave automatically intercepts any requests for an S3 sourced image to the /uploads path.  If S3 is configured
 as it is in staging and production, the path will automatically be transposed to the S3 path.  S3 files should be
 configured for public read access.
+
+### Gitpod Instructions
+
+The repo should now properly support the use of Gitpod.io.  To use gitpod, fork the CJP repo, and then follow the instructions
+at the Gitpod.io site: https://www.gitpod.io/docs/getting-started/
+
+Gitpod will spin up with a Postgres environment and should initialize the database for you.  The only step you'll need to take 
+after launch is to run the "foreman start" command.  At that point, it should start the server.  You'll need to open the port in
+Gitpod, but then you should be all set.  

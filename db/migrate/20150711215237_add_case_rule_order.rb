@@ -1,4 +1,4 @@
-class AddCaseRuleOrder < ActiveRecord::Migration
+class AddCaseRuleOrder < ActiveRecord::Migration[4.2]
   def change
     remove_column :case_rules, :content, :text
     remove_column :case_rules, :is_guilty, :boolean
