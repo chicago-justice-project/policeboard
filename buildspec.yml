@@ -7,7 +7,6 @@ phases:
       - echo Build started on `date`
       - echo Building the zip file...
       - ./build.sh
-      - ls -ld deploy
 
 artifacts:
-  files: deploy/
+  files: policeboard.zip
