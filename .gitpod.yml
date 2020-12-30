@@ -2,5 +2,5 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: bundle install && rake db:create db:migrate db:seed import:all
+  - init: gem install bundle && bundle install && rake db:create db:migrate db:seed import:all
   - command: mkdir -p tmp/pids && exit
