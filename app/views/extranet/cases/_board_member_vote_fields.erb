@@ -4,8 +4,8 @@
 	<div class="board-selection" style="display:none;">
 		<span class="label">Add a board</span>
         <p><%= f.object.board_member_id %></p>
-        <%= f.collection_select :board_member_id, BoardMember.all.select{ |b| b.active}.sort_by{ |b| b.last_name }, :id, :full_name %>
-	</div>
+        <%= f.collection_select :board_member_id, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name %>
+	</div>git 
 	
 	<span class="board-member-votes-name">
     <span class="mute">(<%= link_to "Remove", "#", class: "remove_fields" %>)</span> 
