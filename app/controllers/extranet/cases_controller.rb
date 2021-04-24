@@ -39,9 +39,28 @@ module Extranet
 
     def edit
       @case = Case.find(params[:id])
+      @activeMembersAtTime = getActiveBoardMembersAtTime
+
       @case.build_defendant if @case.defendant.nil?
       @rules = Rule.all
     end
+
+    def getActiveBoardMembersAtTime 
+        allBoardMembers = BoardMember.all.sort_by{ |b| b.last_name }
+        activeBoardMembers = []
+        allBoardMembers.each do | boardMember |
+            boardMember.terms.each do | term |
+                if @case.date_initiated > term.start
+                    if term.end && @case.date_initiated < term.end
+                        puts "added board member #{boardMember.id}"
+                        activeBoardMembers.push(boardMember)
+                    end
+                end
+            end
+        end
+        return activeBoardMembers
+    end
+
 
     def update
       @c = Case.find(params[:id])
@@ -65,6 +84,7 @@ module Extranet
 
     def show
       @case = Case.find(params[:id])
+      
     end
 
     def destroy
@@ -97,5 +117,7 @@ module Extranet
       #	:case_rules_attributes => [[:id, :_destroy]]
       #)
     end
+
+    
   end
 end

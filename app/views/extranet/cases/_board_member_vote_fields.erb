@@ -2,9 +2,9 @@
 	<%= f.hidden_field :_destroy %>
 
 	<div class="board-selection" style="display:none;">
-		<span class="label">Add a board</span>
+		<span class="label">Add a board member</span>
         <p><%= f.object.board_member_id %></p>
-        <%= f.collection_select :board_member_id, BoardMember.all.sort_by{ |b| b.last_name }, :id, :full_name %>
+        <%= f.collection_select :board_member_id, @activeMembersAtTime, :id, :full_name %>
 	</div>git 
 	
 	<span class="board-member-votes-name">
