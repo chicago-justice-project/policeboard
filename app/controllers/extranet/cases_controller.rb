@@ -23,6 +23,9 @@ module Extranet
         case_rule = @case.case_rules.build
         board_member_vote = @case.board_member_votes.build
       end
+
+      
+      @activeMembersAtTime = getActiveBoardMembersAtTime
     end
 
     def create
@@ -47,18 +50,22 @@ module Extranet
 
     def getActiveBoardMembersAtTime 
         allBoardMembers = BoardMember.all.sort_by{ |b| b.last_name }
-        activeBoardMembers = []
-        allBoardMembers.each do | boardMember |
-            boardMember.terms.each do | term |
-                if @case.date_decided >= term.start
-                    if term.end && @case.date_decided <= term.end
-                        puts "added board member #{boardMember.id}"
-                        activeBoardMembers.push(boardMember)
+        if @case.date_decided==nil
+            return allBoardMembers
+        else
+            activeBoardMembers = []
+            allBoardMembers.each do | boardMember |
+                boardMember.terms.each do | term |
+                    if @case.date_decided >= term.start
+                        if term.end && @case.date_decided <= term.end
+                            puts "added board member #{boardMember.id}"
+                            activeBoardMembers.push(boardMember)
+                        end
                     end
                 end
             end
+            return activeBoardMembers
         end
-        return activeBoardMembers
     end
 
 
