@@ -50,8 +50,8 @@ module Extranet
         activeBoardMembers = []
         allBoardMembers.each do | boardMember |
             boardMember.terms.each do | term |
-                if @case.date_initiated > term.start
-                    if term.end && @case.date_initiated < term.end
+                if @case.date_decided >= term.start
+                    if term.end && @case.date_decided <= term.end
                         puts "added board member #{boardMember.id}"
                         activeBoardMembers.push(boardMember)
                     end
