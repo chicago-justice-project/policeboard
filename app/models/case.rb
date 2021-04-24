@@ -103,8 +103,8 @@ class Case < ActiveRecord::Base
       .where(is_active: true)
       .where.not(date_initiated: nil)
       .where(recommended_outcome_id: recommended_outcome_id, decided_outcome_id: decided_outcome_id)
-      .order('EXTRACT(YEAR from date_initiated)')
-      .group('EXTRACT(YEAR from date_initiated)')
+      .order(Arel.sql('EXTRACT(YEAR from date_initiated)'))
+      .group(Arel.sql('EXTRACT(YEAR from date_initiated)'))
       .count
     @count = []
     (@count_per_year.keys.first.to_i..@count_per_year.keys.last.to_i).each do |year|
