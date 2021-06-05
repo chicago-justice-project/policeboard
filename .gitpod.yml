@@ -4,3 +4,6 @@ image:
 tasks:
   - init: gem install bundle && bundle install && rake db:create db:migrate db:seed import:all
   - command: mkdir -p tmp/pids && exit
+
+ports: 
+  - port: 3000

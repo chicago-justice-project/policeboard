@@ -77,3 +77,7 @@ gem 'byebug', group: [:development, :test]
 gem 'izitoast'
 
 gem 'bootsnap'
+
+gem 'webpacker', '~> 3.5'
+
+
