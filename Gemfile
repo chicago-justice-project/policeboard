@@ -78,6 +78,6 @@ gem 'izitoast'
 
 gem 'bootsnap'
 
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 5.4'
 
 
