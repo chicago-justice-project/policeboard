@@ -1,10 +1,28 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
 //
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
 
-console.log('Hello World from Webpacker')
+// rails 
+//= require jquery
+//= require jquery_ujs
+
+// app
+//= require jquery.readyselector
+//= require jquery.sparkline.min
+//= require responsive.min
+//= require responsive-init
+//= require search
+//= require table-scroll
+//= require policeboard
+//= require tinymce
+//= require iziToast
+
