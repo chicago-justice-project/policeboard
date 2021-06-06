@@ -1,4 +1,4 @@
-$('#extranet-board-member-detail').ready(function(){
+/*$('#extranet-board-member-detail').ready(function(){
  
   $(document).on('change', '#board_member_remove_image', function (){
      if(this.checked){
@@ -9,4 +9,4 @@ $('#extranet-board-member-detail').ready(function(){
      }
   });
 
-}(jQuery);
+}(jQuery);*/
