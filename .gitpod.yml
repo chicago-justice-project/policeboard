@@ -2,7 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: gem install bundle && bundle install && rake db:create db:migrate db:seed import:all
+  - init: rvm install ruby-2.6.6 && gem install bundle && bundle install && rake db:create db:migrate db:seed import:all
   - command: mkdir -p tmp/pids && exit
 
 ports: 
