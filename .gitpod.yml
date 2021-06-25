@@ -18,7 +18,8 @@ tasks:
     openMode: split-right
     command: |
       mkdir -p tmp/pids &&
-      npm install && bundle exec rails webpacker:compile &&
+      npm install && 
+      bundle exec rails webpacker:compile &&
       exit
 ports: 
   - port: 3000
