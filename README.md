@@ -72,6 +72,10 @@ configured for public read access.
 The repo should now properly support the use of Gitpod.io.  To use gitpod, fork the CJP repo, and then follow the instructions
 at the Gitpod.io site: https://www.gitpod.io/docs/getting-started/
 
-Gitpod will spin up with a Postgres environment and should initialize the database for you.  The only step you'll need to take 
+Gitpod will spin up with a Postgres environment and should initialize everything for you.  When it's running there will be three 
+console windows opened up.  The first installs the rails environment (bundle, etc).  The second will initialize the database with test data. 
+The third builds the webpack for the site.  Just let everything run and eventually the terminal windows will close down to the last one.
+
+The only step you'll need to take 
 after launch is to run the "foreman start" command.  At that point, it should start the server.  You'll need to open the port in
 Gitpod, but then you should be all set.  
