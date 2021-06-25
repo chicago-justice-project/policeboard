@@ -9,13 +9,16 @@ tasks:
       gp sync-done install
   - name: DBInit 
     init: gp sync-await install
-    command: rake db:create db:migrate db:seed import:all
+    command: |
+      rake db:create db:migrate db:seed import:all &&
+      gp sync-done dbinit &&
+      exit
   - name: Webpacker
     init: gp sync-await install
     command: |
       mkdir -p tmp/pids &&
-      npm install && bundle exec rails webpacker:compile
-
+      npm install && bundle exec rails webpacker:compile &&
+      exit
 ports: 
   - port: 3000
     onOpen: open-browser
