@@ -26,3 +26,6 @@
 //= require iziToast
 
 
+
+require("trix")
+require("@rails/actiontext")
