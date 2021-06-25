@@ -2,9 +2,14 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: gem install bundle && bundle install && rake db:create db:migrate db:seed import:all
-  - command: mkdir -p tmp/pids && exit
-  - command: npm install && bundle exec rails webpacker:compile
+  - name: Install
+    init: >
+      gem install bundle && 
+      bundle install && 
+      rake db:create db:migrate db:seed import:all
+    command: |
+      mkdir -p tmp/pids &&
+      npm install && bundle exec rails webpacker:compile
 
 ports: 
   - port: 3000
