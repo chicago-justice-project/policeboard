@@ -26,3 +26,4 @@
 //= require tinymce
 //= require iziToast
 
+

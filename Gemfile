@@ -79,5 +79,6 @@ gem 'izitoast'
 gem 'bootsnap'
 
 gem 'webpacker', '~> 5.4'
+gem 'jquery-datatables-rails'
 
 
