@@ -78,4 +78,5 @@ The third builds the webpack for the site.  Just let everything run and eventual
 
 The only step you'll need to take 
 after launch is to run the "foreman start" command.  At that point, it should start the server.  You might get a warning about popups, but 
-otherwise you should see the site open in your browser once that starts up.
+otherwise you should see the site open in your browser once that starts up.  The site can take a little time to launch the first time, but
+then you should be goood to go.
