@@ -14,8 +14,6 @@ gem 'coffee-rails', '~> 5.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -79,6 +77,5 @@ gem 'izitoast'
 gem 'bootsnap'
 
 gem 'webpacker', '~> 5.4'
-gem 'jquery-datatables-rails'
 
 
