@@ -6,6 +6,6 @@
 		<label><%= f.radio_button :is_guilty, :true %>Guilty</label>
 		<label><%= f.radio_button :is_guilty, "" %>Not available</label>
 	</p>
-	<p class="violated-rules-desc"><%= f.text_area :content, :class => "txt" %></p>
+	<p class="violated-rules-desc"><%= f.rich_text_area :content %></p>
 	<%= f.hidden_field :_destroy %>
 </li>

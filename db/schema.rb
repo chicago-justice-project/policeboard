@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_201619) do
+ActiveRecord::Schema.define(version: 2021_07_02_180806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_06_25_201619) do
   create_table "case_rule_counts", id: :serial, force: :cascade do |t|
     t.integer "case_rule_id"
     t.integer "count_order"
-    t.text "content"
     t.boolean "is_guilty"
     t.datetime "created_at"
     t.datetime "updated_at"
