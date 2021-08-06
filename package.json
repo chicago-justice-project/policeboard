@@ -6,6 +6,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "jquery": "^3.6.0",
     "jquery-sparkline": "^2.4.0",
     "trix": "^1.2.0",
     "webpack": "^4.46.0",
