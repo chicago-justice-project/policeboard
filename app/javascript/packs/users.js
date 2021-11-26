@@ -1,3 +1,4 @@
+var dt = require( 'datatables.net' )();
 $('#admin-users-index').ready(function () {
 	$('#users-list').DataTable({
     aoColumns: [

@@ -1,3 +1,4 @@
+var dt = require( 'datatables.net' )();
 $('#rules-index').ready(function () {
 
   $('#rules-list').DataTable({
