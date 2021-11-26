@@ -11,7 +11,7 @@
 // about supported directives.
 //
 
-// rails 
+// rails
 //= require jquery
 
 // app
@@ -29,3 +29,6 @@
 
 require("trix")
 require("@rails/actiontext")
+
+
+

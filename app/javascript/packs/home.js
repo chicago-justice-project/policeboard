@@ -1,3 +1,5 @@
+var dt = require( 'datatables.net' )();
+var sparkline = require('jquery-sparkline');
 $('#home').ready(function () {
 
   $('#case-outcomes').DataTable({
