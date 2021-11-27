@@ -7,8 +7,8 @@
 	</div>
 	<p class="rule_display">
 		<span class="mute">(<%= link_to "Remove", "#", class: "remove_fields" %>)</span> 
-		<strong>Rule <span class="rule_code"><%= f.object.rule ? f.object.rule.code : "" %></span> 
-		<span class="case_rule_counts">(<%= f.object.case_rule_counts.count() %> counts):</strong></span> 
+		<strong>Rule <span class="rule_code"><%= f.object.rule ? f.object.rule.code : "" %></span></strong>
+		<span class="case_rule_counts">(<%= f.object.case_rule_counts.count() %> counts):</span>
 		<span class="rule_description"><%= f.object.rule ? f.object.rule.description : "" %></span>
 	</p>
 

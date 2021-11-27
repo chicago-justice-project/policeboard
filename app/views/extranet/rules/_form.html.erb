@@ -8,13 +8,13 @@
         <li class="form-row">
         	<div class="form-label"><%= f.label :description %></div>
         	<div class="form-field">
-			<%= f.text_area :description, :class => "tinymce", :rows => 40, :cols => 120 %>
+			<%= f.rich_text_area :description, :class => "tinymce", :rows => 40, :cols => 120 %>
 			<%= tinymce %>
 		<div>
 	</li>
         <li class="form-row">
         	<div class="form-label"><%= f.label :comment %></div>
-        	<div class="form-field"><%= f.text_area :comment, :class => "tinymce", :rows => 40, :cols => 120 %> <div>
+        	<div class="form-field"><%= f.rich_text_area :comment, :class => "tinymce", :rows => 40, :cols => 120 %> <div>
         </li>
 
     </ol>

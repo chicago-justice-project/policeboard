@@ -1,6 +1,8 @@
 class Rule < ActiveRecord::Base
 include ActionView::Helpers::TextHelper
+has_rich_text :description
+has_rich_text :comment
   def item
-     "Rule #{code} #{ truncate(description, length: 40, separator: ' ')}"  
+     "Rule #{code} #{ description.to_plain_text.truncate(40)}"
   end
 end

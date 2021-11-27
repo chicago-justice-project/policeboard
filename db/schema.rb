@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_212851) do
+ActiveRecord::Schema.define(version: 2021_11_27_153204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2021_07_02_212851) do
     t.integer "case_id"
     t.integer "board_member_id"
     t.integer "vote_id"
-    t.text "dissent_description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["board_member_id"], name: "index_board_member_votes_on_board_member_id"
@@ -115,7 +114,6 @@ ActiveRecord::Schema.define(version: 2021_07_02_212851) do
     t.datetime "updated_at"
     t.json "files"
     t.boolean "is_active"
-    t.text "majority_decision"
     t.boolean "is_open"
     t.integer "category"
     t.boolean "appealed", default: false
@@ -154,7 +152,6 @@ ActiveRecord::Schema.define(version: 2021_07_02_212851) do
   create_table "minority_opinions", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "opinion_text"
     t.integer "case_id"
     t.integer "board_member_one_id"
     t.integer "board_member_two_id"
@@ -182,8 +179,6 @@ ActiveRecord::Schema.define(version: 2021_07_02_212851) do
 
   create_table "rules", id: :serial, force: :cascade do |t|
     t.integer "code"
-    t.text "description"
-    t.text "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
