@@ -19,7 +19,7 @@ $('#rules-index').ready(function () {
   $('.toggle-special-comment').on('click touchstart', function(){
     var verb = $(this).find('.verb').text();
     $(this).find('.verb').text(verb === 'Show' ? 'Hide' : 'Show');
-    $(this).parent().next('').slideToggle();       
+    $(this).parent().children('.special-comment-div').slideToggle();
     return false;
   });
 });
