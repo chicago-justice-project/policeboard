@@ -31,7 +31,7 @@ module Extranet
       #debug.inspect
 
       @board_member = BoardMember.find(params[:id])
-      if @board_member.update_attributes(board_member_params)
+      if @board_member.update(board_member_params)
         redirect_to extranet_board_members_path, :notice => "Board member  successfully updated"
       else
         render :action => 'edit'

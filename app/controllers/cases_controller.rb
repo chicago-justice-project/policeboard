@@ -10,11 +10,11 @@ class CasesController < ApplicationController
       @counter = "Total cases: #{@cases.count}"
     end
     
-    @cases = @cases.order('date_initiated IS NULL, date_initiated DESC').paginate(:page => params[:page])
+    @cases = @cases.order(Arel.sql('date_initiated IS NULL, date_initiated DESC')).paginate(:page => params[:page])
     
     @cases_per_year = Case.where('date_initiated IS NOT NULL')
-      .order('EXTRACT(YEAR from date_initiated)')
-      .group('EXTRACT(YEAR from date_initiated)')
+      .order(Arel.sql('EXTRACT(YEAR from date_initiated)'))
+      .group(Arel.sql('EXTRACT(YEAR from date_initiated)'))
       .count
     @case_trend = []
     (@cases_per_year.keys.first.to_i..@cases_per_year.keys.last.to_i).each do |year|
