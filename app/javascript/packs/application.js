@@ -11,7 +11,7 @@
 // about supported directives.
 //
 
-// rails 
+// rails
 //= require jquery
 
 // app
@@ -24,5 +24,10 @@
 //= require policeboard
 //= require tinymce
 //= require iziToast
+
+
+
+require("trix")
+require("@rails/actiontext")
 
 

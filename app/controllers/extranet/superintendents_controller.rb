@@ -21,7 +21,7 @@ module Extranet
       end
 
       def update
-        if @superintendent.update_attributes(superintendent_params)
+        if @superintendent.update(superintendent_params)
           redirect_to extranet_superintendents_path, :notice => "Superintendent successfully updated"
         else
           flash[:alert] = "Oops, there was an error updating superintendent information."

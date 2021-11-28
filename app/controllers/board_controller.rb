@@ -39,7 +39,7 @@ class BoardController < ApplicationController
 
   def update
     @member = BoardMember.find(params[:id])
-    if @member.update_attributes(params)
+    if @member.update(params)
       redirect_to board_path(@board), notice: 'Board successfully updated'
     else
       render :edit

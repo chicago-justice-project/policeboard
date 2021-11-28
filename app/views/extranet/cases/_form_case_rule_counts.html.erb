@@ -6,7 +6,7 @@
 		<%= rule_count_form.radio_button :is_guilty, "" %>Not available
 	</p>
 	
-	<%= rule_count_form.text_area :content %>
+	<%= rule_count_form.rich_text_area :content %>
 	<%= rule_count_form.hidden_field :_destroy %>
 	<%= link_to "remove", "#", class: "remove_fields" %>
 </li>

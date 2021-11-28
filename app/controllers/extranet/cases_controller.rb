@@ -81,7 +81,8 @@ module Extranet
       files += new_files
       case_params[:files] = files
 
-      if @c.update_attributes(case_params)
+      #if @c.update_attributes(case_params)
+      if @c.update(case_params)
         redirect_to extranet_cases_path, :notice => "Case successfully updated"
       else
         render :action => 'edit'

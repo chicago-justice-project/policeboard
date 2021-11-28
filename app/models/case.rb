@@ -15,6 +15,7 @@ class Case < ActiveRecord::Base
   has_many :case_rule_counts, through: :case_rules
   has_many :complaints
   has_many :minority_opinions
+  has_rich_text :majority_decision
 
   accepts_nested_attributes_for :minority_opinions
   accepts_nested_attributes_for :defendant
