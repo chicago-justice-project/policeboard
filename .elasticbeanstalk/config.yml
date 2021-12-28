@@ -5,7 +5,7 @@ branch-defaults:
   post_rich_fixes:
     environment: staging
   staging:
-    environment: ruby3staging
+    environment: ruby3-upgrade-staging-env
 environment-defaults:
   staging:
     branch: null
