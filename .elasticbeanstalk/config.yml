@@ -4,6 +4,8 @@ branch-defaults:
     group_suffix: null
   post_rich_fixes:
     environment: staging
+  staging:
+    environment: ruby3staging
 environment-defaults:
   staging:
     branch: null
@@ -12,7 +14,6 @@ global:
   application_name: policeboard
   branch: null
   default_ec2_keyname: steves
-  default_platform: 64bit Amazon Linux 2 v3.4.0 running Ruby 2.7
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: null

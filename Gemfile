@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+#gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'twitter'
 
@@ -46,10 +46,10 @@ gem 'devise'
 
 
 # For Heroku
-gem 'rails_12factor', group: :production
+#gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '~> 2.6'
+ruby '~> 3.0'
 
 #gem 'font-awesome-rails'
 gem 'roo', '~> 2.0.0'
