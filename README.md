@@ -34,12 +34,13 @@ rails server
 For subsequent times, still with Postgres running first, just run `foreman start`. Occassionally you may need to preface that with:
 `bundle install` if new gems (modules/plugins) are used in the app, or `rake db:migrate` if the database schema has changed, or `rake import:all` if raw input data has changed.
 
+Note this data is obtained from excel spreadsheets included in the repo, and may vary from production. Also note that the "rake db:seed" command creates a test user that you can use to log into the administrative side of the application when you run it locally. The username is "test@test.com" and password is "password".
+
 #### Webpacker
 As part of changes to bring in rich text fields, the entire code based has been upgraded and now uses
-Webpacker.  On first install you'll need to run webpacker's compile command using `bin/rails webpacker:compile`.  You may
+Webpacker.  On first install you may need to run webpacker's compile command using `bundle exec rake webpacker:compile`.  You may
 also need to run this if you make updates to any Javascript files.
 
-Note this data is obtained from excel spreadsheets included in the repo, and may vary from production. Also note that the "rake db:seed" command creates a test user that you can use to log into the administrative side of the application when you run it locally. The username is "test@test.com" and password is "password".
 
 ### Troubleshooting
 
@@ -81,6 +82,6 @@ console windows opened up.  The first installs the rails environment (bundle, et
 The third builds the webpack for the site.  Just let everything run and eventually the terminal windows will close down to the last one.
 
 The only step you'll need to take 
-after launch is to run the "foreman start" command.  At that point, it should start the server.  You might get a warning about popups, but 
+after launch is to start the rails server.  At that point, it should be running.  You might get a warning about popups, but 
 otherwise you should see the site open in your browser once that starts up.  The site can take a little time to launch the first time, but
-then you should be goood to go.
+then you should be good to go.
