@@ -5,11 +5,10 @@ A responsive web app for the archive of the most serious allegations of miscondu
 ## To run locally
 
 Dependencies
-* Ruby 2.2.9
+* Ruby 3.0.*
 * Bundler
-* Rails 4
-* PostgreSQL
-* Foreman (install with `gem install foreman`)
+* Rails 6.1.*
+* PostgreSQL (11+)
 
 ### Clone the repo
 From wherever you'd like the policeboard folder to be created, run:
@@ -29,7 +28,7 @@ bundle install
 rake db:create db:migrate
 rake db:seed
 rake import:all
-foreman start
+rails server
 ```
 
 For subsequent times, still with Postgres running first, just run `foreman start`. Occassionally you may need to preface that with:
