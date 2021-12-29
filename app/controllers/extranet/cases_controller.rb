@@ -73,12 +73,16 @@ module Extranet
       @c = Case.find(params[:id])
       new_files = case_params[:files]
 
+      Rails.logger.info "New Files: #{new_files}"
       if new_files.nil?
         new_files = []
       end
 
+      Rails.logger.info "New Files 2: #{new_files}"
+
       files = @c.files
       files += new_files
+      Rails.logger.info "Files after adding new files: #{files}"
       case_params[:files] = files
 
       #if @c.update_attributes(case_params)
