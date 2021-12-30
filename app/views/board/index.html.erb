@@ -12,5 +12,6 @@
 <%= render partial: "list", locals: { board_members: @past_board_members, title: '<h2>Past board members</h2>', table_id: 'past-board-list' } %>
 
 
-<%= javascript_include_tag "//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" %>
-<%= javascript_include_tag "board-members-voting-history" %>
+<!--%= javascript_include_tag "//code.jquery.com/jquery-3.6.0.min.js"%-->
+<!--%= javascript_include_tag "//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" %-->
+<%= javascript_pack_tag "board-members-voting-history" %>

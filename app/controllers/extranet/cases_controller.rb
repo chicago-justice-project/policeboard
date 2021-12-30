@@ -23,6 +23,9 @@ module Extranet
         case_rule = @case.case_rules.build
         board_member_vote = @case.board_member_votes.build
       end
+
+      
+      @activeMembersAtTime = getActiveBoardMembersAtTime
     end
 
     def create
@@ -39,23 +42,51 @@ module Extranet
 
     def edit
       @case = Case.find(params[:id])
+      @activeMembersAtTime = getActiveBoardMembersAtTime
+
       @case.build_defendant if @case.defendant.nil?
       @rules = Rule.all
     end
+
+    def getActiveBoardMembersAtTime 
+        allBoardMembers = BoardMember.all.sort_by{ |b| b.last_name }
+        if @case.date_decided==nil
+            return allBoardMembers
+        else
+            activeBoardMembers = []
+            allBoardMembers.each do | boardMember |
+                boardMember.terms.each do | term |
+                    if @case.date_decided >= term.start
+                        if term.end && @case.date_decided <= term.end
+                            puts "added board member #{boardMember.id}"
+                            activeBoardMembers.push(boardMember)
+                        end
+                    end
+                end
+            end
+            return activeBoardMembers
+        end
+    end
+
 
     def update
       @c = Case.find(params[:id])
       new_files = case_params[:files]
 
+      Rails.logger.info "New Files: #{new_files}"
       if new_files.nil?
         new_files = []
       end
 
+      Rails.logger.info "New Files 2: #{new_files}"
+
       files = @c.files
       files += new_files
+      Rails.logger.info "Files after adding new files: #{files}"
       case_params[:files] = files
 
-      if @c.update_attributes(case_params)
+      #if @c.update_attributes(case_params)
+      if @c.update(case_params)
         redirect_to extranet_cases_path, :notice => "Case successfully updated"
       else
         render :action => 'edit'
@@ -65,6 +96,7 @@ module Extranet
 
     def show
       @case = Case.find(params[:id])
+      
     end
 
     def destroy
@@ -76,7 +108,7 @@ module Extranet
 
     private
     def sort_column
-      (Case.column_names + ["defendants.first_name", "outcomes.name"]).include?(params[:sort]) ? params[:sort] : "id"
+      (Case.column_names + ["defendants.first_name", "outcomes.name"]).include?(params[:sort]) ? params[:sort] : "number"
     end
 
     def sort_direction
@@ -97,5 +129,7 @@ module Extranet
       #	:case_rules_attributes => [[:id, :_destroy]]
       #)
     end
+
+    
   end
 end

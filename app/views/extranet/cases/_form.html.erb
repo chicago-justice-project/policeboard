@@ -69,6 +69,12 @@
       </div>
     </li>
     <li class="form-row">
+      <div class="form-label"><%= f.label :investigated_by, "Investigative Agency" %></div>
+      <div class="form-field">
+        <%= f.select :investigated_by, ["BIA","COPA","IGO","IPRA","OPS"], { selected: @case.investigated_by || nil, prompt: "Select Agency"}%>
+      </div>
+    </li>
+    <li class="form-row">
       <div class="form-label"><%= f.label :recommended_outcome_id, "Recommended discipline" %></div>
       <div class="form-field"><%= f.collection_select :recommended_outcome_id, Outcome.all.reject{|o| o.name == "Death"}.sort_by{ |o| o.name }, :id, :name %></div>
     </li>
@@ -101,7 +107,7 @@
   <ol class="form">
     <li class="form-row">
       <div class="form-label">Majority decision</div>
-      <div class="form-field"><%= f.text_area :majority_decision, :class => "txt"%></div>
+      <div class="form-field"><%= f.rich_text_area :majority_decision, :class => "txt"%></div>
     </li>
     <li class="form-row">
       <div class="form-label">Board members</div>
@@ -122,7 +128,7 @@
           <li class="form-row">
             <div class="form-label">Minority Opinion</div>
             <div class="form-field">
-              <p class="field-field"><%= builder.text_area :opinion_text, :class => "txt" %></p>
+              <p class="field-field"><%= builder.rich_text_area :opinion_text, :class => "txt" %></p>
               <%= builder.hidden_field :id %>
               <%= builder.hidden_field :_destroy %>
             </div>

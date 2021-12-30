@@ -5,11 +5,10 @@ A responsive web app for the archive of the most serious allegations of miscondu
 ## To run locally
 
 Dependencies
-* Ruby 2.2.9
+* Ruby 3.0.*
 * Bundler
-* Rails 4
-* PostgreSQL
-* Foreman (install with `gem install foreman`)
+* Rails 6.1.*
+* PostgreSQL (11+)
 
 ### Clone the repo
 From wherever you'd like the policeboard folder to be created, run:
@@ -29,13 +28,19 @@ bundle install
 rake db:create db:migrate
 rake db:seed
 rake import:all
-foreman start
+rails server
 ```
 
 For subsequent times, still with Postgres running first, just run `foreman start`. Occassionally you may need to preface that with:
 `bundle install` if new gems (modules/plugins) are used in the app, or `rake db:migrate` if the database schema has changed, or `rake import:all` if raw input data has changed.
 
 Note this data is obtained from excel spreadsheets included in the repo, and may vary from production. Also note that the "rake db:seed" command creates a test user that you can use to log into the administrative side of the application when you run it locally. The username is "test@test.com" and password is "password".
+
+#### Webpacker
+As part of changes to bring in rich text fields, the entire code based has been upgraded and now uses
+Webpacker.  On first install you may need to run webpacker's compile command using `bundle exec rake webpacker:compile`.  You may
+also need to run this if you make updates to any Javascript files.
+
 
 ### Troubleshooting
 
@@ -48,13 +53,14 @@ To fix this, try adding `host: localhost` to the default settings section in the
 ## Deployment
 
 The app runs on AWS Elastic Beanstalk. The database lives on Amazon RDS. 
-To deploy or make changes to the production environment, ask for an AWS login from a CJP administrator.
 
-To deploy, create a zip bundle by using the build.sh script in the root director.  This will create
-a zip file in deploy/ called "policeboard.zip".  You can then upload this to Elastic Beanstalk.  
+AWS Code Pipeline is configured to build from the staging branch of the Github repo.  This 
+should happen automatically whenever new code is committed.  If it doesn't, you may
+need to log into AWS.  If you need credentials, ask a CJP administrator.
 
-All builds should go to Staging first and be vetted there.  Once they are working correctly, they can then
-be promoted to production from within Elastic Beanstalk.
+Once the code has been vetted in staging, it should be merged into the master branch. 
+Automatic deployments are not running on master at this time, but you can deploy the staging
+code into production from the Elastic Beanstalk admin interface.
 
 ### Images
 
@@ -65,3 +71,17 @@ For images handled by S3, if the image does not exist, it will display a fallbac
 CarrierWave automatically intercepts any requests for an S3 sourced image to the /uploads path.  If S3 is configured
 as it is in staging and production, the path will automatically be transposed to the S3 path.  S3 files should be
 configured for public read access.
+
+### Gitpod Instructions
+
+The repo should now properly support the use of Gitpod.io.  To use gitpod, fork the CJP repo, and then follow the instructions
+at the Gitpod.io site: https://www.gitpod.io/docs/getting-started/
+
+Gitpod will spin up with a Postgres environment and should initialize everything for you.  When it's running there will be three 
+console windows opened up.  The first installs the rails environment (bundle, etc).  The second will initialize the database with test data. 
+The third builds the webpack for the site.  Just let everything run and eventually the terminal windows will close down to the last one.
+
+The only step you'll need to take 
+after launch is to start the rails server.  At that point, it should be running.  You might get a warning about popups, but 
+otherwise you should see the site open in your browser once that starts up.  The site can take a little time to launch the first time, but
+then you should be good to go.

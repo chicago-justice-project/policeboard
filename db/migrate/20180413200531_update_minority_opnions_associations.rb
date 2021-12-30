@@ -1,4 +1,4 @@
-class UpdateMinorityOpnionsAssociations < ActiveRecord::Migration
+class UpdateMinorityOpnionsAssociations < ActiveRecord::Migration[4.2]
   def change
     MinorityOpinion.where("board_member_one = ''").update_all(board_member_one: nil)
     MinorityOpinion.where("board_member_two = ''").update_all(board_member_two: nil)

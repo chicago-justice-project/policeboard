@@ -1,3 +1,4 @@
+var dt = require( 'datatables.net' )();
 $('body').ready(function () {
 
   $('.voting-history').DataTable({

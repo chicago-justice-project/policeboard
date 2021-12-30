@@ -1,0 +1,26 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Install
+    init: >
+      gem install bundle && 
+      bundle install &&
+      gp sync-done install
+  - name: DBInit 
+    openMode: split-right
+    init: gp sync-await install
+    command: |
+      rake db:create db:migrate db:seed import:all ||
+      exit
+  - name: Webpacker
+    init: gp sync-await install
+    openMode: split-right
+    command: |
+      mkdir -p tmp/pids &&
+      npm install && 
+      bundle exec rails webpacker:compile &&
+      exit
+ports: 
+  - port: 3000
+    onOpen: open-browser

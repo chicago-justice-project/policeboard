@@ -25,7 +25,7 @@ module Extranet
 
     def update
       @rule = Rule.find(params[:id])
-      if @rule.update_attributes(rule_params)
+      if @rule.update(rule_params)
         redirect_to extranet_rules_path, :notice => "rule successfully saved"
       else
         render :action => 'edit'
