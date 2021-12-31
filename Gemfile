@@ -78,4 +78,7 @@ gem 'bootsnap'
 
 gem 'webpacker', '~> 5.4'
 
+gem 'rails_admin', ['>= 2.2.1', '< 3']
+
+
 
