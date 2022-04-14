@@ -82,3 +82,5 @@ gem 'rails_admin', ['>= 2.2.1', '< 3']
 
 
 
+
+gem "bundler-audit", "~> 0.9.0"

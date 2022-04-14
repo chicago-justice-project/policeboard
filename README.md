@@ -1,4 +1,4 @@
-# Police Board
+3# Police Board
 
 A responsive web app for the archive of the most serious allegations of misconduct brought against the Chicago Police Department and its employees as handled by the Chicago Police Board.
 
