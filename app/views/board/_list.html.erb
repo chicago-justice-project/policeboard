@@ -22,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <% board_members.each do |bm| %>
+      <% @board_members.each do |bm| %>
       <tr>
         <td><%= bm.last_name %></td>
         <td><a href="<%= board_path(bm) %>"><%= image_tag bm.image_url(:thumb), alt: [bm.full_name, bm.board_position].reject(&:blank?).join(', '), size: '70' %></a></td>

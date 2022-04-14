@@ -1,0 +1,2 @@
+module SuperintendentHistoryHelper
+end

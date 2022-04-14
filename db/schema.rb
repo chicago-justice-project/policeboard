@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_27_153204) do
+ActiveRecord::Schema.define(version: 2022_04_14_202234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -226,4 +226,39 @@ ActiveRecord::Schema.define(version: 2021_11_27_153204) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+
+  create_view "superintendant_histories", sql_definition: <<-SQL
+      SELECT count(*) AS vote_count,
+      board_members.first_name,
+      board_members.last_name,
+      votes.name AS vote_name,
+      to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text) AS year_decided,
+      outcomes.name AS outcome_name,
+      'Termination'::text AS recommended_outcome
+     FROM board_member_votes,
+      board_members,
+      votes,
+      cases,
+      outcomes
+    WHERE ((cases.recommended_outcome_id = 1) AND (board_member_votes.board_member_id = board_members.id) AND (board_member_votes.vote_id = votes.id) AND (board_member_votes.case_id = cases.id) AND (cases.decided_outcome_id = outcomes.id))
+    GROUP BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name, votes.name
+    ORDER BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name;
+  SQL
+  create_view "superintendent_histories", sql_definition: <<-SQL
+      SELECT count(*) AS vote_count,
+      board_members.first_name,
+      board_members.last_name,
+      votes.name AS vote_name,
+      to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text) AS year_decided,
+      outcomes.name AS outcome_name,
+      'Termination'::text AS recommended_outcome
+     FROM board_member_votes,
+      board_members,
+      votes,
+      cases,
+      outcomes
+    WHERE ((cases.recommended_outcome_id = 1) AND (board_member_votes.board_member_id = board_members.id) AND (board_member_votes.vote_id = votes.id) AND (board_member_votes.case_id = cases.id) AND (cases.decided_outcome_id = outcomes.id))
+    GROUP BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name, votes.name
+    ORDER BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name;
+  SQL
 end
