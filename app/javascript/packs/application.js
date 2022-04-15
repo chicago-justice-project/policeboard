@@ -31,6 +31,7 @@ require("trix")
 require("@rails/actiontext")
 require('react')
 require('react-bootstrap')
+require('react-vega')
 require('bootstrap')
 
 

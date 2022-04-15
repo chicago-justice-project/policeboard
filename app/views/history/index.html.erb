@@ -5,6 +5,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <script type="text/javascript">
+    /*
     let VEGA_JSON;
     const history_data = $.ajax({
         type: "GET",
@@ -164,14 +165,12 @@
             "legends": [{"stroke": "color", "symbolType": "stroke", "title": "last_name"}]
         }
         return vegaJson;
-    }
-
+    }*/
 
 </script>
 </head>
 <div class="chart_container">
   <%= react_component("HistoryBySuper", {board_members: @board_members}) %>
-
 </div>
 
 
