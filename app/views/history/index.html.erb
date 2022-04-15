@@ -169,16 +169,18 @@
 
 </script>
 </head>
-<div>
-  <table>
-    <tbody>
-      <% @board_members.each do |bm| %>
-      <tr><td> <%=bm.first_name %> <%=bm.last_name %></td></tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="chart_container">
+  <div id="board_member_list">
+    <table>
+      <tbody>
+        <% @board_members.each do |bm| %>
+        <tr><td> <%=bm.first_name %> <%=bm.last_name %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="view"></div>
 </div>
-<div id="view"></div>
 
 
 
