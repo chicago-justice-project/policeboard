@@ -80,9 +80,8 @@ gem 'webpacker', '~> 5.4'
 
 gem 'rails_admin', ['>= 2.2.1', '< 3']
 
-
-
-
 gem "bundler-audit", "~> 0.9.0"
 
 gem "scenic", "~> 1.6"
+
+gem "react-rails", "~> 2.6"
