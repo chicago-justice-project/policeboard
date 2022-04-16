@@ -15,12 +15,10 @@ class ChartContainer extends React.Component {
       mark: 'bar',
       encoding: {
         x: { field: 'year_decided', type: 'ordinal', axis: {format:'c',title:'Year Decided'} },
-        y: { field: 'vote_count', type: 'quantitative', axis: {format: 'c', title: 'Termination Votes'} },
+        y: { field: 'vote_count', type: 'quantitative', stack: null, axis: {format: 'c', title: 'Termination Votes'} },
         color: { field: 'last_name', type:'nominal', axis: {format: 'c', title: 'Superintendent'}}
       },
       data: { name: 'boardVotes' },
-      transform: [
-      ]
     };
 
     this.state = {
