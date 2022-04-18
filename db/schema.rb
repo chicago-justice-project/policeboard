@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_202234) do
       votes,
       cases,
       outcomes
-    WHERE ((cases.recommended_outcome_id = 1) AND (board_member_votes.board_member_id = board_members.id) AND ((votes.name)::text = 'Agree'::text) AND (board_member_votes.vote_id = votes.id) AND (board_member_votes.case_id = cases.id) AND (cases.decided_outcome_id = outcomes.id))
+    WHERE ((cases.decided_outcome_id = 1) AND (cases.recommended_outcome_id = 1) AND (cases.date_decided IS NOT NULL) AND (board_member_votes.board_member_id = board_members.id) AND ((votes.name)::text = 'Agree'::text) AND (board_member_votes.vote_id = votes.id) AND (board_member_votes.case_id = cases.id) AND (cases.decided_outcome_id = outcomes.id))
     GROUP BY board_members.id, board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name, votes.name
     ORDER BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name;
   SQL
