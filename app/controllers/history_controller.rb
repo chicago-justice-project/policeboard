@@ -11,10 +11,16 @@ class HistoryController < ApplicationController
     render json: @history
   end
   def terminationsByYear
-    sql = "select count(*) as vote_count,to_char(date_decided,'YYYY') as year_decided, 'ALL' as last_name from cases where recommended_outcome_id=1
+    sql = "select count(*) as vote_count,to_char(date_decided,'YYYY') as year_decided, 'All Recommended Terminations' as last_name, 'Recommended' as outcome_label from cases where recommended_outcome_id=1
       and date_decided is not null and date_decided>'1990-01-01' group by year_decided order by year_decided"
     @terminationsPerYear = ActiveRecord::Base.connection.execute(sql)
     render json: @terminationsPerYear
+  end
+  def recommendedTermsByYear
+    sql = "select count(*) as vote_count,to_char(date_decided,'YYYY') as year_decided, 'All Recommended Terminations' as last_name, 'Terminated' as outcome_label from cases where recommended_outcome_id=1
+      and decided_outcome_id=1 and date_decided is not null and date_decided>'1990-01-01' group by year_decided order by year_decided"
+    @recommendedTermsByYear = ActiveRecord::Base.connection.execute(sql)
+    render json: @recommendedTermsByYear
   end
 
 end

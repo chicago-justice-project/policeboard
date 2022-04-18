@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/history/all', to: 'history#all'
   get '/history/member', to: 'history#member'
   get '/history/terminationsByYear', to: 'history#terminationsByYear'
+  get '/history/recommendedTermsByYear', to: 'history#recommendedTermsByYear'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'

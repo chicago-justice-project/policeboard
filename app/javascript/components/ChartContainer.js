@@ -9,24 +9,11 @@ class ChartContainer extends React.Component {
   constructor (props) {
     super(props);
 
-    const spec = {
-      width: 600,
-      height: 500,
-      mark: 'bar',
-      encoding: {
-        x: { field: 'year_decided', type: 'ordinal', axis: {format:'c',title:'Year Decided'} },
-        y: { field: 'vote_count', type: 'quantitative', stack: null, axis: {format: 'c', title: 'Termination Votes'} },
-        color: { field: 'last_name', type:'nominal', axis: {format: 'c', title: 'Superintendent'}}
-      },
-      data: { name: 'boardVotes' },
-    };
 
     this.state = {
       version: 0,
       chartData: {},
-      spec: spec,
-      startYear: '1900',
-      endYear: '2100'
+      spec: {}
     };
 
     this.filterMember = this.filterMember.bind(this);
@@ -36,54 +23,85 @@ class ChartContainer extends React.Component {
   }
 
   async filterMember (event) {
+
+
     const memberId = event.detail.id;
     console.log('FILTER ON MEMBER: '+memberId);
 
-    let boardVotes = await axios.get('/history/member?board_member_id='+memberId);
+    let memberVotes = await axios.get('/history/member?board_member_id='+memberId);
+    let boardVotes = [];
+    boardVotes.push(...this.state.terminationsByYear);
+    boardVotes.push(...memberVotes.data);
 
-
-    const startYear = boardVotes.data[0].year_decided;
-    const endYear = boardVotes.data[boardVotes.data.length-1].year_decided;
-
-    console.log('FilteredVotes: '+JSON.stringify(boardVotes));
-    boardVotes.data.push(...this.state.terminationsByYear);
     let vegaData = {
-      boardVotes: boardVotes.data
+      boardVotes: boardVotes
     }
+
+
+    const startYear = memberVotes.data[0].year_decided;
+    const endYear = memberVotes.data[memberVotes.data.length-1].year_decided;
+
+    const spec = {
+      width: 600,
+      height: 500,
+      mark: 'bar',
+      encoding: {
+        x: { field: 'year_decided', type: 'ordinal', axis: {format:'c',title:'Year Decided'} },
+        y: { field: 'vote_count', type: 'quantitative', stack: null, axis: {format: 'c', title: 'Terminations'} },
+        color: { field: 'last_name', type:'nominal', axis: {format: 'c', title: 'Superintendent'}}
+      },
+      transform: [
+        {filter: `datum.year_decided >= '${startYear}'`},
+        {filter: `datum.year_decided <= '${endYear}'`}
+      ],
+      data: { name: 'boardVotes' }
+    };
+
 
 
     //Update year filter
     this.setState({
       chartData: vegaData,
-      startYear: startYear,
-      endYear: endYear
+      spec: spec
     });
+  }
+
+  async loadFirstChart () {
+    const firstSpec = {
+      width: 600,
+      height: 500,
+      mark: 'bar',
+      encoding: {
+        x: { field: 'year_decided', type: 'ordinal', axis: {format:'c',title:'Year Decided'} },
+        y: { field: 'vote_count', type: 'quantitative', stack: null, axis: {format: 'c', title: 'Terminations'} },
+        color: { field: 'outcome_label', type:'nominal', axis: {format: 'c', title: 'Outcomes'}}
+      },
+      data: { name: 'boardVotes' },
+    };
+
+    let recommendedTermsByYear = await axios.get('/history/recommendedTermsByYear');
+    let boardVotes = [];
+    boardVotes.push(...this.state.terminationsByYear);
+    boardVotes.push(...recommendedTermsByYear.data);
+
+    let vegaData = {
+      boardVotes: boardVotes
+    }
 
     this.setState({
-      spec: spec
+      chartData: vegaData,
+      spec: firstSpec
     });
   }
 
   async componentDidMount() {
 
     let terminationsByYear = await axios.get('/history/terminationsByYear');
-    let boardVotes = await axios.get("/history/all");
-    console.log('TERMINATIONS: '+JSON.stringify(terminationsByYear.data));
-    boardVotes.data.push(...terminationsByYear.data);
-
-    const startYear = boardVotes.data[0].year_decided;
-    const endYear = boardVotes.data[boardVotes.data.length-1].year_decided;
-
-    let vegaData = {
-      boardVotes: boardVotes.data
-    }
-    console.log('BOARD VOTES: '+JSON.stringify(boardVotes.data));
     this.setState({
-      chartData: vegaData,
       terminationsByYear: terminationsByYear.data,
-      startYear: startYear,
-      endYear: endYear
     });
+
+    await this.loadFirstChart();
   }
 
   render () {
