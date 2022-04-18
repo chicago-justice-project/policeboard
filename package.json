@@ -18,6 +18,7 @@
     "imports-loader": "^1.2.0",
     "jquery": "^3.6.0",
     "jquery-sparkline": "^2.4.0",
+    "moment": "^2.29.3",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react_ujs": "^2.6.2",

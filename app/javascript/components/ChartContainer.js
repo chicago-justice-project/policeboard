@@ -1,6 +1,7 @@
 import React from "react"
 import {VegaLite} from "react-vega";
 import axios from "axios";
+import moment from "moment";
 
 
 
@@ -28,18 +29,33 @@ class ChartContainer extends React.Component {
     const memberId = event.detail.id;
     console.log('FILTER ON MEMBER: '+memberId);
 
-    let memberVotes = await axios.get('/history/member?board_member_id='+memberId);
+    let memberVotes = await axios.get('/history/memberVotes?board_member_id='+memberId);
+    let memberTerms = await axios.get('/history/memberTerms?board_member_id='+memberId);
     let boardVotes = [];
     boardVotes.push(...this.state.terminationsByYear);
+    boardVotes.push(...this.state.recommendedTermsByYear);
     boardVotes.push(...memberVotes.data);
 
     let vegaData = {
       boardVotes: boardVotes
     }
 
+    let startYear;
+    let endYear;
+    for (let memberTerm of memberTerms.data) {
+      if (startYear === undefined || new moment(memberTerm.start)>startYear) {
+        startYear = new moment(memberTerm.start);
+      }
+      if (endYear === undefined || new moment(memberTerm.end)>endYear) {
+        endYear = new moment(memberTerm.end);
+      }
+      if (memberTerm.end === undefined) {
+        endYear = new moment(); //No end date so set to current date
+      }
+    }
 
-    const startYear = memberVotes.data[0].year_decided;
-    const endYear = memberVotes.data[memberVotes.data.length-1].year_decided;
+    let startYearString = startYear.format('YYYY');
+    let endYearString = endYear.format('YYYY');
 
     const spec = {
       width: 600,
@@ -51,8 +67,8 @@ class ChartContainer extends React.Component {
         color: { field: 'last_name', type:'nominal', axis: {format: 'c', title: 'Superintendent'}}
       },
       transform: [
-        {filter: `datum.year_decided >= '${startYear}'`},
-        {filter: `datum.year_decided <= '${endYear}'`}
+        {filter: `datum.year_decided >= '${startYearString}'`},
+        {filter: `datum.year_decided <= '${endYearString}'`}
       ],
       data: { name: 'boardVotes' }
     };
@@ -90,7 +106,8 @@ class ChartContainer extends React.Component {
 
     this.setState({
       chartData: vegaData,
-      spec: firstSpec
+      spec: firstSpec,
+      recommendedTermsByYear: recommendedTermsByYear.data
     });
   }
 

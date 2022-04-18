@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get '/history', to: 'history#index'
   get '/history/all', to: 'history#all'
-  get '/history/member', to: 'history#member'
+  get '/history/memberVotes', to: 'history#memberVotes'
+  get '/history/memberTerms', to: 'history#memberTerms'
   get '/history/terminationsByYear', to: 'history#terminationsByYear'
   get '/history/recommendedTermsByYear', to: 'history#recommendedTermsByYear'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

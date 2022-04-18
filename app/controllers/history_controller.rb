@@ -6,7 +6,11 @@ class HistoryController < ApplicationController
     @history = SuperintendentHistory.all
     render json: @history
   end
-  def member
+  def memberTerms
+    @board_member = BoardMember.find(params[:board_member_id])
+    render json: @board_member.terms
+  end
+  def memberVotes
     @history = SuperintendentHistory.where(board_member_id: params[:board_member_id])
     render json: @history
   end
@@ -17,7 +21,7 @@ class HistoryController < ApplicationController
     render json: @terminationsPerYear
   end
   def recommendedTermsByYear
-    sql = "select count(*) as vote_count,to_char(date_decided,'YYYY') as year_decided, 'All Recommended Terminations' as last_name, 'Terminated' as outcome_label from cases where recommended_outcome_id=1
+    sql = "select count(*) as vote_count,to_char(date_decided,'YYYY') as year_decided, 'All Terminations' as last_name, 'Terminated' as outcome_label from cases where recommended_outcome_id=1
       and decided_outcome_id=1 and date_decided is not null and date_decided>'1990-01-01' group by year_decided order by year_decided"
     @recommendedTermsByYear = ActiveRecord::Base.connection.execute(sql)
     render json: @recommendedTermsByYear
