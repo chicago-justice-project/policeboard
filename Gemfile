@@ -47,7 +47,7 @@ gem 'devise'
 
 # For Heroku
 #gem 'rails_12factor', group: :production
-gem 'puma'
+gem 'puma', '~>5.5.2'
 
 ruby '~> 3.0'
 
@@ -85,3 +85,4 @@ gem "bundler-audit", "~> 0.9.0"
 gem "scenic", "~> 1.6"
 
 gem "react-rails", "~> 2.6"
+

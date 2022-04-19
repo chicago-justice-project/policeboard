@@ -10,7 +10,9 @@ then
   rm policeboard.zip
 fi
 mkdir deploy
-zip deploy/policeboard.zip -r * .ebextensions/* .elasticbeanstalk/*  -x 'tmp/*' -x 'log/*' -x 'node_modules/*'
+rm -rf public/packs
+rails webpacker:compile # need to precompile assets as Beanstalk can't handle it
+zip deploy/policeboard.zip -r * .ebextensions/* .elasticbeanstalk/* .platform/* -x 'tmp/*' -x 'log/*' -x 'node_modules/*' -x 'package-lock.json'
 cd deploy
 unzip policeboard.zip
 mv policeboard.zip ../
