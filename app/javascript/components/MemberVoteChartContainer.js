@@ -5,7 +5,7 @@ import moment from "moment";
 
 
 
-class ChartContainer extends React.Component {
+class MemberVoteChartContainer extends React.Component {
 
   constructor (props) {
     super(props);
@@ -29,8 +29,8 @@ class ChartContainer extends React.Component {
     const memberId = event.detail.id;
     console.log('FILTER ON MEMBER: '+memberId);
 
-    let memberVotes = await axios.get('/history/memberVotes?board_member_id='+memberId);
-    let memberTerms = await axios.get('/history/memberTerms?board_member_id='+memberId);
+    let memberVotes = await axios.get('/board_history/memberVotes?board_member_id='+memberId);
+    let memberTerms = await axios.get('/board_history/memberTerms?board_member_id='+memberId);
     let boardVotes = [];
     boardVotes.push(...this.state.terminationsByYear);
     boardVotes.push(...this.state.recommendedTermsByYear);
@@ -95,7 +95,7 @@ class ChartContainer extends React.Component {
       data: { name: 'boardVotes' },
     };
 
-    let recommendedTermsByYear = await axios.get('/history/recommendedTermsByYear');
+    let recommendedTermsByYear = await axios.get('/board_history/recommendedTermsByYear');
     let boardVotes = [];
     boardVotes.push(...this.state.terminationsByYear);
     boardVotes.push(...recommendedTermsByYear.data);
@@ -113,7 +113,7 @@ class ChartContainer extends React.Component {
 
   async componentDidMount() {
 
-    let terminationsByYear = await axios.get('/history/terminationsByYear');
+    let terminationsByYear = await axios.get('/board_history/terminationsByYear');
     this.setState({
       terminationsByYear: terminationsByYear.data,
     });
@@ -130,4 +130,4 @@ class ChartContainer extends React.Component {
   }
 }
 
-export default ChartContainer
+export default MemberVoteChartContainer

@@ -1,10 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
-import SupersList from "./SupersList";
-import ChartContainer from "./ChartContainer";
+import BoardMembersList from "./BoardMembersList";
+import MemberVoteChartContainer from "./MemberVoteChartContainer";
 import {Container,Row,Col} from "react-bootstrap";
 
-class HistoryBySuper extends React.Component {
+class HistoryByBoardMember extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,10 +20,10 @@ class HistoryBySuper extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col>
-                            <SupersList board_members={this.props.board_members}></SupersList>
+                            <BoardMembersList board_members={this.props.board_members}></BoardMembersList>
                         </Col>
                         <Col>
-                            <ChartContainer></ChartContainer>
+                            <MemberVoteChartContainer></MemberVoteChartContainer>
                         </Col>
                     </Row>
                 </Container>
@@ -32,4 +32,4 @@ class HistoryBySuper extends React.Component {
     }
 }
 
-export default HistoryBySuper
+export default HistoryByBoardMember

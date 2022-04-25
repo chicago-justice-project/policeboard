@@ -1,5 +1,5 @@
 <% title "Superintendent History" %>
-<% body_id "history" %>
+<% body_id "board_history" %>
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -7,7 +7,7 @@
   crossorigin="anonymous"
   />
 <div class="chart_container">
-  <%= react_component("HistoryBySuper", {board_members: @board_members}) %>
+  <%= react_component("HistoryByBoardMember", {board_members: @board_members}) %>
 </div>
 
 

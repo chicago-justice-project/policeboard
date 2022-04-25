@@ -1,7 +1,7 @@
 var dt = require( 'datatables.net' )();
 $('body').ready(function () {
 
-  $('.voting-history').DataTable({
+  $('.voting-board_history').DataTable({
     aaSorting: [[0, "asc"]], //disable initial sort
     aoColumns: [
       { bVisible: false }, //0: hidden board member name for sorting

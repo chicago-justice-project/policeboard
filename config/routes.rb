@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get '/history', to: 'history#index'
-  get '/history/all', to: 'history#all'
-  get '/history/memberVotes', to: 'history#memberVotes'
-  get '/history/memberTerms', to: 'history#memberTerms'
-  get '/history/terminationsByYear', to: 'history#terminationsByYear'
-  get '/history/recommendedTermsByYear', to: 'history#recommendedTermsByYear'
+  get '/board_history', to: 'board_history#index'
+  get '/board_history/all', to: 'board_history#all'
+  get '/board_history/memberVotes', to: 'board_history#memberVotes'
+  get '/board_history/memberTerms', to: 'board_history#memberTerms'
+  get '/board_history/terminationsByYear', to: 'board_history#terminationsByYear'
+  get '/board_history/recommendedTermsByYear', to: 'board_history#recommendedTermsByYear'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'

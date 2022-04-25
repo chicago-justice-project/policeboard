@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_202234) do
+ActiveRecord::Schema.define(version: 2022_04_25_202942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_202234) do
     GROUP BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name, votes.name
     ORDER BY board_members.last_name, board_members.first_name, (to_char((cases.date_decided)::timestamp with time zone, 'YYYY'::text)), outcomes.name;
   SQL
-  create_view "superintendent_histories", sql_definition: <<-SQL
+  create_view "board_member_histories", sql_definition: <<-SQL
       SELECT count(*) AS vote_count,
       board_members.first_name,
       board_members.last_name,

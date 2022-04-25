@@ -1,9 +1,9 @@
-class HistoryController < ApplicationController
+class BoardHistoryController < ApplicationController
   def index
     @board_members = BoardMember.order(board_position: :asc, last_name: :asc)
   end
   def all
-    @history = SuperintendentHistory.all
+    @history = BoardMemberHistory.all
     render json: @history
   end
   def memberTerms
@@ -11,7 +11,7 @@ class HistoryController < ApplicationController
     render json: @board_member.terms
   end
   def memberVotes
-    @history = SuperintendentHistory.where(board_member_id: params[:board_member_id])
+    @history = BoardMemberHistory.where(board_member_id: params[:board_member_id])
     render json: @history
   end
   def terminationsByYear
