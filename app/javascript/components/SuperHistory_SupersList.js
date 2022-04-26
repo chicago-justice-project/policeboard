@@ -13,6 +13,7 @@ class SuperHistory_SupersList extends React.Component {
         <React.Fragment>
           <table>
             <tbody>
+            <tr><th><h4>Superintendents</h4></th></tr>
             {
               this.props.supers.map((thisSuper, index) => {
                 return (
