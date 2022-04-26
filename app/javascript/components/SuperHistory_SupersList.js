@@ -16,7 +16,9 @@ class SuperHistory_SupersList extends React.Component {
             {
               this.props.supers.map((thisSuper, index) => {
                 return (
-                    <tr key={index}><td data-member-id={thisSuper.id} onClick={this.filterSuper}>{thisSuper.first_name} {thisSuper.last_name}</td></tr>
+                    <tr key={index}><td data-start-term={thisSuper.start_of_term}
+                                        data-end-term={thisSuper.end_of_term}
+                        onClick={this.filterSuper}>{thisSuper.first_name} {thisSuper.last_name}</td></tr>
                 )
               })
             }
@@ -26,9 +28,10 @@ class SuperHistory_SupersList extends React.Component {
     );
   }
 
-  async filterMember (event) {
-    const superId = event.currentTarget.dataset.superId;
-    const filterEvent = new CustomEvent('filterSuper',{detail: { id: superId}});
+  async filterSuper (event) {
+    const startTerm = event.currentTarget.dataset.startTerm;
+    const endTerm = event.currentTarget.dataset.endTerm;
+    const filterEvent = new CustomEvent('filterSuper',{detail: { startTerm: startTerm, endTerm: endTerm}});
     dispatchEvent(filterEvent);
   }
 }
