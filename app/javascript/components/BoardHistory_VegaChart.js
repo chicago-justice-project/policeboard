@@ -5,7 +5,7 @@ import moment from "moment";
 
 
 
-class MemberVoteChartContainer extends React.Component {
+class BoardHistory_VegaChart extends React.Component {
 
   constructor (props) {
     super(props);
@@ -130,4 +130,4 @@ class MemberVoteChartContainer extends React.Component {
   }
 }
 
-export default MemberVoteChartContainer
+export default BoardHistory_VegaChart

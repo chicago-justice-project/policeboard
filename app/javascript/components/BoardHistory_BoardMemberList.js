@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-class BoardMembersList extends React.Component {
+class BoardHistory_BoardMemberList extends React.Component {
 
   constructor (props) {
     super(props);
@@ -35,4 +35,4 @@ class BoardMembersList extends React.Component {
   }
 }
 
-export default BoardMembersList
+export default BoardHistory_BoardMemberList

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/super_history', to: 'super_history#index'
   get '/board_history', to: 'board_history#index'
   get '/board_history/all', to: 'board_history#all'
   get '/board_history/memberVotes', to: 'board_history#memberVotes'

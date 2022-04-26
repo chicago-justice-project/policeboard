@@ -1,10 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
-import BoardMembersList from "./BoardMembersList";
-import MemberVoteChartContainer from "./MemberVoteChartContainer";
+import BoardHistory_BoardMemberList from "./BoardHistory_BoardMemberList";
+import BoardHistory_VegaChart from "./BoardHistory_VegaChart";
 import {Container,Row,Col} from "react-bootstrap";
 
-class HistoryByBoardMember extends React.Component {
+class BoardHistory_Container extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,10 +20,10 @@ class HistoryByBoardMember extends React.Component {
                 <Container fluid>
                     <Row>
                         <Col>
-                            <BoardMembersList board_members={this.props.board_members}></BoardMembersList>
+                            <BoardHistory_BoardMemberList board_members={this.props.board_members}></BoardHistory_BoardMemberList>
                         </Col>
                         <Col>
-                            <MemberVoteChartContainer></MemberVoteChartContainer>
+                            <BoardHistory_VegaChart></BoardHistory_VegaChart>
                         </Col>
                     </Row>
                 </Container>
@@ -32,4 +32,4 @@ class HistoryByBoardMember extends React.Component {
     }
 }
 
-export default HistoryByBoardMember
+export default BoardHistory_Container

@@ -1,0 +1,2 @@
+module SuperHistoryHelper
+end
