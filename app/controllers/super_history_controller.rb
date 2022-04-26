@@ -1,6 +1,6 @@
 class SuperHistoryController < ApplicationController
   def index
-    @supers = Superintendent.order(last_name: :asc)
+    @supers = Superintendent.order(start_of_term: :asc)
   end
   def terminationsByYear
     startTerm = params[:start_term]

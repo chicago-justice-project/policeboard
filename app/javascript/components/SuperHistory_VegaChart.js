@@ -7,7 +7,6 @@ class SuperHistory_VegaChart extends React.Component {
     super(props);
 
     const spec = {
-      width: 600,
       height: 500,
       mark: 'bar',
       encoding: {
@@ -41,6 +40,7 @@ class SuperHistory_VegaChart extends React.Component {
     let boardVotes = [];
     boardVotes.push(...terminationsByYear.data);
     boardVotes.push(...recommendedTermsByYear.data);
+    this.convertYears(boardVotes, startTerm);
 
     let vegaData = {
       boardVotes: boardVotes
@@ -50,6 +50,14 @@ class SuperHistory_VegaChart extends React.Component {
     this.setState({
       chartData: vegaData
     });
+  }
+
+  convertYears (boardVotes, startYear) {
+    let year = new moment(startYear).year();
+    for (let vote of boardVotes) {
+      let yearDiff = (parseInt(vote.year_decided)-year)+1
+      vote.year_decided=`Year ${yearDiff}`
+    }
   }
 
   async componentDidMount() {
@@ -75,7 +83,7 @@ class SuperHistory_VegaChart extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <VegaLite spec={this.state.spec} data={this.state.chartData}/>
+        <VegaLite spec={this.state.spec} data={this.state.chartData} width={600}/>
       </React.Fragment>
     );
   }

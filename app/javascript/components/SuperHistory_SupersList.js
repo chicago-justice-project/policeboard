@@ -1,4 +1,5 @@
 import React from "react"
+import moment from "moment";
 class SuperHistory_SupersList extends React.Component {
   constructor (props) {
     super(props);
@@ -16,10 +17,20 @@ class SuperHistory_SupersList extends React.Component {
             <tr><th><h4>Superintendents</h4></th></tr>
             {
               this.props.supers.map((thisSuper, index) => {
+                let startLabel = new moment(thisSuper.start_of_term).year();
+                let endLabel;
+                if (thisSuper.end_of_term) {
+                  endLabel = new moment(thisSuper.end_of_term).year();
+                }
+                else {
+                  endLabel = 'Present';
+                }
+
+
                 return (
                     <tr key={index}><td data-start-term={thisSuper.start_of_term}
                                         data-end-term={thisSuper.end_of_term}
-                        onClick={this.filterSuper}>{thisSuper.first_name} {thisSuper.last_name}</td></tr>
+                        onClick={this.filterSuper}>{thisSuper.first_name} {thisSuper.last_name} [{startLabel}-{endLabel}]</td></tr>
                 )
               })
             }

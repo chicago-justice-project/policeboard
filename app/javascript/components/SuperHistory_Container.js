@@ -17,11 +17,11 @@ class SuperHistory_Container extends React.Component {
         <React.Fragment>
           <Container fluid>
             <Row>
-              <Col>
+              <Col lg={4}>
                 <SuperHistory_SupersList supers={this.props.supers}></SuperHistory_SupersList>
               </Col>
-              <Col>
-                <SuperHistory_VegaChart></SuperHistory_VegaChart>
+              <Col lg={8}>
+                <SuperHistory_VegaChart class="super-vega-container"></SuperHistory_VegaChart>
               </Col>
             </Row>
           </Container>
