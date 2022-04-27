@@ -22,27 +22,29 @@
       </tr>
     </thead>
     <tbody>
-      <% @board_members.each do |bm| %>
-      <tr>
-        <td><%= bm.last_name %></td>
-        <td><a href="<%= board_path(bm) %>"><%= image_tag bm.image_url(:thumb), alt: [bm.full_name, bm.board_position].reject(&:blank?).join(', '), size: '70' %></a></td>
-        <td>
-          <p>
-            <%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ')  , board_path(bm) %>
-          </p>
-          <p class="mute">
-            <%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %>
-          </p>
-        </td>
-        <td class="agree percent" align="center"><%= bm.votes_agree_rate %>%</td>
-        <td class="disagree percent" align="center"><%= bm.votes_dissent_rate %>%</td>
-        <td class="novote percent" align="center"><%= bm.votes_abstain_rate %>%</td>
-        <td>
-          <div class="stacked-bar">
-            <div class="value agree" style="width: <%= bm.votes_agree_rate %>%;" title="<%= bm.votes_agree_rate %>%"></div><div class="value disagree" style="width: <%= bm.votes_dissent_rate %>%;" title="<%= bm.votes_dissent_rate %>%"></div><div class="value novote" style="width: <%= bm.votes_abstain_rate %>%;" title="<%= bm.votes_abstain_rate %>%"></div>
-          </div>
-        </td>
-      </tr>
+      <% if defined?(@board_members) %>
+        <% @board_members.each do |bm| %>
+        <tr>
+          <td><%= bm.last_name %></td>
+          <td><a href="<%= board_path(bm) %>"><%= image_tag bm.image_url(:thumb), alt: [bm.full_name, bm.board_position].reject(&:blank?).join(', '), size: '70' %></a></td>
+          <td>
+            <p>
+              <%= link_to [bm.full_name, bm.board_position].reject(&:blank?).join(', ')  , board_path(bm) %>
+            </p>
+            <p class="mute">
+              <%= [bm.job_title, bm.organization].reject(&:blank?).join(', ') %>
+            </p>
+          </td>
+          <td class="agree percent" align="center"><%= bm.votes_agree_rate %>%</td>
+          <td class="disagree percent" align="center"><%= bm.votes_dissent_rate %>%</td>
+          <td class="novote percent" align="center"><%= bm.votes_abstain_rate %>%</td>
+          <td>
+            <div class="stacked-bar">
+              <div class="value agree" style="width: <%= bm.votes_agree_rate %>%;" title="<%= bm.votes_agree_rate %>%"></div><div class="value disagree" style="width: <%= bm.votes_dissent_rate %>%;" title="<%= bm.votes_dissent_rate %>%"></div><div class="value novote" style="width: <%= bm.votes_abstain_rate %>%;" title="<%= bm.votes_abstain_rate %>%"></div>
+            </div>
+          </td>
+        </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
