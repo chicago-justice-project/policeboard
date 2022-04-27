@@ -34,6 +34,7 @@ class SuperHistory_SupersList extends React.Component {
                 )
               })
             }
+            <tr key="all"><td onClick={this.filterSuper}>All History</td></tr>
             </tbody>
           </table>
         </React.Fragment>
