@@ -5,7 +5,12 @@
 /* Imports
 =====================================================================*/
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600,600italic,700,700italic);
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+@import "fontawesome/brands.scss";
+@import "fontawesome/fontawesome.scss";
+@import "fontawesome/regular.scss";
+@import "fontawesome/solid.scss";
+/*(@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);*/
 
 a, abbr, acronym, address, applet, big, blockquote, body, caption, cite, code, 
 dd, del, dfn, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, 

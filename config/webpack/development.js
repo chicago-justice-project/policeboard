@@ -1,4 +1,6 @@
+const { merge } = require('webpack-merge');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
 
 const environment = require('./environment')
 
@@ -8,4 +10,4 @@ const custom = {
     }
 };
 
-module.exports = merger(environment.toWebpackConfig(),custom);
+module.exports = merge(environment.toWebpackConfig(),custom);

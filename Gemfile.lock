@@ -1326,6 +1326,8 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     foreman (0.87.2)
     formatador (0.3.0)
     globalid (1.0.0)
@@ -1498,6 +1500,7 @@ DEPENDENCIES
   devise
   figaro
   fog-aws
+  font-awesome-rails
   foreman
   htmlbeautifier
   izitoast

@@ -11,7 +11,6 @@ const sparkline = require("./loaders/sparkline");
 environment.loaders.append("datatables", datatables);
 environment.loaders.append("expose", jquery);
 environment.loaders.append("sparkline", sparkline);
-
 // ProviderPlugin helps us to load jQuery when the variables of $ and jQuery
 // are encountered as free variables at other modules.
 // Let's say if you want to use Bootstrap 4 and Popper.js.
@@ -23,7 +22,8 @@ environment.plugins.append(
         $: "jquery",
         jQuery: "jquery",
         dt: "datatable.net",
-        sparkline: "jquery-sparkline"
+        sparkline: "jquery-sparkline",
+        fa: "font-awesome",
     })
 );
 
