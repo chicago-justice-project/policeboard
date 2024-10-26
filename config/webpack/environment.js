@@ -7,6 +7,7 @@ const datatables = require("./loaders/datatables");
 const jquery = require("./loaders/jquery");
 const sparkline = require("./loaders/sparkline");
 
+/*
 // append them to webpack loaders.
 environment.loaders.append("datatables", datatables);
 environment.loaders.append("expose", jquery);
@@ -25,6 +26,6 @@ environment.plugins.append(
         sparkline: "jquery-sparkline",
         fa: "font-awesome",
     })
-);
+);*/
 
 module.exports = environment;

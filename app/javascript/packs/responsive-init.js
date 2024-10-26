@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $().ready(function () {
 
 	//this script relies on responsive.js

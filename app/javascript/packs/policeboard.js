@@ -2,7 +2,7 @@
  | Site: Chicago Police Board Information Center |
  | Part: Common Javascript Methods               |
  +-----------------------------------------------*/
-
+import $ from 'jquery';
 $(function() {
     if ($("#notice").val()) {
         displayNotification("success", $("#notice").val());

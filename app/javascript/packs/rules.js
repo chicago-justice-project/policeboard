@@ -1,4 +1,5 @@
-var dt = require( 'datatables.net' )();
+import $ from 'jquery';
+import dt from 'datatables.net';
 $('#rules-index').ready(function () {
 
   $('#rules-list').DataTable({

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $('#case-detail').ready(function () {
 
 

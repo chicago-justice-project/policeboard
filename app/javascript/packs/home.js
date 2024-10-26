@@ -1,8 +1,10 @@
-var dt = require( 'datatables.net' )();
-var sparkline = require('jquery-sparkline');
+import $ from 'jquery';
+import dt from 'datatables.net';
+import sparkline from 'jquery-sparkline';
+
 $('#home').ready(function () {
 
-  $('#case-outcomes').DataTable({
+  /*$('#case-outcomes').DataTable({
     aaSorting: [[2, "desc"]], //disable initial sort
     aoColumns: [
       { bVisible: false }, //0: hidden cases total for sorting
@@ -14,7 +16,7 @@ $('#home').ready(function () {
     info: false,
     paging: false,
     searching: false
-  });
+  });*/
 
   $('.inlinesparkline').sparkline('html', {
       fillColor: "rgba(0, 0, 0, 0.1)",

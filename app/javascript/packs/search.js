@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $().ready(function () {
   /* Search */
   $('#search-toggle').on('click touchstart', function(){

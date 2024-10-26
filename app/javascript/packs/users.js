@@ -1,4 +1,6 @@
-var dt = require( 'datatables.net' )();
+import $ from 'jquery';
+import dt from 'datatables.net';
+
 $('#admin-users-index').ready(function () {
 	$('#users-list').DataTable({
     aoColumns: [
