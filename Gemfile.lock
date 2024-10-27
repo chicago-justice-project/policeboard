@@ -1500,7 +1500,7 @@ DEPENDENCIES
   devise
   figaro
   fog-aws
-  font-awesome-rails
+  font-awesome-rails (~> 4.7.0.7)
   foreman
   htmlbeautifier
   izitoast

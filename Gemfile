@@ -51,7 +51,7 @@ gem 'puma'
 
 ruby '~> 3.0'
 
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0.7'
 #gem 'font-awesome-sass'
 gem 'roo', '~> 2.0.0'
 gem 'will_paginate'
