@@ -41,7 +41,7 @@ gem 'devise'
 
 # For Heroku
 #gem 'rails_12factor', group: :production
-gem 'puma'
+gem 'puma', '~> 7'
 
 ruby '~> 4.0'
 
