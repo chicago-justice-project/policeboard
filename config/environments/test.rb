@@ -45,4 +45,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  # Tests do not precompile assets, so skip the Rails 7+ precompile check.
+  config.assets.check_precompiled_asset = false
 end

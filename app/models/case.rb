@@ -4,9 +4,6 @@ include ActionView::Helpers::DateHelper
 class Case < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
-  attr_accessor :tweet_charges
-  attr_accessor :tweet_decision
-
   belongs_to :defendant
   belongs_to :recommended_outcome, :class_name => "Outcome"
   belongs_to :decided_outcome, :class_name => "Outcome", optional: true
@@ -24,31 +21,14 @@ class Case < ActiveRecord::Base
 
   mount_uploaders :files, CaseFileUploader
 
-  enum category: ["Excessive Force--On Duty", "Other On-Duty Misconduct", "Domestic Altercation--Off Duty", "Other Off-Duty Misconduct", "Drug/Alcohol Abuse", "Bribery/Official Corruption", "Commission of a Crime", "Conduct Unbecoming--Off Duty", "Operation/Personnel Violations", "Other (BIA)"]
+  enum :category, ["Excessive Force--On Duty", "Other On-Duty Misconduct", "Domestic Altercation--Off Duty", "Other Off-Duty Misconduct", "Drug/Alcohol Abuse", "Bribery/Official Corruption", "Commission of a Crime", "Conduct Unbecoming--Off Duty", "Operation/Personnel Violations", "Other (BIA)"]
 
   after_update :sort_case_rule_counts, :sort_case_rules
-
-  after_save :send_tweet_charges, if: Proc.new {|r| r.tweet_charges == "true" }
-  after_save :send_tweet_decision, if: Proc.new {|r| r.tweet_decision == "true" }
 
   validates :number, presence: true
   validates_integrity_of :files
 
   self.per_page = 10
-
-  def send_tweet_charges
-    return unless defendant.present?
-
-    message = "Alert: New case filed with Police Board against #{defendant.rank.name} #{defendant.full_name} - #{number} - read the charges #{case_url(self)}"
-    Twitter.client.update(message)
-  end
-
-  def send_tweet_decision
-    return unless defendant.present?
-
-    message = "Alert: New decision handed down by Police Board against #{defendant.rank.name} #{defendant.full_name} - #{number} - read the decision #{case_url(self)}"
-    Twitter.client.update(message)
-  end
 
   def sort_case_rule_counts
     self.case_rules.each do |case_rule|

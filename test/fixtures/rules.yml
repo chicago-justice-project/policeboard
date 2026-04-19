@@ -1,0 +1,5 @@
+rule_one:
+  code: 1
+
+rule_two:
+  code: 2

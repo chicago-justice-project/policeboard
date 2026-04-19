@@ -1,0 +1,4 @@
+admin:
+  email: admin@test.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  sign_in_count: 0
