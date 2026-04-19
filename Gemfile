@@ -43,7 +43,7 @@ gem 'devise'
 #gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '~> 3.2.0'
+ruby '~> 4.0'
 
 gem 'roo', '~> 2.10'
 gem 'will_paginate'
@@ -77,5 +77,6 @@ gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop',  require: false
 gem 'matrix',   require: false
+gem 'csv',      require: false
 
 

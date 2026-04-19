@@ -1298,6 +1298,7 @@ GEM
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
+    csv (3.3.5)
     date (3.5.1)
     devise (5.0.3)
       bcrypt (~> 3.0)
@@ -1516,6 +1517,7 @@ DEPENDENCIES
   bootsnap
   byebug
   carrierwave (~> 1.0)
+  csv
   devise
   figaro
   fog-aws
@@ -1543,7 +1545,7 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
-   ruby 3.2.9p265
+   ruby 4.0.2p0
 
 BUNDLED WITH
    2.3.3
