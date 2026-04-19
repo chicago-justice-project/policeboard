@@ -50,4 +50,3 @@ yarn-debug.log*
 /config/master.key
 .claude/
 policeboard.zip
-yarn.lock
