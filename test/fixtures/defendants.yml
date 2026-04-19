@@ -1,0 +1,11 @@
+jane_doe:
+  first_name: Jane
+  last_name: Doe
+  number: "12345"
+  rank: officer
+
+john_smith:
+  first_name: John
+  last_name: Smith
+  number: "67890"
+  rank: sergeant

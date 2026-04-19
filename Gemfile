@@ -20,8 +20,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 #gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'twitter'
-
 group :development do
   gem 'foreman'
   gem 'htmlbeautifier'
@@ -49,11 +47,11 @@ gem 'devise'
 #gem 'rails_12factor', group: :production
 gem 'puma'
 
-ruby '~> 3.0'
+ruby '~> 3.2.0'
 
 gem 'font-awesome-rails', '~> 4.7.0.7'
 #gem 'font-awesome-sass'
-gem 'roo', '~> 2.0.0'
+gem 'roo', '~> 2.10'
 gem 'will_paginate'
 
 gem 'mini_magick'
@@ -78,5 +76,12 @@ gem 'izitoast'
 gem 'bootsnap'
 
 gem 'webpacker', '~> 5.4'
+
+# Required for Ruby 3.1+ compatibility with Rails 6.1 / mail 2.7 —
+# these libraries were removed from the default stdlib gemset.
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop',  require: false
+gem 'matrix',   require: false
 
 

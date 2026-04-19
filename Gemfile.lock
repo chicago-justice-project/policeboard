@@ -60,8 +60,6 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.543.0)
     aws-sdk (3.1.0)
@@ -1273,9 +1271,8 @@ GEM
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
-    bootsnap (1.9.3)
-      msgpack (~> 1.0)
-    buftok (0.2.0)
+    bootsnap (1.23.0)
+      msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
     carrierwave (1.3.2)
@@ -1292,22 +1289,17 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    date (3.5.1)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
-    equalizer (0.0.11)
     erubi (1.10.0)
     excon (0.89.0)
     execjs (2.8.1)
     ffi (1.15.4)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     fog-aws (3.12.0)
@@ -1333,17 +1325,6 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     htmlbeautifier (1.4.1)
-    http (4.4.1)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.2)
-      http-parser (~> 1.2.0)
-    http-cookie (1.0.4)
-      domain_name (~> 0.5)
-    http-form_data (2.3.0)
-    http-parser (1.2.3)
-      ffi-compiler (>= 1.0, < 2.0)
-    http_parser.rb (0.6.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     ipaddress (0.8.3)
@@ -1361,30 +1342,35 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
-    memoizable (0.4.2)
-      thread_safe (~> 0.3, >= 0.3.1)
+    matrix (0.4.3)
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.1115)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.6.1)
+    mini_portile2 (2.8.9)
     minitest (5.15.0)
-    msgpack (1.4.2)
+    msgpack (1.8.0)
     multi_json (1.15.0)
-    multipart-post (2.1.1)
-    naught (1.1.0)
-    nio4r (2.5.8)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    net-imap (0.6.3)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.2)
+      timeout
+    net-smtp (0.5.1)
+      net-protocol
+    nio4r (2.7.5)
+    nokogiri (1.19.2)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pg (1.2.3)
-    public_suffix (4.0.6)
+    pg (1.6.3)
     puma (5.5.2)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.8.1)
     rack (2.2.3)
     rack-proxy (0.7.0)
       rack
@@ -1423,10 +1409,10 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    roo (2.0.1)
+    roo (2.10.1)
       nokogiri (~> 1)
-      rubyzip (~> 1.1, < 2.0.0)
-    rubyzip (1.3.0)
+      rubyzip (>= 1.3.0, < 3.0.0)
+    rubyzip (2.4.1)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -1442,7 +1428,6 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    simple_oauth (0.3.1)
     spring (4.0.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -1453,28 +1438,14 @@ GEM
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
     thor (1.1.0)
-    thread_safe (0.3.6)
     tilt (2.0.10)
+    timeout (0.6.1)
     tinymce-rails (5.10.2)
       railties (>= 3.1.1)
-    twitter (7.0.0)
-      addressable (~> 2.3)
-      buftok (~> 0.2.0)
-      equalizer (~> 0.0.11)
-      http (~> 4.0)
-      http-form_data (~> 2.0)
-      http_parser.rb (~> 0.6.0)
-      memoizable (~> 0.4.0)
-      multipart-post (~> 2.0)
-      naught (~> 1.0)
-      simple_oauth (~> 0.3.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8)
     warden (1.2.9)
       rack (>= 2.0.9)
     webpacker (5.4.3)
@@ -1506,22 +1477,25 @@ DEPENDENCIES
   izitoast
   jbuilder (~> 2.0)
   listen
+  matrix
   mini_magick
+  net-imap
+  net-pop
+  net-smtp
   pg
   puma
   rails (~> 6.0)
-  roo (~> 2.0.0)
+  roo (~> 2.10)
   sass-rails (~> 5.0)
   simple_form
   spring
   tinymce-rails
-  twitter
   uglifier (>= 1.3.0)
   webpacker (~> 5.4)
   will_paginate
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.2.9p265
 
 BUNDLED WITH
    2.3.3

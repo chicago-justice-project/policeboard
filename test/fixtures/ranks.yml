@@ -1,0 +1,7 @@
+officer:
+  name: Police Officer
+  is_civilian: false
+
+sergeant:
+  name: Sergeant
+  is_civilian: false

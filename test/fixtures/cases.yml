@@ -1,0 +1,28 @@
+decided_active:
+  number: "21 PB 1001"
+  defendant: jane_doe
+  recommended_outcome: separation
+  decided_outcome: separation
+  date_initiated: 2021-01-15
+  date_decided: 2021-09-01
+  is_active: true
+  is_open: false
+  appealed: false
+
+pending_active:
+  number: "22 PB 2002"
+  defendant: john_smith
+  recommended_outcome: suspension
+  date_initiated: 2022-03-10
+  is_active: true
+  is_open: true
+  appealed: false
+
+inactive_hidden:
+  number: "20 PB 0500"
+  defendant: jane_doe
+  recommended_outcome: suspension
+  date_initiated: 2020-05-01
+  is_active: false
+  is_open: false
+  appealed: false
