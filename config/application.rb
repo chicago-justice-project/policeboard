@@ -14,7 +14,6 @@ require "action_view/railtie"
 # require "action_cable/engine"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
-require "font-awesome-rails"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,7 +22,7 @@ Bundler.require(*Rails.groups)
 module Policeboard
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     # secret_key_base: production reads from ENV; dev/test use a stable
     # non-secret value (previously lived in config/secrets.yml, which was

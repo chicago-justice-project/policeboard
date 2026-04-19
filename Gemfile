@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'simple_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.0.0'
 gem 'minitest', '~> 5.15'
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -45,8 +45,6 @@ gem 'puma'
 
 ruby '~> 3.2.0'
 
-gem 'font-awesome-rails', '~> 4.7.0.7'
-#gem 'font-awesome-sass'
 gem 'roo', '~> 2.10'
 gem 'will_paginate'
 
