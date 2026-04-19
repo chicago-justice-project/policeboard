@@ -7,7 +7,7 @@
     "datatables.net-dt": "^1.11.3",
     "jquery": "^3.6.0",
     "jquery-sparkline": "^2.4.0",
-    "shakapacker": "^7",
+    "shakapacker": "7.2.3",
     "trix": "^1.2.0",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2",
