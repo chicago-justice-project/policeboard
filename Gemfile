@@ -10,11 +10,6 @@ gem 'pg'
 gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 5.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -76,7 +71,7 @@ gem 'izitoast'
 
 gem 'bootsnap'
 
-gem 'webpacker', '~> 5.4'
+gem 'shakapacker', '~> 7'
 
 # Required for Ruby 3.1+ compatibility with Rails 6.1 / mail 2.7 —
 # these libraries were removed from the default stdlib gemset.
