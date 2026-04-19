@@ -45,6 +45,9 @@ gem 'puma', '~> 7'
 
 ruby '~> 4.0'
 
+# Pin prism: 1.9.0 fails to link on Ruby 4 / rubygems 4 (missing .o files)
+gem 'prism', '~> 1.8.0'
+
 gem 'roo', '~> 2.10'
 gem 'will_paginate'
 
