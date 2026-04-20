@@ -3,7 +3,8 @@ set -euo pipefail
 
 cd /var/app/staging
 
-mkdir -p tmp/pids
+mkdir -p tmp/pids tmp/cache
+chown -R webapp:webapp tmp
 
 if [ ! -x /usr/bin/node ] && [ ! -x /usr/local/bin/node ]; then
   sudo dnf -y install nodejs
