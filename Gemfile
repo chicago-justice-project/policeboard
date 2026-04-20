@@ -16,11 +16,14 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 #gem 'sdoc', '~> 0.4.0',          group: :doc
 
+# Required at boot on Rails 8 for the evented file update checker, even in
+# production. Keep outside :development.
+gem 'listen'
+
 group :development do
   gem 'foreman'
   gem 'htmlbeautifier'
   gem 'spring'
-  gem 'listen'
 end
 
 # Use ActiveModel has_secure_password
