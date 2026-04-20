@@ -8,9 +8,13 @@ max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port        ENV.fetch("PORT") { 3000 }
+# EB Ruby platform's nginx proxies to /var/run/puma/my_app.sock; bind there
+# in production, fall back to TCP locally.
+if ENV["RAILS_ENV"] == "production"
+  bind "unix:///var/run/puma/my_app.sock"
+else
+  port ENV.fetch("PORT") { 3000 }
+end
 
 # Specifies the `environment` that Puma will run in.
 #
