@@ -3,6 +3,8 @@ set -euo pipefail
 
 cd /var/app/staging
 
+mkdir -p tmp/pids
+
 if [ ! -x /usr/bin/node ] && [ ! -x /usr/local/bin/node ]; then
   sudo dnf -y install nodejs
 fi
