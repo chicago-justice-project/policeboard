@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: production
+    environment: policeboard-rails4-ruby8
     group_suffix: null
   post_rich_fixes:
     environment: staging
